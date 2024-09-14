@@ -15,6 +15,11 @@
         "link": "#"
     },
     {
+        "role": "trial",
+        "name": "TapeGMD",
+        "link": "https://m.youtube.com/@TapeGMD"
+    },
+    {
         "role": "dev",
         "name": "Prometheus",
         "link": "https://www.youtube.com/@Prometheus_Alt"
