@@ -1,27 +1,22 @@
 [
     {
         "role": "owner",
-        "name": "List Owner",
-        "link": "https://www.youtube.com/@Prometheus_Alt"
+        "name": "The Demon Within",
+        "link": "#"
     },
     {
         "role": "admin",
-        "name": "List Admin",
-        "link": "https://www.youtube.com/@Prometheus_Alt"
+        "name": "SchwertBootGD",
+        "link": "#"
     },
     {
         "role": "helper",
-        "name": "List Helper",
-        "link": "https://www.youtube.com/@Prometheus_Alt"
-    },
-    {
-        "role": "trial",
-        "name": "Trial List Helper",
-        "link": "https://www.youtube.com/@Prometheus_Alt"
+        "name": "Mynameisralsei",
+        "link": "#"
     },
     {
         "role": "dev",
-        "name": "List Coder",
+        "name": "Prometheus",
         "link": "https://www.youtube.com/@Prometheus_Alt"
     }
 ]
