@@ -8,5 +8,11 @@
     "percentToQualify": "50",
     "password": "Free To Copy",
     "records": [
+        {
+            "user": "jsabwicked",
+            "link": "/dashchallenge100%jsabwicked",
+            "percent": 100,
+            "hz": 60
+        }
     ]
 }
