@@ -13,6 +13,12 @@
             "link": "https://www.youtube.com/watch?v=C5CDPhxpNMQ",
             "percent": 100,
             "hz": 480
+        },
+        {
+            "user": "Nemo",
+            "link": "https://www.youtube.com/watch?v=lr9bOQI1E5w",
+            "percent": 100,
+            "hz": 240
         }
     ]
 }
