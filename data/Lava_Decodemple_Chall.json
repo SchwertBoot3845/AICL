@@ -19,6 +19,12 @@
             "link": "https://youtu.be/Dc9VrkOUbt8",
             "percent": 100,
             "hz": 480
+        },
+        {
+            "user": "Nemo",
+            "link": "https://www.youtube.com/watch?v=ZL7-C2CHpNY",
+            "percent": 100,
+            "hz": 240
         }
     ]
 }
