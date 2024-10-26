@@ -8,5 +8,11 @@
     "percentToQualify": "50",
     "password": "Free To Copy",
     "records": [
+        {
+            "user": "CatsAtGD54",
+            "link": "https://www.youtube.com/watch?v=C5CDPhxpNMQ",
+            "percent": 100,
+            "hz": 480
+        }
     ]
 }
