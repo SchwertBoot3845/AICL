@@ -8,5 +8,11 @@
     "percentToQualify": "50",
     "password": "Free To Copy",
     "records": [
+        {
+            "user": "TheChampion210",
+            "link": "https://www.youtube.com/watch?v=eqTlWsXpWoE",
+            "percent": 100,
+            "hz": 150
+        }
     ]
 }
