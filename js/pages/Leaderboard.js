@@ -1,23 +1,8 @@
-import { fetchLeaderboard } from '../content.js';
-import { localize } from '../util.js';
-
-import Spinner from '../components/Spinner.js';
-
-export default {
-    components: {
-        Spinner,
-    },
-    data: () => ({
-        leaderboard: [],
-        loading: true,
-        selected: 0,
-        err: [],
-    }),
-    template: `
-        <main v-if="loading">
-            <Spinner></Spinner>
-        </main>
-        <main v-else class="page-leaderboard-container">
+<template>
+    <main v-if="loading">
+        <Spinner></Spinner>
+    </main>
+    <main v-else class="page-leaderboard-container">
         <div class="page-leaderboard">
             <div class="error-container">
                 <p class="error" v-if="err.length > 0">
@@ -26,7 +11,7 @@ export default {
             </div>
             <div class="board-container">
                 <table class="board">
-                    <tr v-for="(ientry, i) in leaderboard">
+                    <tr v-for="(ientry, i) in leaderboard" :key="i">
                         <td class="rank">
                             <p class="type-label-lg">#{{ i + 1 }}</p>
                         </td>
@@ -47,7 +32,7 @@ export default {
                     <h3>{{ entry.total }}</h3>
                     <h2 v-if="entry.verified.length > 0">Verified ({{ entry.verified.length }})</h2>
                     <table class="table">
-                        <tr v-for="(score, index) in entry.verified">
+                        <tr v-for="(score, index) in entry.verified" :key="index">
                             <td class="rank">
                                 <p>#{{ score.rank }}</p>
                             </td>
@@ -61,7 +46,7 @@ export default {
                     </table>
                     <h2 v-if="entry.completed.length > 0">Completed ({{ entry.completed.length }})</h2>
                     <table class="table">
-                        <tr v-for="(score, index) in entry.completed">
+                        <tr v-for="(score, index) in entry.completed" :key="index">
                             <td class="rank">
                                 <p>#{{ score.rank }}</p>
                             </td>
@@ -73,16 +58,14 @@ export default {
                             </td>
                         </tr>
                     </table>
-                    <h2 v-if="entry.progressed.length > 0">Progressed ({{ entry.progressed.length }})</h2>
+                    <h2 v-if="entry.progressed.length > 0">Progressed ({{entry.progressed.length}})</h2>
                     <table class="table">
-                        <tr v-for="(score, index) in entry.progressed">
+                        <tr v-for="(score, index) in entry.progressed" :key="index">
                             <td class="rank">
                                 <p>#{{ score.rank }}</p>
                             </td>
                             <td class="level">
-                                <a class="type-label-lg" target="_blank" :href="score.link">
-                                    {{ score.percent }}% {{ score.level }}
-                                </a>
+                                <a class="type-label-lg" target="_blank" :href="score.link">{{ score.percent }}% {{ score.level }}</a>
                             </td>
                             <td class="score">
                                 <p>+{{ localize(score.score) }}</p>
@@ -93,7 +76,8 @@ export default {
             </div>
         </div>
     </main>
-    `,
+</template>
+
 <script>
 import { fetchLeaderboard } from '../content.js';
 import { localize } from '../util.js';
@@ -103,12 +87,14 @@ export default {
     components: {
         Spinner,
     },
-    data: () => ({
-        leaderboard: [],
-        loading: true,
-        selected: 0,
-        err: [],
-    }),
+    data() {
+        return {
+            leaderboard: [],
+            loading: true,
+            selected: 0,
+            err: [],
+        };
+    },
     computed: {
         entry() {
             return this.leaderboard[this.selected];
