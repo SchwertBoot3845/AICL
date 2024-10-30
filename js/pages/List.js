@@ -27,7 +27,7 @@ export default {
                         <td class="rank">
                             <p v-if="i + 1 <= 500">
                                 <span v-if="level.verifier && level.verifier.trim() !== ''" class="type-label-lg">
-                                    #{{ i + 1 }}
+                                    #{{ list.slice(0, i + 1).filter(([lvl]) => lvl.verifier && lvl.verifier.trim() !== '').length }}
                                 </span>
                                 <span v-else class="type-label-lg">U/V</span>
                             </p>
