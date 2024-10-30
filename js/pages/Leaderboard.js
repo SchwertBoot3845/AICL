@@ -1,3 +1,8 @@
+import { fetchLeaderboard } from '../content.js';
+import { localize } from '../util.js';
+
+import Spinner from '../components/Spinner.js';
+
 <template>
     <main v-if="loading">
         <Spinner></Spinner>
