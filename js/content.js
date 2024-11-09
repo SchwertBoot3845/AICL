@@ -48,52 +48,43 @@ export async function fetchEditors() {
 
 export async function fetchLeaderboard() {
     const list = await fetchList();
+
     const scoreMap = {};
     const errs = [];
-  
     list.forEach(([level, err], rank) => {
         if (err) {
             errs.push(err);
             return;
         }
 
-        // Only proceed if level and verifier exist
-        if (!level || typeof level.verifier !== 'string') return;
-
-        // Determine the verifier or assign "unverified" for empty verifier names
-        const verifier = level.verifier.trim() || "unverified";
-        
-        // Initialize scoreMap entry if not present
+        // Verification
+        const verifier = Object.keys(scoreMap).find(
+            (u) => u.toLowerCase() === level.verifier.toLowerCase(),
+        ) || level.verifier;
         scoreMap[verifier] ??= {
             verified: [],
             completed: [],
             progressed: [],
         };
-
         const { verified } = scoreMap[verifier];
-
-        // Assign 0 points if verifier name is empty, otherwise calculate score
-        const verifierScore = verifier === "unverified" ? 0 : score(rank + 1, 100, level.percentToQualify);
-
         verified.push({
             rank: rank + 1,
             level: level.name,
-            score: verifierScore,
+            score: score(rank + 1, 100, level.percentToQualify),
             link: level.verification,
         });
 
-        // Records processing
+        // Records
         level.records.forEach((record) => {
-            if (!record || !record.user) return;
-            
-            const user = record.user.trim();
+            const user = Object.keys(scoreMap).find(
+                (u) => u.toLowerCase() === record.user.toLowerCase(),
+            ) || record.user;
             scoreMap[user] ??= {
                 verified: [],
                 completed: [],
                 progressed: [],
             };
             const { completed, progressed } = scoreMap[user];
-
             if (record.percent === 100) {
                 completed.push({
                     rank: rank + 1,
@@ -114,7 +105,7 @@ export async function fetchLeaderboard() {
         });
     });
 
-    // Wrap in extra object containing the user and total score
+    // Wrap in extra Object containing the user and total score
     const res = Object.entries(scoreMap).map(([user, scores]) => {
         const { verified, completed, progressed } = scores;
         const total = [verified, completed, progressed]
