@@ -61,7 +61,7 @@ export async function fetchLeaderboard() {
         if (!level || typeof level.verifier !== 'string') return;
 
         // Determine the verifier or assign "anonymous" for empty verifier names
-        const verifier = level.verifier.trim() || "anonymous";
+        const verifier = level.verifier.trim() || "";
         
         // Initialize scoreMap entry if not present
         scoreMap[verifier] ??= {
@@ -73,7 +73,7 @@ export async function fetchLeaderboard() {
         const { verified } = scoreMap[verifier];
 
         // Assign 0 points if verifier name is empty, otherwise calculate score
-        const verifierScore = verifier === "anonymous" ? 0 : score(rank + 1, 100, level.percentToQualify);
+        const verifierScore = verifier === "" ? 0 : score(rank + 1, 100, level.percentToQualify);
 
         verified.push({
             rank: rank + 1,
