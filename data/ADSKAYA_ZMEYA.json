@@ -14,5 +14,12 @@
             "percent": 100,
             "hz": 144
         }
+        {
+            "user": "cheesearmy1",
+            "link": "https://m.youtube.com/watch?v=1RC7ZnNFozE",
+            "percent": 100,
+            "mobile": true,
+            "hz": 120
+        }
     ]
 }
