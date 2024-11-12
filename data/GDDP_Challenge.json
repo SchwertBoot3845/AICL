@@ -9,6 +9,12 @@
     "password": "Free To Copy",
     "records": [
         {
+            "user": "Nemo",
+            "link": "https://m.youtube.com/watch?v=KnScUcWWV80",
+            "percent": 100,
+            "hz": 240
+        },
+        {
             "user": "Gamer Cat",
             "link": "https://www.youtube.com/watch?v=7BqrznMRxgs",
             "percent": 85,
