@@ -8,5 +8,11 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "Nemo",
+            "link": "https://m.youtube.com/watch?v=-2QGgKiWXpA",
+            "percent": 100,
+            "hz": 240
+        }
     ]
 }
