@@ -13,6 +13,13 @@
             "link": "https://m.youtube.com/watch?v=-2QGgKiWXpA",
             "percent": 100,
             "hz": 240
+        },
+        {
+            "user": "cheesearmy1",
+            "link": "https://www.youtube.com/watch?v=OhWplYzMTCo",
+            "percent": 100,
+            "mobile": true,
+            "hz": 120
         }
     ]
 }
