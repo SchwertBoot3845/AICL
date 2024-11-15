@@ -8,5 +8,19 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "cheesearmy1",
+            "link": "https://www.youtube.com/watch?v=rYRcgwB2LQQ",
+            "percent": 100,
+            "mobile": true,
+            "hz": 120
+        }
+        {
+            "user": "SchwertBootGD",
+            "link": "https://www.youtube.com/watch?v=qN8MI78OdYw",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        }
     ]
 }
