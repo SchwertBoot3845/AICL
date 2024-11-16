@@ -3,17 +3,17 @@
     "name": "detroit chall z v1",
     "author": "cheesearmy2",
     "creators": [],
-    "verifier": "Nemo",
-    "verification": "https://www.youtube.com/watch?v=IJiyzr4jC_E",
+    "verifier": "cheesearmy1",
+    "verification": "https://www.youtube.com/watch?v=rYRcgwB2LQQ",
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
         {
-            "user": "cheesearmy1",
-            "link": "https://www.youtube.com/watch?v=rYRcgwB2LQQ",
+            "user": "Nemo",
+            "link": "https://www.youtube.com/watch?v=IJiyzr4jC_E",
             "percent": 100,
-            "mobile": true,
-            "hz": 120
+            "mobile": false,
+            "hz": 240
         },
         {
             "user": "SchwertBootGD",
