@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "cheesearmy1",
+            "link": "https://www.youtube.com/watch?v=-QKseYt5e_w",
+            "percent": 100,
+            "mobile": false,
+            "hz": 288
+        }
     ]
 }
