@@ -4,10 +4,6 @@ export default {
             type: String,
             required: true,
         },
-        creators: {
-            type: Array,
-            required: true,
-        },
         verifier: {
             type: String,
             required: true,
@@ -32,6 +28,7 @@ export default {
                 </p>
             </template>
             <template v-else>
+            <!-- Deleted
                 <div class="type-title-sm">Creators</div>
                 <p class="type-body">
                     <template v-for="(creator, index) in creators" :key="\`creator-\$\{creator\}\`">
@@ -39,6 +36,7 @@ export default {
                         ><span v-if="index < creators.length - 1">, </span>
                     </template>
                 </p>
+            -->
                 <div class="type-title-sm">Verifier</div>
                 <p class="type-body">
                     <span>{{ verifier }}</span>
@@ -53,7 +51,7 @@ export default {
 
     computed: {
         selfVerified() {
-            return this.author === this.verifier && this.creators.length === 0;
+            return this.author === this.verifier;
         },
     },
 };
