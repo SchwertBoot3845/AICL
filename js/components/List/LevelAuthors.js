@@ -22,10 +22,12 @@ export default {
                 </p>
             </template>
             <template v-else-if="creators.length === 0">
+                <!-- testing deletion
                 <div class="type-title-sm">Creator</div>
                 <p class="type-body">
                     <span>{{ author }}</span>
                 </p>
+                -->
                 <div class="type-title-sm">Verifier</div>
                 <p class="type-body">
                     <span>{{ verifier }}</span>
