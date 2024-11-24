@@ -44,6 +44,13 @@
             "link": "https://www.youtube.com/watch?v=TQt5zV-EcdU",
             "percent": 100,
             "hz": 60
+        },
+        {
+            "user": "IkukGD",
+            "link": "https://youtu.be/xQtXyGSsqh0?si=uh3UHrMnEVV5wrHB",
+            "percent": 100,
+            "mobile": true,
+            "hz": 90
         }
     ]
 }
