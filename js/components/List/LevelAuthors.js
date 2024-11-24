@@ -6,7 +6,7 @@ export default {
         },
         creators: {
             type: Array,
-            required: false,
+            required: true,
         },
         verifier: {
             type: String,
