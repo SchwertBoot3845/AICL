@@ -99,20 +99,19 @@ export default {
                         </ol>
                     </template>
                     <h3>Latest Changelog</h3>
-                    <ul>
-                        <li>BALLS CHALLENGE has been moved to the Verification Board.</li>
-                        <li>BOT unnerfed ship has been moved to the Verification Board.</li>
-                        <li>BP mini wave 2 has been moved to the Verification Board.</li>
-                        <li>Challenge ship wave has been moved to the Verification Board.</li>
-                        <li>Detroit Challenge X V3 has been moved to the Verification Board.</li>
-                        <li>I said has been moved to the Verification Board.</li>
-                        <li>JOSHUA NEVER EAR has been moved to the Verification Board.</li>
-                        <li>KAIZO has been moved to the Verification Board.</li>
-                        <li>LIMORAMI CHallenge has been moved to the Verification Board.</li>
-                        <li>Marion Schneider has been moved to the Verificaton Board.</li>
-                        <li>Not Cat Universe has been moved to the Verification Board.</li>
-                        <li>Oktober Chamber has been moved to the Verification Board.</li>
-                    </ul>
+                    <p>BALLS CHALLENGE has been moved to the Verification Board.</p>
+                    <p>BOT unnerfed ship has been moved to the Verification Board.</p>
+                    <p>BP mini wave 2 has been moved to the Verification Board.</p>
+                    <p>Challenge ship wave has been moved to the Verification Board.</p>
+                    <p>Detroit Challenge X V3 has been moved to the Verification Board.</p>
+                    <p>I said has been moved to the Verification Board.</p>
+                    <p>JOSHUA NEVER EAR has been moved to the Verification Board.</p>
+                    <p>KAIZO has been moved to the Verification Board.</p>
+                    <p>LIMORAMI CHallenge has been moved to the Verification Board.</p>
+                    <p>Marion Schneider has been moved to the Verification Board.</p>
+                    <p>Not Cat Universe has been moved to the Verification Board.</p>
+                    <p>Oktober Chamber has been moved to the Verification Board.</p>
+
                     <h3>Submission Requirements</h3>
                     <p>
                         Achieved the record without using hacks (however, FPS bypass is allowed, up to CBF lol)
