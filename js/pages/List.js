@@ -99,7 +99,7 @@ export default {
                         </ol>
                     </template>
                     <h3>Latest Changelog</h3>
-                    <div style="font-size: 16px">
+                    <div style="font-size: 16px; margin: 5% 0">
                         <p>BALLS CHALLENGE has been moved to the Verification Board.</p>
                         <p>BOT unnerfed ship has been moved to the Verification Board.</p>
                         <p>BP mini wave 2 has been moved to the Verification Board.</p>
