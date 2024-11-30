@@ -98,6 +98,21 @@ export default {
                             </li>
                         </ol>
                     </template>
+                    <h3>Latest Changelog</h3>
+                    <ul>
+                        <li>BALLS CHALLENGE has been moved to the Verification Board.</li>
+                        <li>BOT unnerfed ship has been moved to the Verification Board.</li>
+                        <li>BP mini wave 2 has been moved to the Verification Board.</li>
+                        <li>Challenge ship wave has been moved to the Verification Board.</li>
+                        <li>Detroit Challenge X V3 has been moved to the Verification Board.</li>
+                        <li>I said has been moved to the Verification Board.</li>
+                        <li>JOSHUA NEVER EAR has been moved to the Verification Board.</li>
+                        <li>KAIZO has been moved to the Verification Board.</li>
+                        <li>LIMORAMI CHallenge has been moved to the Verification Board.</li>
+                        <li>Marion Schneider has been moved to the Verificaton Board.</li>
+                        <li>Not Cat Universe has been moved to the Verification Board.</li>
+                        <li>Oktober Chamber has been moved to the Verification Board.</li>
+                    </ul>
                     <h3>Submission Requirements</h3>
                     <p>
                         Achieved the record without using hacks (however, FPS bypass is allowed, up to CBF lol)
