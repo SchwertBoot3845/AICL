@@ -99,18 +99,20 @@ export default {
                         </ol>
                     </template>
                     <h3>Latest Changelog</h3>
-                    <p>BALLS CHALLENGE has been moved to the Verification Board.</p>
-                    <p>BOT unnerfed ship has been moved to the Verification Board.</p>
-                    <p>BP mini wave 2 has been moved to the Verification Board.</p>
-                    <p>Challenge ship wave has been moved to the Verification Board.</p>
-                    <p>Detroit Challenge X V3 has been moved to the Verification Board.</p>
-                    <p>I said has been moved to the Verification Board.</p>
-                    <p>JOSHUA NEVER EAR has been moved to the Verification Board.</p>
-                    <p>KAIZO has been moved to the Verification Board.</p>
-                    <p>LIMORAMI CHallenge has been moved to the Verification Board.</p>
-                    <p>Marion Schneider has been moved to the Verification Board.</p>
-                    <p>Not Cat Universe has been moved to the Verification Board.</p>
-                    <p>Oktober Chamber has been moved to the Verification Board.</p>
+                    <div style="font-size: 16px">
+                        <p>BALLS CHALLENGE has been moved to the Verification Board.</p>
+                        <p>BOT unnerfed ship has been moved to the Verification Board.</p>
+                        <p>BP mini wave 2 has been moved to the Verification Board.</p>
+                        <p>Challenge ship wave has been moved to the Verification Board.</p>
+                        <p>Detroit Challenge X V3 has been moved to the Verification Board.</p>
+                        <p>I said has been moved to the Verification Board.</p>
+                        <p>JOSHUA NEVER EAR has been moved to the Verification Board.</p>
+                        <p>KAIZO has been moved to the Verification Board.</p>
+                        <p>LIMORAMI CHallenge has been moved to the Verification Board.</p>
+                        <p>Marion Schneider has been moved to the Verification Board.</p>
+                        <p>Not Cat Universe has been moved to the Verification Board.</p>
+                        <p>Oktober Chamber has been moved to the Verification Board.</p>
+                    </div>
 
                     <h3>Submission Requirements</h3>
                     <p>
