@@ -100,13 +100,7 @@ export default {
                     </template>
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
-                        <p style="font-size: 16px; margin-bottom: 20px;">Scarlet has been moved to the Verification Board.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">acropolis challenge has been moved to the Verification Board.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">The Gib Gourder has been moved to the Verification Board.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">Without Judgement has been moved to the Verification Board.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">Ship Challenge idk has been moved to the Verification Board.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">Wave Challenge has been moved to the Verification Board.</p>
-                        <p style="font-size: 16px;">SHIP CHALLENGE has been moved to the Verification Board.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Mefewe Challenge has been raised from #3 to #2.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
