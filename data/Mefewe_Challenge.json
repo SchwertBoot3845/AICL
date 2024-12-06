@@ -3,16 +3,10 @@
     "name": "Mefewe Challenge",
     "author": "Iando",
     "creators": [],
-    "verifier": "",
-    "verification": "#",
+    "verifier": "cheesearmy1",
+    "verification": "https://youtu.be/NfaNTYBp1Gk?si=z9WLqTN7PFUsITYC",
     "percentToQualify": "50",
     "password": "Free To Copy",
     "records": [
-        {
-            "user": "cheesearmy1",
-            "link": "https://www.youtube.com/watch?v=jzeiKhNurgg",
-            "percent": 70,
-            "hz": 288
-        }
     ]
 }
