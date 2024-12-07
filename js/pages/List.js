@@ -100,7 +100,10 @@ export default {
                     </template>
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
-                        <p style="font-size: 16px; margin-bottom: 20px;">Mefewe Challenge has been raised from #3 to #2.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">deCode wave x3 has been placed at #17.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Challenge 2 has been placed at #25.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">VSC Ez has been placed at #18.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">8JOH but i ate the has been placed at #14.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
