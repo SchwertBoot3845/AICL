@@ -100,10 +100,12 @@ export default {
                     </template>
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
-                        <p style="font-size: 16px; margin-bottom: 20px;">deCode wave x3 has been placed at #17.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">Challenge 2 has been placed at #25.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">VSC Ez has been placed at #18.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">8JOH but i ate the has been placed at #14.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Wave challenge VIII has been placed at #22.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Tartarus Ending has been placed at #23.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">SPAM CHALLENGE has been placed at #17.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Sakupen circles Dual has been placed at #12.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Acheron Challenge has been placed at #9.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Unnamed 8 has been placed at #38.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
