@@ -51,6 +51,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 90
+        },
+        {
+            "user": "Chloe",
+            "link": "https://www.youtube.com/watch?v=MmW1j5AGGd0",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
