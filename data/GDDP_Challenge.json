@@ -19,6 +19,13 @@
             "link": "https://www.youtube.com/watch?v=7BqrznMRxgs",
             "percent": 85,
             "hz": 60
+        },
+        {
+            "user": "LetzTiz",
+            "link": "https://www.youtube.com/watch?v=AT7E9d8iE1I",
+            "percent": 100,
+            "mobile": false,
+            "hz": 800
         }
     ]
 }
