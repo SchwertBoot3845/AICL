@@ -31,6 +31,13 @@
             "link": "https://m.youtube.com/watch?v=P__5_5YI2Qo",
             "percent": 100,
             "hz": 120
+        },
+        {
+            "user": "SchwertBootGD",
+            "link": "https://youtu.be/1v3vY1vjt_A",
+            "percent": 100,
+            "mobile": false,
+            "hz": 120
         }
     ]
 }
