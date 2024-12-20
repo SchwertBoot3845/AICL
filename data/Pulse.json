@@ -8,5 +8,12 @@
     "percentToQualify": "50",
     "password": "Free To Copy",
     "records": [
+        {
+            "user": "kluczdoskarbu",
+            "link": "https://www.youtube.com/watch?v=WduwLMWwrNo",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
