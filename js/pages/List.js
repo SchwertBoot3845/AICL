@@ -100,9 +100,8 @@ export default {
                     </template>
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
-                        <p style="font-size: 16px; margin-bottom: 20px;">infinite sunix wave has been placed at #2.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">Wave Challenge JOKE has been placed at #31.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">FUNNY LVL IG has been placed at #12.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Mefewe Challenge and infinite sunix wave have been swapped.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Daryl Processing uno and Shitty VSC have been swapped.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
