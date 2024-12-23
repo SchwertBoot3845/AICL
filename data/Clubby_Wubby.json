@@ -21,6 +21,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 144
+        },
+        {
+            "user": "kluczdoskarbu",
+            "link": "https://www.youtube.com/watch?v=VctY6IZ2OdU",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
