@@ -25,6 +25,16 @@
         "link": "https://www.youtube.com/@cheesearmy1"
     },
     {
+        "role": "helper",
+        "name": "Everyone's Favorite Conster",
+        "link": "https://m.youtube.com/@LeConster"
+    },
+    {
+        "role": "helper",
+        "name": "LetzTiz",
+        "link": "https://www.youtube.com/@letztiz"
+    },
+    {
         "role": "dev",
         "name": "Prometheus",
         "link": "https://www.youtube.com/@Prometheus_Alt"
