@@ -26,6 +26,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 800
+        },
+        {
+            "user": "SchwertBootGD",
+            "link": "https://youtu.be/cHLc_SVftYQ",
+            "percent": 100,
+            "mobile": false,
+            "hz": 120
         }
     ]
 }
