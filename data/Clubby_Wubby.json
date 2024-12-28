@@ -28,6 +28,20 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "cheesearmy1",
+            "link": "https://www.youtube.com/watch?v=Oyw2R1ooAuk",
+            "percent": 100,
+            "mobile": true,
+            "hz": 288
+        },
+        {
+            "user": "coffee cup",
+            "link": "https://youtu.be/_KdSmo2vqxc",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
