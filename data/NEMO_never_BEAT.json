@@ -8,5 +8,26 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "CatsAtGD54",
+            "link": "https://youtu.be/ht8iCJ-F1rw",
+            "percent": 100,
+            "mobile": false,
+            "hz": 480
+        },
+        {
+            "user": "ThirtyOne",
+            "link": "https://youtu.be/WgJMDNnN9Pk?si=jyRq48fRhlJlM3OX",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        },
+        {
+            "user": "coffee cup",
+            "link": "https://youtu.be/_KdSmo2vqxc",
+            "percent": 100,
+            "mobile": false,
+            "hz": 100
+        }
     ]
 }
