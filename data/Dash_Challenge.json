@@ -58,6 +58,27 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "astral",
+            "link": "https://youtube.com/shorts/2-DCINLlKio?si=-xQm5BzPHIYB931k",
+            "percent": 100,
+            "mobile": true,
+            "hz": 90
+        },
+        {
+            "user": "adrjbv",
+            "link": "https://youtu.be/xXERk_QS7nk",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+        },
+        {
+            "user": "Tariok",
+            "link": "https://youtu.be/dUC6s_FmJlE?si=5XBBOcradZdU-I6t",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
         }
     ]
 }
