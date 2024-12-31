@@ -101,7 +101,8 @@ export default {
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
                         <p style="font-size: 16px; margin-bottom: 20px;">Mefewe Challenge and infinite sunix wave have been swapped.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">Daryl Processing uno and Shitty VSC have been swapped.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">SWI Dual and Acheron Challenge have been swapped.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">GDDP Challenge has been raised from #22 to #16.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
