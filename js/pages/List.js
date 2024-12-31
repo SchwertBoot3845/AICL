@@ -129,7 +129,7 @@ export default {
                     <p> 
                     </p>
                     <p>
-                        Road to 5K Levels: 0.88%
+                        Road to 5K Levels: <b>0.88%</b>
                     </p>
                 </div>
             </div>
