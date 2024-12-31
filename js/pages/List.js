@@ -126,6 +126,11 @@ export default {
                     <p>
                         Raw footage is only necessary for verifications, but it still has to be given if a list staff member asks for it outside of verifications.
                     </p>
+                    <p> 
+                    </p>
+                    <p>
+                        Road to 5K Levels: 0.88%
+                    </p>
                 </div>
             </div>
         </main>
