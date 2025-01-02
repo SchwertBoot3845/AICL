@@ -100,8 +100,7 @@ export default {
                     </template>
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
-                        <p style="font-size: 16px; margin-bottom: 20px;">E has been placed at #22.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">Easy Spam Challenge has been placed at #29.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">SWI Dual and FUNNY LVL IG have been swapped.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
