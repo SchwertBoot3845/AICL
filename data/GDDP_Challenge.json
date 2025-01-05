@@ -33,6 +33,20 @@
             "percent": 100,
             "mobile": false,
             "hz": 120
+        },
+        {
+            "user": "Khan",
+            "link": "https://youtu.be/OfE_5uQVI9w",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        },
+        {
+            "user": "ThirtyOne",
+            "link": "https://youtu.be/-b-atJ3VSMg?si=zJ_5tgSonmj68laY",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
         }
     ]
 }
