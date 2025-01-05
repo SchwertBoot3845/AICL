@@ -100,7 +100,9 @@ export default {
                     </template>
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
-                        <p style="font-size: 16px; margin-bottom: 20px;">SWI Dual and FUNNY LVL IG have been swapped.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">BWA WAWAWAWA has been placed at #26.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Toes has been placed at #5.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Death Note has been placed at #23.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
@@ -127,9 +129,11 @@ export default {
                     <p> 
                     </p>
                     <p>
-                        Road to 5K Levels: <b>0.92%</b><br/>
-                        Road to 10K Records/Verifications: <b>1.29%</b>
+                        Road to 5K Levels: <b>0.98%</b><br/>
+                        Road to 10K Records/Verifications: <b>1.32%</b>
                     </p>
+                    <!-- 1 Level = plus 0.02% -->
+                    <!-- 1 Record = plus 0.01% -->
                 </div>
             </div>
         </main>
