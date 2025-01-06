@@ -34,6 +34,20 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "Dirvelin",
+            "link": "https://youtu.be/WQ4421NIk5A",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        },
+        {
+            "user": "Coffee Cup",
+            "link": "https://youtu.be/_KdSmo2vqxc",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
