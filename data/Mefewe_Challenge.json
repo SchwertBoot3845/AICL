@@ -27,6 +27,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+                        {
+            "user": "Pentamery",
+            "link": "https://youtu.be/9l98Q0Jr6i8",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
