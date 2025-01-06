@@ -27,6 +27,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 240
+        },
+        {
+            "user": "BirdhalsGD",
+            "link": "https://youtu.be/PBQyC9xb1o8",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
