@@ -29,5 +29,12 @@
             "mobile": false,
             "hz": 144
         }
+{
+            "user": "astral",
+            "link": "https://www.youtube.com/watch?v=hurQ-VK1LLo",
+            "percent": 100,
+            "mobile": true,
+            "hz": 90
+        }
     ]
 }
