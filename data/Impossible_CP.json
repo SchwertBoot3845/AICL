@@ -20,5 +20,12 @@
             "percent": 100,
             "hz": 240
         }
+        {
+            "user": "adrjbv",
+            "link": "https://youtu.be/qGzz0V_BPmY",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+        }
     ]
 }
