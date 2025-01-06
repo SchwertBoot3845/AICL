@@ -19,11 +19,12 @@
             "link": "https://youtu.be/xw2OgBuutjo",
             "percent": 100,
             "hz": 144
-        }
+        },
         {
-            "user": "astr7l",
+            "user": "astral",
             "link": "https://www.youtube.com/shorts/JGL5oh2SfbE",
             "percent": 100,
+            "mobile": true,
             "hz": 90
         }
     ]
