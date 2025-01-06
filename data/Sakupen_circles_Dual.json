@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Not Copyable",
     "records": [
+                {
+            "user": "adrjbv",
+            "link": "https://youtu.be/H6u1vscd4mk",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+        }
     ]
 }
