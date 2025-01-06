@@ -21,6 +21,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "Khan",
+            "link": "https://www.youtube.com/watch?v=s81udwHk7SQ",
+            "percent": 76,
+            "mobile": true,
+            "hz": 60
         }
     ]
 }
