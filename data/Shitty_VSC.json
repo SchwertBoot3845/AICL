@@ -14,6 +14,20 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
+        },
+        {
+            "user": "BirdhalsGD",
+            "link": "https://youtu.be/PgifnD5uPF0",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        },
+        {
+            "user": "NeverXMia",
+            "link": "https://www.youtube.com/watch?v=5SrI3qPG-4I",
+            "percent": 100,
+            "mobile": false,
+            "hz": 120
         }
     ]
 }
