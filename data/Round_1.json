@@ -15,5 +15,12 @@
             "mobile": true,
             "hz": 90
         }
+        {
+            "user": "adrjbv",
+            "link": "https://youtu.be/XPfX9WwG6kM",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+        }
     ]
 }
