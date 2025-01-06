@@ -21,6 +21,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 800
+        },
+        {
+            "user": "fish",
+            "link": "https://youtu.be/xGZAszSSnFg",
+            "percent": 100,
+            "mobile": false,
+            "hz": 480
         }
     ]
 }
