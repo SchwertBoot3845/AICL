@@ -8,5 +8,12 @@
     "percentToQualify": "50",
     "password": "Free To Copy",
     "records": [
+                {
+            "user": "Pentamery",
+            "link": "https://youtu.be/OOos7q4q3Mo",
+            "percent": 100,
+            "mobile": false,
+            "hz": 30
+        }
     ]
 }
