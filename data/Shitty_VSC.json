@@ -28,13 +28,20 @@
             "percent": 100,
             "mobile": false,
             "hz": 120
-        }
+        },
         {
             "user": "Pentamery",
             "link": "https://youtu.be/WTBq57pWAOg",
             "percent": 100,
             "mobile": false,
             "hz": 30
+        },
+        {
+            "user": "ScOrbunn7",
+            "link": "https://youtu.be/t7RE0wXBmQw?si=XFzul9DWj90CRRcJ",
+            "percent": 55,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
