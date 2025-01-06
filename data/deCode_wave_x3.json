@@ -28,6 +28,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 800
+        },
+        {
+            "user": "PMN",
+            "link": "https://youtu.be/IWcxiZuuK0c",
+            "percent": 100,
+            "mobile": false,
+            "hz": 120
         }
     ]
 }
