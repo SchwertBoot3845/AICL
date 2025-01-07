@@ -37,6 +37,13 @@
             "link": "https://www.youtube.com/watch?v=0TLGjgUaF7w",
             "percent": 100,
             "hz": 120
+        },
+                                        {
+            "user": "Ali",
+            "link": "https://youtu.be/mi6748k2XQU",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
