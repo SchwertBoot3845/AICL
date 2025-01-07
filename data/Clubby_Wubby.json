@@ -42,6 +42,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+                {
+            "user": "Ali",
+            "link": "https://youtu.be/TbvDbcs8PVI",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
