@@ -42,6 +42,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
-        }
+        },
+            {
+            "user": "Tariok",
+            "link": "https://youtu.be/eK9iTimvX5c?si=h7A4OVTncPsAJX29",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+    } 
     ]
 }
