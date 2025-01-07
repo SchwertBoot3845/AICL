@@ -63,6 +63,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 240
+        },
+                {
+            "user": "Philbon",
+            "link": "https://youtu.be/y11VBOxdpUs",
+            "percent": 69,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
