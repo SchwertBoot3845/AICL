@@ -60,6 +60,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
+        },
+                                                {
+            "user": "ThirtyOne",
+            "link": "https://youtu.be/ztCwAL_mVMI?si=3Bm7LD9EObP4nEYV",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
         }
     ]
 }
