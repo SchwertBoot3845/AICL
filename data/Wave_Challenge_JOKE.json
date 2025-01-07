@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "101010",
     "records": [
+                {
+            "user": "Ali",
+            "link": "https://youtu.be/64glm01x64w",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+        }
     ]
 }
