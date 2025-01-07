@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Not Copyable",
     "records": [
+    {
+            "user": "Tariok",
+            "link": "https://youtu.be/scDl0SUTxNg?si=o-kJRW2FWBvKsp6h",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+    } 
     ]
 }
