@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "273690",
     "records": [
+        {
+            "user": "ThirtyOne",
+            "link": "https://youtu.be/dqJaFhgG_ck?si=OIXgTc_FBgDVfZYO",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        }
     ]
 }
