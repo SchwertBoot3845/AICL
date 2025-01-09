@@ -56,6 +56,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 240
+        },
+                      {
+            "user": "LetzTiz",
+            "link": "https://youtu.be/M1IUvVFlNsM?si=NYVvYTppCrDr7fd1",
+            "percent": 100,
+            "mobile": false,
+            "hz": 800
         }
     ]
 }
