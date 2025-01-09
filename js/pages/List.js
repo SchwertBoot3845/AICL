@@ -100,7 +100,8 @@ export default {
                     </template>
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
-                        <p style="font-size: 16px; margin-bottom: 20px;">afro challen n1 has been placed at #29.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">AngelWaves has been placed at #5.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Shitty VSC and Unnamed Zero Chall have been swapped.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
@@ -127,8 +128,8 @@ export default {
                     <p> 
                     </p>
                     <p>
-                        Road to 5K Levels: <b>1.00%</b><br/>
-                        Road to 10K Records/Verifications: <b>3.06%</b>
+                        Road to 5K Levels: <b>1.02%</b><br/>
+                        Road to 10K Records/Verifications: <b>3.07%</b>
                     </p>
                     <!-- 1 Level = plus 0.02% -->
                     <!-- 1 Record = plus 0.01% -->
