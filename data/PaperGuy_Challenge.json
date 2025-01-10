@@ -54,6 +54,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 800
+       },
+                                      {
+            "user": "IkukGD",
+            "link": "https://youtu.be/5vonEPq2nFc?si=BSYUGho_fOt7h1Hq",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
        }
     ]
 }
