@@ -21,6 +21,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
+        },
+                          {
+            "user": "Letztizlover (bubu)",
+            "link": "https://www.youtube.com/watch?v=Aj4H9dWaLxs",
+            "percent": 100,
+            "mobile": false,
+            "hz": 360
         }
     ]
 }
