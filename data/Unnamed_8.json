@@ -70,6 +70,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 240
+        },
+        {
+            "user": "Astral",
+            "link": "https://youtu.be/wUIM03XA-uM?si=LXZhFhgKjEUBK7QM",
+            "percent": 100,
+            "mobile": true,
+            "hz": 90
         }
     ]
 }
