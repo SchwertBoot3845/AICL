@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+                {
+            "user": "LetzTiz",
+            "link": "https://youtu.be/UkamoeeowNA",
+            "percent": 100,
+            "mobile": false,
+            "hz": 360
+        }
     ]
 }
