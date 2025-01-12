@@ -101,6 +101,7 @@ export default {
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
                         <p style="font-size: 16px; margin-bottom: 20px;">ADD NAME HERE has been placed at #20.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Dash Challenge has been raised from #52 to #51.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
