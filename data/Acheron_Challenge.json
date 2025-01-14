@@ -9,7 +9,7 @@
     "password": "Free to Copy",
     "records": [
                 {
-            "user": "Coffee Cup",
+            "user": "coffee cup",
             "link": "https://youtu.be/_KdSmo2vqxc",
             "percent": 100,
             "mobile": false,
@@ -28,6 +28,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 360
+        },
+        {
+            "user": "ThirtyOne",
+            "link": "https://youtu.be/A3dqCzCosC4?si=LcaPc0OWTnqDps8M",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
         }
     ]
 }
