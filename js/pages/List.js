@@ -100,8 +100,8 @@ export default {
                     </template>
                     <h3>Latest Changelog</h3>
                     <div style="line-height: 1.8;">
-                        <p style="font-size: 16px; margin-bottom: 20px;">desakupen has been placed at #12.</p>
-                        <p style="font-size: 16px; margin-bottom: 20px;">chalgn 2 has been placed at #48.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">Shitty Tidal Wave has been placed at #23.</p>
+                        <p style="font-size: 16px; margin-bottom: 20px;">stone dance has been placed at #22.</p>
                     </div>
                     <h3>Submission Requirements</h3>
                     <p>
@@ -128,8 +128,8 @@ export default {
                     <p> 
                     </p>
                     <p>
-                        Road to 5K Levels: <b>1.12%</b><br/>
-                        Road to 10K Records/Verifications: <b>3.69%</b>
+                        Road to 5K Levels: <b>1.16%</b><br/>
+                        Road to 10K Records/Verifications: <b>3.71%</b>
                     </p>
                     <!-- 1 Level = plus 0.02% -->
                     <!-- 1 Record = plus 0.01% -->
