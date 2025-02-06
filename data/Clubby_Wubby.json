@@ -64,6 +64,13 @@
             "mobile": false,
             "hz": 800
         },
+                                {
+            "user": "IkukGD",
+            "link": "https://www.youtube.com/watch?v=vE0nDKcQo9w",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        },
         {
             "user": "AvernusYT",
             "link": "https://youtu.be/Zx_y4K9Q4qI",
