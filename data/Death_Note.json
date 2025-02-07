@@ -15,6 +15,13 @@
             "mobile": false,
             "hz": 60
         },
+                         {
+            "user": "IkukGD",
+            "link": "https://www.youtube.com/watch?v=WjYyrQJtTSM",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        },
         {
             "user": "LetzTiz",
             "link": "https://youtu.be/gc7zUUg40Ng",
