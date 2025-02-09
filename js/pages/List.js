@@ -123,8 +123,8 @@ export default {
                     <p> 
                     </p>
                     <p>
-                        Road to 5K Levels: <b>1.44%</b><br/>
-                        Road to 10K Records/Verifications: <b>4.05%</b>
+                        Road to 5K Levels: <b>1.68%</b><br/>
+                        Road to 10K Records/Verifications: <b>4.17%</b>
                     </p>
                     <!-- 1 Level = plus 0.02% -->
                     <!-- 1 Record = plus 0.01% -->
