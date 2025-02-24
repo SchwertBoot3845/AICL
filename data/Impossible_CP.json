@@ -54,6 +54,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 240
+       },
+        {
+            "user": "AvernusYT",
+            "link": "https://youtu.be/_J_U1idH8cE",
+            "percent": 100,
+            "mobile": false,
+            "hz": 180
        }
     ]
 }
