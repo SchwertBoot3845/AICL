@@ -84,6 +84,27 @@
             "percent": 100,
             "mobile": false,
             "hz": 180
+        },
+        {
+            "user": "Nai",
+            "link": "https://youtu.be/iQvac2Ab3ig",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        },
+        {
+            "user": "2.1betatest",
+            "link": "https://streamable.com/3uaiex",
+            "percent": 100,
+            "mobile": true,
+            "hz": 90
+        },
+        {
+            "user": "SunnyCherry79",
+            "link": "https://youtu.be/LcLTilW67xc?si=DwhnwG9otVgjM9lj",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
         }
     ]
 }
