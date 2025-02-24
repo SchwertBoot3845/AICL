@@ -8,5 +8,19 @@
     "percentToQualify": 50,
     "password": "Not Copyable",
     "records": [
+        {
+            "user": "Khan",
+            "link": "https://www.youtube.com/watch?v=j-PbOrux-s0",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        },
+        {
+            "user": "IkukGD",
+            "link": "https://youtu.be/ctsvB830vOI?si=uKAaeWjkoSfhQBx4",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        }
     ]
 }
