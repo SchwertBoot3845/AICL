@@ -35,6 +35,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 800
-       }
+       },
+        {
+            "user": "SunnyCherry79",
+            "link": "https://youtu.be/VOn_13Bf2Gc?si=wW16HiYfM3ljanBr",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        }
     ]
 }
