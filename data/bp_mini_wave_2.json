@@ -8,5 +8,19 @@
     "percentToQualify": 50,
     "password": "Not Copyable",
     "records": [
+        {
+            "user": "IkukGD",
+            "link": "https://youtu.be/AP7DTiIA5bo?si=cQb_Df71HyWN19xO",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        },
+        {
+            "user": "Void852",
+            "link": "https://youtu.be/pql_EpfVe70?si=KELUxH-TUfuJs4YE",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        }
     ]
 }
