@@ -8,5 +8,19 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "Bizzle",
+            "link": "https://youtu.be/dDI3Tzyd_XY",
+            "percent": 100,
+            "mobile": false,
+            "hz": 144
+        },
+        {
+            "user": "Mynameisralsei",
+            "link": "https://youtu.be/1mH8TLfKAgQ",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
