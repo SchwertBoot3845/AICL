@@ -14,14 +14,11 @@ export default {
         },
         original_verifier: {
             type: Boolean,
-            default: false, // Default to "List Verifier"
+            default: false, // Default to false if missing
         },
     },
     template: `
         <div class="level-authors">
-            <p>original_verifier: {{ original_verifier }}</p> <!-- Debugging -->
-            <p>verifierLabel: {{ verifierLabel }}</p> <!-- Debugging -->
-            
             <template v-if="selfVerified">
                 <div class="type-title-sm">Creator & Verifier</div>
                 <p class="type-body">
