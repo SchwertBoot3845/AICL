@@ -14,11 +14,14 @@ export default {
         },
         original_verifier: {
             type: Boolean,
-            required: true, // Set to true by default in your JSON for compatibility
+            default: true, // Ensures default behavior
         },
     },
     template: `
         <div class="level-authors">
+            <p>original_verifier: {{ original_verifier }}</p> <!-- Debugging -->
+            <p>verifierLabel: {{ verifierLabel }}</p> <!-- Debugging -->
+            
             <template v-if="selfVerified">
                 <div class="type-title-sm">Creator & Verifier</div>
                 <p class="type-body">
@@ -60,4 +63,3 @@ export default {
         },
     },
 };
-
