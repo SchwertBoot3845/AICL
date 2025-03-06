@@ -39,7 +39,12 @@ export default {
             <div class="level-container">
                 <div class="level" v-if="level">
                     <h1>{{ level.name }}</h1>
-                    <LevelAuthors :author="level.author" :creators="level.creators" :verifier="level.verifier"></LevelAuthors>
+                    <LevelAuthors 
+                        :author="level.author" 
+                        :creators="level.creators" 
+                        :verifier="level.verifier"
+                        :original_verifier="level.original_verifier ?? false"
+                    />
                     <iframe class="video" id="videoframe" :src="video" frameborder="0"></iframe>
                     <ul class="stats">
                         <li>
