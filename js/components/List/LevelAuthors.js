@@ -14,7 +14,7 @@ export default {
         },
         original_verifier: {
             type: Boolean,
-            default: true, // Ensures default behavior
+            default: false, // Default to "List Verifier"
         },
     },
     template: `
