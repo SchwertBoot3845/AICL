@@ -12,6 +12,10 @@ export default {
             type: String,
             required: true,
         },
+        original_verifier: {
+            type: Boolean,
+            default: false, // Default to false if missing
+        },
     },
     template: `
         <div class="level-authors">
@@ -22,13 +26,7 @@ export default {
                 </p>
             </template>
             <template v-else-if="creators.length === 0">
-                <!-- testing deletion
-                <div class="type-title-sm">Creator</div>
-                <p class="type-body">
-                    <span>{{ author }}</span>
-                </p>
-                -->
-                <div class="type-title-sm">Verifier</div>
+                <div class="type-title-sm">{{ verifierLabel }}</div>
                 <p class="type-body">
                     <span>{{ verifier }}</span>
                 </p>
@@ -37,11 +35,11 @@ export default {
                 <div class="type-title-sm">Creators</div>
                 <p class="type-body">
                     <template v-for="(creator, index) in creators" :key="\`creator-\$\{creator\}\`">
-                        <span >{{ creator }}</span
-                        ><span v-if="index < creators.length - 1">, </span>
+                        <span>{{ creator }}</span>
+                        <span v-if="index < creators.length - 1">, </span>
                     </template>
                 </p>
-                <div class="type-title-sm">Verifier</div>
+                <div class="type-title-sm">{{ verifierLabel }}</div>
                 <p class="type-body">
                     <span>{{ verifier }}</span>
                 </p>
@@ -56,6 +54,9 @@ export default {
     computed: {
         selfVerified() {
             return this.author === this.verifier && this.creators.length === 0;
+        },
+        verifierLabel() {
+            return this.original_verifier ? "Verifier" : "List Verifier";
         },
     },
 };
