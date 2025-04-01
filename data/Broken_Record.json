@@ -7,5 +7,13 @@
     "verification": "https://youtu.be/ueivQ6wKFBk?si=I0_RdnF5P9jhhW3V",
     "percentToQualify": 50,
     "password": "Free to Copy",
-    "records": []
+    "records": [
+        {
+            "user": "ThirtyOne",
+            "link": "https://youtu.be/vjYqOcZMh64?si=olHM1CYySzhWUdrt",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        }
+    ]
 }
