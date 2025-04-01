@@ -8,5 +8,19 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "MineproGD",
+            "link": "https://youtu.be/WKSrzCar5rs",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+        },
+        {
+            "user": "IkukGD",
+            "link": "https://youtu.be/qhDR_vdb3pk?si=_XvLqh3IuGNHSUJi",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        }
     ]
 }
