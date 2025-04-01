@@ -8,5 +8,19 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "Void852",
+            "link": "https://youtu.be/3PwDt0UPckA?si=e4uYIU-UfGC8jVOY",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        },
+        {
+            "user": "xyo.bb",
+            "link": "https://youtu.be/9iEkX6XXb8g",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
