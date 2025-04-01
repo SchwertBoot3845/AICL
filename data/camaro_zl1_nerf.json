@@ -8,5 +8,26 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "SchwertBootGD",
+            "link": "https://youtu.be/LDSXLrA2fOI",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        },
+        {
+            "user": "IkukGD",
+            "link": "https://youtu.be/FNeH4PQ3kX8?si=Cjr9UDWCSv3bNtYg",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        },
+        {
+            "user": "mynameisralsei",
+            "link": "https://youtu.be/eApu4kjsGbY",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
