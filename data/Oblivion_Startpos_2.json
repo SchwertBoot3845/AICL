@@ -9,5 +9,12 @@
     "password": "Free to Copy",
     "original_verifier": true,
     "records": [
+        {
+            "user": "Bizzle",
+            "link": "https://youtu.be/FmzohqYQcmg",
+            "percent": 100,
+            "mobile": false,
+            "hz": 144
+        }
     ]
 }
