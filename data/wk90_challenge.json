@@ -8,5 +8,19 @@
     "percentToQualify": 50,
     "password": "Free to copy",
     "records": [
+        {
+            "user": "ScObrunn7",
+            "link": "https://youtu.be/dgsvc6bvKco?si=3S9hx37ZVqSXhr6g",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        },
+        {
+            "user": "IkuKGD",
+            "link": "https://youtu.be/i07L__sd2Ms?si=DbJlhwFdfsV9oyfw",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        }
     ]
 }
