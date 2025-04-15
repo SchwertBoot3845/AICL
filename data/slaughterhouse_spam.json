@@ -42,6 +42,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 60
+        },
+                 {
+            "user": "Nolix",
+            "link": "https://youtu.be/-xYXqXjjbEE?si=nP5gYAPZrAvPmC0E",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
