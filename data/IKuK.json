@@ -7,6 +7,12 @@
     "verification": "https://youtu.be/_VUyuu-kOfk",
     "percentToQualify": 50,
     "password": "Free to Copy",
-    "records": [
+    "records": [      {
+            "user": "IkukGD",
+            "link": "https://youtu.be/Fx9XiitroDM?si=N0-BBtO7ORhhNa_i",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+      }
     ]
 }
