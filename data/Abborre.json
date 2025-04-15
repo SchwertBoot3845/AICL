@@ -8,6 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "original_verifier": true,
-    "records": [
+    "records": [      {
+            "user": "IkukGD",
+            "link": "https://youtu.be/4Be_UaEp47g?si=RIHGXCH6dfjwuq4r",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+      }
     ]
 }
