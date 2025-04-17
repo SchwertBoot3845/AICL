@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "Mynameisralsei",
+            "link": "https://youtu.be/3K4z3vg8Z7Y",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
