@@ -21,6 +21,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
+        },
+        {
+            "user": "Void852",
+            "link": "https://youtu.be/K0-PsoSGOxU?si=ZrGB9GylrGDt4zSO",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
         }
     ]
 }
