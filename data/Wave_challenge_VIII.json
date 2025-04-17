@@ -29,6 +29,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 240
+        },
+        {
+            "user": "MineproGD",
+            "link": "https://youtu.be/159wn0ZCq6k",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
