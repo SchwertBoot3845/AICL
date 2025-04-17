@@ -54,6 +54,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "VFTRE",
+            "link": "https://www.youtube.com/watch?v=afmeBYrdIEk",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
