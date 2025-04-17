@@ -28,6 +28,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
-        }
+        },
+        {
+            "user": "yolobearZ",
+            "link": "https://youtu.be/9vqjrJdbVtk",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+      }
     ]
 }
