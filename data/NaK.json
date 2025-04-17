@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "qwertyokbomb",
+            "link": "https://youtu.be/cRwWknsU760",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
