@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "ThirtyOne",
+            "link": "https://youtu.be/XyKK1aiHBZA?si=ffx8yvXt40xcQ0hl",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        }
     ]
 }
