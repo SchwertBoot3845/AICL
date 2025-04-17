@@ -7,5 +7,13 @@
     "verification": "https://youtu.be/CPT6lEdtZlU?si=VLYmlymqBfylLGaJ",
     "percentToQualify": 50,
     "password": "Free to Copy",
-    "records": []
+    "records": [
+        {
+            "user": "xyo.bb",
+            "link": "https://youtu.be/VylPj25hJ14?si=Pj29LpiYIf19spWw",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+      }
+    ]
 }
