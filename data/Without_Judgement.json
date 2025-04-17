@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to copy",
     "records": [
+         {
+            "user": "yolobearZ",
+            "link": "https://youtu.be/4_qjh4K0sls",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+      }
     ]
 }
