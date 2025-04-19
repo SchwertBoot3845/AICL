@@ -30,6 +30,7 @@ export function score(rank, percent, minPercent) {
     */
     
     // ali cooking cuz i am lazy
+    // no clue what is going on here, formula is correct, works like a charm on desmos, even with percentage
     let score = (-75*Math.pow(rank-1, 0.115158741967) + 200) * ((percent - (minPercent - 1)) / (100 - (minPercent - 1)));
     
     
