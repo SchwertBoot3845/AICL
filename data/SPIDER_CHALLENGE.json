@@ -69,6 +69,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
+        },
+        {
+            "user": "Mynameisralsei",
+            "link": "https://www.youtube.com/watch?v=Zb9Q56O7opU",
+            "percent": 100,
+            "mobile": false,
+            "hz": 2240
         }
     ]
 }
