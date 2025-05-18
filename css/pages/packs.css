@@ -1,44 +1,50 @@
+.page-packs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+  justify-content: center;
+}
+
 .pack {
-    width: 300px;
-    height: 200px;
-    border: 2px solid;
-    border-radius: 1rem;
-    overflow: hidden;
-    background: var(--background-elevated);
-    display: flex;
-    flex-direction: column;
+  width: 300px;
+  height: 200px;
+  border: 4px solid;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--background-elevated);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .pack-header {
-    padding: 0.75rem;
-    color: black;
-    font-weight: bold;
-    background-color: #ddd;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--header-color);
+  padding: 0.75rem;
+  text-align: center;
 }
 
 .pack-header h2 {
-    margin: 0;
-    font-size: 1.1rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  color: white;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .pack p {
-    padding: 0 1rem 0.25rem 1rem;
-    font-weight: bold;
-    margin: 0.25rem 0;
+  padding: 0.5rem 1rem 0 1rem;
+  font-weight: bold;
+  margin: 0.25rem 0;
 }
 
 .pack-levels {
-    padding: 0 1.5rem;
-    list-style: disc;
-    margin: 0;
+  padding: 0 1.5rem;
+  list-style: disc;
+  margin: 0;
 }
 
 .pack-levels li {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
