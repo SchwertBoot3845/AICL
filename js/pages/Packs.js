@@ -30,13 +30,16 @@ export default {
               class="pack"
               v-for="pack in packs"
               :key="pack.id"
-              :style="{ borderColor: pack.color }"
+              :style="{
+                borderColor: pack.color,
+                '--header-color': pack.color
+              }"
             >
-                <div class="pack-header" :style="{ backgroundColor: pack.color }">
-                    <h2>{{ pack.name }}</h2>
-                </div>
-                <p>Levels:</p>
-                <ul class="pack-levels">
+              <div class="pack-header">
+                <h2>{{ pack.name }}</h2>
+              </div>
+              <p>Levels:</p>
+              <ul class="pack-levels">
                 <li v-for="level in pack.levels" :key="level">{{ level }}</li>
               </ul>
             </div>
