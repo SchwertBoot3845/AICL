@@ -135,7 +135,7 @@ export async function fetchLeaderboard() {
 export async function fetchPacks() {
     try {
         const res = await fetch('/data/packs/_packs.json');
-        const json = await res.json();
+        const packList = await res.json();
 
         const packs = await Promise.all(
             packList.map(async name => {
