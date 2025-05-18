@@ -138,9 +138,33 @@ export async function fetchPacks() {
         const packList = await res.json();
 
         const packs = await Promise.all(
-            packList.map(async name => {
-                const data = await fetch(`/data/packs/${name}.json`).then(res => res.json());
-                return { id: name, ...data };
+            packList.map(async (packId) => {
+                const data = await fetch(`/data/packs/${packId}.json`).then(res => res.json());
+                
+                // For each level filename in the pack
+                const levels = await Promise.all(
+                    data.levels.map(async (levelFileName) => {
+                        const levelData = await fetch(`/data/${levelFileName}.json`).then(res => res.json());
+                        return {
+                            ...levelData,
+                            fileName: levelFileName,
+                        };
+                    })
+                );
+
+                // Calculate points sum and halve it
+                // Assuming score(rank, 100, percentToQualify), you might want to tweak rank or pass dummy rank here
+                const totalPoints = levels.reduce((sum, level, i) => {
+                    return sum + score(i + 1, 100, level.percentToQualify);
+                }, 0);
+                const halfPoints = totalPoints / 2;
+
+                return {
+                    id: packId,
+                    ...data,
+                    levels,
+                    halfPoints,
+                };
             })
         );
 
