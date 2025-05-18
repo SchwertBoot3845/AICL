@@ -1,16 +1,45 @@
 .page-packs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     padding: 2rem;
+    justify-content: center;
 }
 
 .pack {
-    margin-bottom: 2rem;
-    background: var(--background-elevated);
+    width: 300px;
+    height: 200px;
     padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 1rem;
+    background: var(--background-elevated);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pack h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pack p {
+    margin: 0.25rem 0;
+    font-weight: bold;
 }
 
 .pack-levels {
-    margin-top: 0.5rem;
     padding-left: 1.25rem;
+    margin: 0.25rem 0 0 0;
+    list-style: disc;
+}
+
+.pack-levels li {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
