@@ -7,11 +7,13 @@ async function fetchPacks() {
     return [
         {
             name: "Top 10 Challenges",
+            color: "#4B0082",
             levels: ["Level A", "Level B", "Level C"],
             points: 150,
         },
         {
             name: "Speedrun Set",
+            color: "#4B0082",
             levels: ["Speed 1", "Speed 2"],
             points: 75,
         },
