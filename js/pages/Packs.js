@@ -26,7 +26,6 @@ export default {
             <Spinner />
         </main>
         <main v-else class="page-packs">
-            <h1 class="type-title-xl">Challenge Packs</h1>
             <div class="pack" v-for="pack in packs" :key="pack.name">
                 <h2 class="type-title-md">{{ pack.name }}</h2>
                 <p><strong>Points:</strong> {{ pack.points }}</p>
