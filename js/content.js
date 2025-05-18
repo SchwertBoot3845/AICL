@@ -133,7 +133,7 @@ export async function fetchLeaderboard() {
 }
 
 export async function fetchPacks() {
-    const context = import.meta.glob('main/data/packs/*.json', { eager: true, import: 'default' });
+    const context = import.meta.glob('../../data/packs/*.json', { eager: true, import: 'default' });
 
     const packs = Object.entries(context).map(([path, pack]) => {
         const id = path.split('/').pop().replace('.json', '');
