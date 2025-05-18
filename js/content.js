@@ -131,3 +131,14 @@ export async function fetchLeaderboard() {
     // Sort by total score
     return [res.sort((a, b) => b.total - a.total), errs];
 }
+
+export async function fetchPacks() {
+    const context = import.meta.glob('main/data/packs/*.json', { eager: true, import: 'default' });
+
+    const packs = Object.entries(context).map(([path, pack]) => {
+        const id = path.split('/').pop().replace('.json', '');
+        return { id, ...pack };
+    });
+
+    return packs;
+}
