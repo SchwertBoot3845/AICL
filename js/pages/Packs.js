@@ -28,5 +28,6 @@ export default {
     },
     async mounted() {
         this.packs = await fetchPacks();
+        this.loading = false;
     },
 };
