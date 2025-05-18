@@ -133,12 +133,19 @@ export async function fetchLeaderboard() {
 }
 
 export async function fetchPacks() {
-    const context = import.meta.glob('../../data/packs/*.json', { eager: true, import: 'default' });
+    try {
+        const packList = await fetch('/data/packs/_packs.json').then(res => res.json());
 
-    const packs = Object.entries(context).map(([path, pack]) => {
-        const id = path.split('/').pop().replace('.json', '');
-        return { id, ...pack };
-    });
+        const packs = await Promise.all(
+            packList.map(async name => {
+                const data = await fetch(`/data/packs/${name}.json`).then(res => res.json());
+                return { id: name, ...data };
+            })
+        );
 
-    return packs;
+        return packs;
+    } catch (err) {
+        console.error('Failed to fetch packs:', err);
+        return [];
+    }
 }
