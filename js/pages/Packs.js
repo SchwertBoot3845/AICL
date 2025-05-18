@@ -26,12 +26,19 @@ export default {
             <Spinner />
         </main>
         <main v-else class="page-packs">
-            <div class="pack" v-for="pack in packs" :key="pack.name">
-                <h2 class="type-title-md">{{ pack.name }}</h2>
-                <p><strong>Points:</strong> {{ pack.points }}</p>
+            <div
+              class="pack"
+              v-for="pack in packs"
+              :key="pack.id"
+              :style="{ borderColor: pack.color }"
+            >
+                <div class="pack-header" :style="{ backgroundColor: pack.color }">
+                    <h2>{{ pack.name }}</h2>
+                </div>
+                <p>Levels:</p>
                 <ul class="pack-levels">
-                    <li v-for="level in pack.levels" :key="level">• {{ level }}</li>
-                </ul>
+                <li v-for="level in pack.levels" :key="level">{{ level }}</li>
+              </ul>
             </div>
         </main>
     `,
