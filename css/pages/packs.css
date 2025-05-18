@@ -43,8 +43,12 @@
   margin: 0;
 }
 
-.pack-levels li {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.pack-list {
+  list-style-position: inside; /* or outside, whichever you prefer */
+  padding-left: 1.2em; /* space for the bullet */
+}
+
+.pack-list li {
+  list-style-type: disc; /* solid bullet points */
+  margin-bottom: 0.5em; /* optional spacing */
 }
