@@ -135,16 +135,20 @@ export async function fetchLeaderboard() {
 export async function fetchPacks() {
     try {
         const res = await fetch('/data/packs/_packs.json');
+        if (!res.ok) throw new Error('Cannot load _packs.json');
         const packList = await res.json();
 
         const packs = await Promise.all(
             packList.map(async (packId) => {
-                const data = await fetch(`/data/packs/${packId}.json`).then(res => res.json());
-                
-                // For each level filename in the pack
+                const dataRes = await fetch(`/data/packs/${packId}.json`);
+                if (!dataRes.ok) throw new Error(`Cannot load ${packId}.json`);
+                const data = await dataRes.json();
+
                 const levels = await Promise.all(
                     data.levels.map(async (levelFileName) => {
-                        const levelData = await fetch(`/data/${levelFileName}.json`).then(res => res.json());
+                        const levelRes = await fetch(`/data/${levelFileName}.json`);
+                        if (!levelRes.ok) throw new Error(`Cannot load ${levelFileName}.json`);
+                        const levelData = await levelRes.json();
                         return {
                             ...levelData,
                             fileName: levelFileName,
@@ -152,18 +156,15 @@ export async function fetchPacks() {
                     })
                 );
 
-                // Calculate points sum and halve it
-                // Assuming score(rank, 100, percentToQualify), you might want to tweak rank or pass dummy rank here
                 const totalPoints = levels.reduce((sum, level, i) => {
-                    return sum + score(i + 1, 100, level.percentToQualify);
+                    return sum + score(i + 1, 100, level.percentToQualify ?? 100);
                 }, 0);
-                const halfPoints = totalPoints / 2;
 
                 return {
                     id: packId,
                     ...data,
                     levels,
-                    halfPoints,
+                    halfPoints: totalPoints / 2,
                 };
             })
         );
