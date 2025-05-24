@@ -135,63 +135,50 @@ export async function fetchLeaderboard() {
 export async function fetchPacks() {
     try {
         const res = await fetch('/data/packs/_packs.json');
+        if (!res.ok) {
+            throw new Error(`Failed to fetch pack list: /data/packs/_packs.json - status ${res.status}`);
+        }
         const packList = await res.json();
 
         const packs = await Promise.all(
             packList.map(async (packId) => {
-                try {
-                    const data = await fetch(`/data/packs/${packId}.json`).then(res => res.json());
-
-                    const levels = await Promise.all(
-                        data.levels.map(async (levelFileName) => {
-                            try {
-                                const levelRes = await fetch(`/data/${levelFileName}.json`);
-                                if (!levelRes.ok) {
-                                    throw new Error(`HTTP ${levelRes.status}`);
-                                }
-                                const levelData = await levelRes.json();
-                                return {
-                                    ...levelData,
-                                    fileName: levelFileName,
-                                };
-                            } catch (err) {
-                                console.error(`Failed to load level file: /data/${levelFileName}.json`, err);
-                                return {
-                                    name: `[Error loading ${levelFileName}]`,
-                                    percentToQualify: 100, // Fallback
-                                    fileName: levelFileName,
-                                };
-                            }
-                        })
-                    );
-
-                    const totalPoints = levels.reduce((sum, level, i) => {
-                        return sum + score(i + 1, 100, level.percentToQualify);
-                    }, 0);
-                    const halfPoints = totalPoints / 2;
-
-                    return {
-                        id: packId,
-                        ...data,
-                        levels,
-                        halfPoints,
-                    };
-                } catch (err) {
-                    console.error(`Failed to load pack file: /data/packs/${packId}.json`, err);
-                    return {
-                        id: packId,
-                        name: `[Error loading pack ${packId}]`,
-                        color: "#f00",
-                        levels: [],
-                        halfPoints: 0,
-                    };
+                const packRes = await fetch(`/data/packs/${packId}.json`);
+                if (!packRes.ok) {
+                    throw new Error(`Failed to fetch pack file: /data/packs/${packId}.json - status ${packRes.status}`);
                 }
+                const data = await packRes.json();
+
+                const levels = await Promise.all(
+                    data.levels.map(async (levelFileName) => {
+                        const levelRes = await fetch(`/data/${levelFileName}.json`);
+                        if (!levelRes.ok) {
+                            throw new Error(`Failed to fetch level file: /data/${levelFileName}.json - status ${levelRes.status}`);
+                        }
+                        const levelData = await levelRes.json();
+                        return {
+                            ...levelData,
+                            fileName: levelFileName,
+                        };
+                    })
+                );
+
+                const totalPoints = levels.reduce((sum, level, i) => {
+                    return sum + score(i + 1, 100, level.percentToQualify);
+                }, 0);
+                const halfPoints = totalPoints / 2;
+
+                return {
+                    id: packId,
+                    ...data,
+                    levels,
+                    halfPoints,
+                };
             })
         );
 
         return packs;
     } catch (err) {
-        console.error('Failed to fetch packs list:', err);
+        console.error('Failed to fetch packs:', err);
         return [];
     }
 }
