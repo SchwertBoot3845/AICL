@@ -136,28 +136,30 @@ export async function fetchPacks() {
     try {
         const res = await fetch('/data/packs/_packs.json');
         if (!res.ok) {
-            throw new Error(`Failed to fetch pack list: /data/packs/_packs.json - status ${res.status}`);
+            throw new Error(`Failed to fetch: /data/packs/_packs.json (status ${res.status})`);
         }
         const packList = await res.json();
 
         const packs = await Promise.all(
             packList.map(async (packId) => {
-                const packRes = await fetch(`/data/packs/${packId}.json`);
+                const packPath = `/data/packs/${packId}.json`;
+                const packRes = await fetch(packPath);
                 if (!packRes.ok) {
-                    throw new Error(`Failed to fetch pack file: /data/packs/${packId}.json - status ${packRes.status}`);
+                    throw new Error(`Failed to fetch: ${packPath} (status ${packRes.status})`);
                 }
-                const data = await packRes.json();
+                const packData = await packRes.json();
 
                 const levels = await Promise.all(
-                    data.levels.map(async (levelFileName) => {
-                        const levelRes = await fetch(`/data/${levelFileName}.json`);
+                    packData.levels.map(async (filename) => {
+                        const levelPath = `/data/${filename}.json`;
+                        const levelRes = await fetch(levelPath);
                         if (!levelRes.ok) {
-                            throw new Error(`Failed to fetch level file: /data/${levelFileName}.json - status ${levelRes.status}`);
+                            throw new Error(`Failed to fetch: ${levelPath} (status ${levelRes.status})`);
                         }
                         const levelData = await levelRes.json();
                         return {
                             ...levelData,
-                            fileName: levelFileName,
+                            fileName: filename,
                         };
                     })
                 );
@@ -169,7 +171,7 @@ export async function fetchPacks() {
 
                 return {
                     id: packId,
-                    ...data,
+                    ...packData,
                     levels,
                     halfPoints,
                 };
