@@ -13,7 +13,7 @@ export default {
             >
                 <div class="pack-header">
                     <h2 class="pack-name">{{ pack.name }}</h2>
-                    <h2 class="pack-points">{{ pack.halfPoints.toFixed(2) }} points</h2>
+                    <h3 class="pack-points">({{ pack.halfPoints.toFixed(2) }} points)</h3>
                 </div>
                 <p>Levels:</p>
                 <ul class="pack-levels">
