@@ -149,8 +149,17 @@ export async function fetchPacks() {
                 }
                 const packData = await packRes.json();
 
+                const levelFilenames = Array.isArray(packData.levels)
+                    ? packData.levels
+                    : [];
+
                 const levels = await Promise.all(
-                    packData.levels.map(async (filename) => {
+                    levelFilenames.map(async (filename) => {
+                        if (typeof filename !== 'string') {
+                            console.warn(`Invalid level filename (not a string):`, filename);
+                            return null;
+                        }
+
                         const levelPath = `/data/${filename}.json`;
                         const levelRes = await fetch(levelPath);
                         if (!levelRes.ok) {
@@ -164,7 +173,9 @@ export async function fetchPacks() {
                     })
                 );
 
-                const totalPoints = levels.reduce((sum, level, i) => {
+                const validLevels = levels.filter(Boolean);
+
+                const totalPoints = validLevels.reduce((sum, level, i) => {
                     return sum + score(i + 1, 100, level.percentToQualify);
                 }, 0);
                 const halfPoints = totalPoints / 2;
@@ -172,7 +183,7 @@ export async function fetchPacks() {
                 return {
                     id: packId,
                     ...packData,
-                    levels,
+                    levels: validLevels,
                     halfPoints,
                 };
             })
