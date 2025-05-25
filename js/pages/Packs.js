@@ -29,21 +29,22 @@ export default {
         };
     },
     async mounted() {
-    const rawPacks = await fetchRawPacks();
+        const rawPacks = await fetchRawPacks();
 
-    const packsWithPoints = rawPacks.map((pack) => {
-        const totalPoints = pack.levels.reduce((sum, level, i) => {
-            return sum + score(i + 1, 100, level.percentToQualify);
-        }, 0);
+        const packsWithPoints = rawPacks.map((pack) => {
+            const totalPoints = pack.levels.reduce((sum, level, i) => {
+                return sum + score(i + 1, 100, level.percentToQualify);
+            }, 0);
 
-        const halfPoints = totalPoints / 2;
+            const halfPoints = totalPoints / 2;
 
-        return {
-            ...pack,
-            halfPoints,
-        };
-    });
+            return {
+                ...pack,
+                halfPoints,
+            };
+        });
 
-    this.packs = packsWithPoints;
-    this.loading = false;
-}
+        this.packs = packsWithPoints;
+        this.loading = false;
+    },
+};
