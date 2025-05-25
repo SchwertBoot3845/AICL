@@ -29,37 +29,21 @@ export default {
         };
     },
     async mounted() {
-        const rawPacks = await fetchRawPacks();
+    const rawPacks = await fetchRawPacks();
 
-        const packsWithLevels = await Promise.all(
-            rawPacks.map(async (pack) => {
-                const levels = await Promise.all(
-                    pack.levels.map(async (levelFileName) => {
-                        const res = await fetch(`/data/${levelFileName}.json`);
-                        if (!res.ok) throw new Error(`Failed to fetch level ${levelFileName}`);
-                        const levelData = await res.json();
-                        return {
-                            ...levelData,
-                            fileName: levelFileName,
-                        };
-                    })
-                );
+    const packsWithPoints = rawPacks.map((pack) => {
+        const totalPoints = pack.levels.reduce((sum, level, i) => {
+            return sum + score(i + 1, 100, level.percentToQualify);
+        }, 0);
 
-                const totalPoints = levels.reduce((sum, level, i) => {
-                    return sum + score(i + 1, 100, level.percentToQualify);
-                }, 0);
+        const halfPoints = totalPoints / 2;
 
-                const halfPoints = totalPoints / 2;
+        return {
+            ...pack,
+            halfPoints,
+        };
+    });
 
-                return {
-                    ...pack,
-                    levels,
-                    halfPoints,
-                };
-            })
-        );
-
-        this.packs = packsWithLevels;
-        this.loading = false;
-    },
-};
+    this.packs = packsWithPoints;
+    this.loading = false;
+}
