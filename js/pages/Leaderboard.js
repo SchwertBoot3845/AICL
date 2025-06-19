@@ -59,7 +59,7 @@ export default {
                                     </a>
                                 </td>
                                 <td class="score">
-                                    <p>+{{ localize(pack.points) }}</p>
+                                    <p>+{{ localize(pack.halfpoints) }}</p>
                                 </td>
                             </tr>
                         </table>
