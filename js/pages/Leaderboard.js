@@ -53,6 +53,9 @@ export default {
                         </h2>
                         <table class="table" v-if="entry.beatenPacks && entry.beatenPacks.length > 0">
                             <tr v-for="(pack, index) in entry.beatenPacks" :key="pack.id">
+                                <td class="rank">
+                                    <p></p>
+                                </td>
                                 <td class="level">
                                     <a class="type-label-lg" href="https://aicl.pages.dev/packs">
                                         {{ pack.name }}
