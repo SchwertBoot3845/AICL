@@ -47,6 +47,23 @@ export default {
                         <h1>#{{ selected + 1 }} {{ entry.user }}</h1>
                         <h3>{{ entry.total }}</h3>
 
+                        <!-- New pack beaten section -->
+                        <h2 v-if="entry.beatenPacks && entry.beatenPacks.length > 0">
+                            Packs Beaten ({{ entry.beatenPacks.length }})
+                        </h2>
+                        <table class="table" v-if="entry.beatenPacks && entry.beatenPacks.length > 0">
+                            <tr v-for="(pack, index) in entry.beatenPacks" :key="pack.id">
+                                <td class="level">
+                                    <a class="type-label-lg" href="https://aicl.pages.dev/packs">
+                                        {{ pack.name }}
+                                    </a>
+                                </td>
+                                <td class="score">
+                                    <p>+{{ localize(pack.points) }}</p>
+                                </td>
+                            </tr>
+                        </table>
+                        
                         <h2 v-if="entry.verified.length > 0">Verified ({{ entry.verified.length }})</h2>
                         <table class="table">
                             <tr v-for="(score, index) in entry.verified" :key="index">
@@ -90,23 +107,6 @@ export default {
                                 </td>
                                 <td class="score">
                                     <p>+{{ localize(score.score) }}</p>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <!-- New pack beaten section -->
-                        <h2 v-if="entry.beatenPacks && entry.beatenPacks.length > 0">
-                            Packs Beaten ({{ entry.beatenPacks.length }})
-                        </h2>
-                        <table class="table" v-if="entry.beatenPacks && entry.beatenPacks.length > 0">
-                            <tr v-for="(pack, index) in entry.beatenPacks" :key="pack.id">
-                                <td class="level">
-                                    <a class="type-label-lg" href="https://aicl.pages.dev/packs">
-                                        {{ pack.name }}
-                                    </a>
-                                </td>
-                                <td class="score">
-                                    <p>+{{ localize(pack.points) }}</p>
                                 </td>
                             </tr>
                         </table>
