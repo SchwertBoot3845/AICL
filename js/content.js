@@ -98,7 +98,7 @@ export async function fetchPacks() {
                     id: packId,
                     ...packData,
                     levels: validLevels,
-                    halfPoints,
+                    points: halfPoints,
                 };
             })
         );
