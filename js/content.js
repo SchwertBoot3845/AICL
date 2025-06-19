@@ -48,31 +48,30 @@ export async function fetchEditors() {
 
 export async function fetchLeaderboard() {
     const list = await fetchList();
+    const packs = await fetchPacks();  // <-- fetch packs here
     const scoreMap = {};
     const errs = [];
-  
+
     list.forEach(([level, err], rank) => {
         if (err) {
             errs.push(err);
             return;
         }
 
-        // Only proceed if level and verifier exist
         if (!level || typeof level.verifier !== 'string') return;
 
-        // Determine the verifier or assign "anonymous" for empty verifier names
         const verifier = level.verifier.trim() || "";
-        
-        // Initialize scoreMap entry if not present
+
         scoreMap[verifier] ??= {
             verified: [],
             completed: [],
             progressed: [],
+            beatenPacks: [],  // track beaten packs here
+            packPoints: 0,
         };
 
         const { verified } = scoreMap[verifier];
 
-        // Assign 0 points if verifier name is empty, otherwise calculate score
         const verifierScore = verifier === "" ? 0 : score(rank + 1, 100, level.percentToQualify);
 
         verified.push({
@@ -82,15 +81,16 @@ export async function fetchLeaderboard() {
             link: level.verification,
         });
 
-        // Records processing
         level.records.forEach((record) => {
             if (!record || !record.user) return;
-            
+
             const user = record.user.trim();
             scoreMap[user] ??= {
                 verified: [],
                 completed: [],
                 progressed: [],
+                beatenPacks: [],
+                packPoints: 0,
             };
             const { completed, progressed } = scoreMap[user];
 
@@ -114,12 +114,33 @@ export async function fetchLeaderboard() {
         });
     });
 
-    // Wrap in extra object containing the user and total score
+    // Now, check packs for beaten status per user
+    Object.entries(scoreMap).forEach(([user, scores]) => {
+        const completedLevels = new Set(scores.completed.map(c => c.level));
+        
+        packs.forEach(pack => {
+            // Check if user completed all levels in pack
+            const allCompleted = pack.levels.every(level =>
+                completedLevels.has(level.name)
+            );
+
+            if (allCompleted) {
+                scores.beatenPacks.push({
+                    id: pack.id,
+                    name: pack.name,
+                    points: pack.halfPoints,
+                });
+                scores.packPoints += pack.halfPoints;
+            }
+        });
+    });
+
+    // Wrap in extra object containing the user and total score (include packPoints)
     const res = Object.entries(scoreMap).map(([user, scores]) => {
-        const { verified, completed, progressed } = scores;
+        const { verified, completed, progressed, packPoints } = scores;
         const total = [verified, completed, progressed]
             .flat()
-            .reduce((prev, cur) => prev + cur.score, 0);
+            .reduce((prev, cur) => prev + cur.score, 0) + packPoints;
 
         return {
             user,
