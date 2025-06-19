@@ -46,6 +46,7 @@ export default {
                     <div class="player">
                         <h1>#{{ selected + 1 }} {{ entry.user }}</h1>
                         <h3>{{ entry.total }}</h3>
+
                         <h2 v-if="entry.verified.length > 0">Verified ({{ entry.verified.length }})</h2>
                         <table class="table">
                             <tr v-for="(score, index) in entry.verified" :key="index">
@@ -60,6 +61,7 @@ export default {
                                 </td>
                             </tr>
                         </table>
+
                         <h2 v-if="entry.completed.length > 0">Completed ({{ entry.completed.length }})</h2>
                         <table class="table">
                             <tr v-for="(score, index) in entry.completed" :key="index">
@@ -74,6 +76,7 @@ export default {
                                 </td>
                             </tr>
                         </table>
+
                         <h2 v-if="entry.progressed.length > 0">Progressed ({{ entry.progressed.length }})</h2>
                         <table class="table">
                             <tr v-for="(score, index) in entry.progressed" :key="index">
@@ -87,6 +90,21 @@ export default {
                                 </td>
                                 <td class="score">
                                     <p>+{{ localize(score.score) }}</p>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- New pack beaten section -->
+                        <h2 v-if="entry.beatenPacks && entry.beatenPacks.length > 0">
+                            Packs Beaten ({{ entry.beatenPacks.length }})
+                        </h2>
+                        <table class="table" v-if="entry.beatenPacks && entry.beatenPacks.length > 0">
+                            <tr v-for="(pack, index) in entry.beatenPacks" :key="pack.id">
+                                <td class="level">
+                                    {{ pack.name }}
+                                </td>
+                                <td class="score">
+                                    <p>+{{ localize(pack.points) }}</p>
                                 </td>
                             </tr>
                         </table>
@@ -104,7 +122,7 @@ export default {
         const [leaderboard, err] = await fetchLeaderboard();
         this.leaderboard = leaderboard;
         this.err = err;
-        this.loading = false; // Hide loading spinner
+        this.loading = false;
     },
     methods: {
         localize,
