@@ -101,7 +101,7 @@ export default {
                         <table class="table" v-if="entry.beatenPacks && entry.beatenPacks.length > 0">
                             <tr v-for="(pack, index) in entry.beatenPacks" :key="pack.id">
                                 <td class="level">
-                                    <a class="type-label-lg" :href="https://aicl.pages.dev/packs">
+                                    <a class="type-label-lg" href="https://aicl.pages.dev/packs">
                                         {{ pack.name }}
                                     </a>
                                 </td>
