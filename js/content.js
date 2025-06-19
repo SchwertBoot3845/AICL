@@ -50,20 +50,15 @@ export async function fetchLeaderboard() {
     const list = await fetchList();
     const scoreMap = {};
     const errs = [];
-  
+
     list.forEach(([level, err], rank) => {
         if (err) {
             errs.push(err);
             return;
         }
-
-        // Only proceed if level and verifier exist
         if (!level || typeof level.verifier !== 'string') return;
 
-        // Determine the verifier or assign "anonymous" for empty verifier names
         const verifier = level.verifier.trim() || "";
-        
-        // Initialize scoreMap entry if not present
         scoreMap[verifier] ??= {
             verified: [],
             completed: [],
@@ -72,7 +67,6 @@ export async function fetchLeaderboard() {
 
         const { verified } = scoreMap[verifier];
 
-        // Assign 0 points if verifier name is empty, otherwise calculate score
         const verifierScore = verifier === "" ? 0 : score(rank + 1, 100, level.percentToQualify);
 
         verified.push({
@@ -80,12 +74,12 @@ export async function fetchLeaderboard() {
             level: level.name,
             score: verifierScore,
             link: level.verification,
+            fileName: level.path,
         });
 
-        // Records processing
         level.records.forEach((record) => {
             if (!record || !record.user) return;
-            
+
             const user = record.user.trim();
             scoreMap[user] ??= {
                 verified: [],
@@ -100,6 +94,7 @@ export async function fetchLeaderboard() {
                     level: level.name,
                     score: score(rank + 1, 100, level.percentToQualify),
                     link: record.link,
+                    fileName: level.path,
                 });
                 return;
             }
@@ -110,16 +105,41 @@ export async function fetchLeaderboard() {
                 percent: record.percent,
                 score: score(rank + 1, record.percent, level.percentToQualify),
                 link: record.link,
+                fileName: level.path,
             });
         });
     });
 
-    // Wrap in extra object containing the user and total score
+    const packs = await fetchPacks();
+
+    Object.entries(scoreMap).forEach(([user, scores]) => {
+        const { verified, completed } = scores;
+
+        const beatenLevels = new Set([
+            ...verified.map(v => v.fileName),
+            ...completed.map(c => c.fileName),
+        ]);
+
+        const beatenPacks = packs.filter(pack =>
+            pack.levels.every(level => beatenLevels.has(level.fileName))
+        ).map(pack => ({
+            id: pack.id,
+            name: pack.name,
+            points: pack.points,
+        }));
+
+        scores.beatenPacks = beatenPacks;
+    });
+
     const res = Object.entries(scoreMap).map(([user, scores]) => {
-        const { verified, completed, progressed } = scores;
-        const total = [verified, completed, progressed]
-            .flat()
-            .reduce((prev, cur) => prev + cur.score, 0);
+        const { verified, completed, progressed, beatenPacks } = scores;
+
+        const total = [
+            ...verified,
+            ...completed,
+            ...progressed,
+            ...(beatenPacks ? beatenPacks.map(p => ({ score: p.points })) : []),
+        ].reduce((prev, cur) => prev + cur.score, 0);
 
         return {
             user,
@@ -128,6 +148,81 @@ export async function fetchLeaderboard() {
         };
     });
 
-    // Sort by total score
     return [res.sort((a, b) => b.total - a.total), errs];
+}
+
+export async function fetchPacks() {
+    try {
+        const res = await fetch('/data/packs/_packs.json');
+        if (!res.ok) {
+            throw new Error(`Failed to fetch: /data/packs/_packs.json (status ${res.status})`);
+        }
+        const packList = await res.json();
+
+        const listRes = await fetch('/data/_list.json');
+        if (!listRes.ok) {
+            throw new Error(`Failed to fetch: /data/_list.json (status ${listRes.status})`);
+        }
+        const levelOrder = await listRes.json();
+
+        const packs = await Promise.all(
+            packList.map(async (packId) => {
+                const packPath = `/data/packs/${packId}.json`;
+                const packRes = await fetch(packPath);
+                if (!packRes.ok) {
+                    throw new Error(`Failed to fetch: ${packPath} (status ${packRes.status})`);
+                }
+                const packData = await packRes.json();
+
+                const levelFilenames = Array.isArray(packData.levels)
+                    ? packData.levels
+                    : [];
+
+                const levels = await Promise.all(
+                    levelFilenames.map(async (filename) => {
+                        if (typeof filename !== 'string') {
+                            console.warn(`Invalid level filename (not a string):`, filename);
+                            return null;
+                        }
+
+                        const levelPath = `/data/${filename}.json`;
+                        const levelRes = await fetch(levelPath);
+                        if (!levelRes.ok) {
+                            throw new Error(`Failed to fetch: ${levelPath} (status ${levelRes.status})`);
+                        }
+                        const levelData = await levelRes.json();
+                        return {
+                            ...levelData,
+                            fileName: filename,
+                        };
+                    })
+                );
+
+                const validLevels = levels.filter(Boolean);
+
+                const totalPoints = validLevels.reduce((sum, level) => {
+                    const rank = levelOrder.indexOf(level.fileName);
+                    if (rank === -1) {
+                        console.warn(`Level '${level.fileName}' not found in _list.json.`);
+                        return sum;
+                    }
+                    return sum + score(rank + 1, 100, level.percentToQualify);
+                }, 0);
+
+                const packPoints = totalPoints / 3;
+
+                return {
+                    id: packId,
+                    ...packData,
+                    levels: validLevels,
+                    points: packPoints,
+                };
+            })
+        );
+
+        return packs;
+    } catch (err) {
+        console.error('Failed to fetch packs:', err);
+        return [];
+    }
 }

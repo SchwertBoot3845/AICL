@@ -1,0 +1,63 @@
+.page-packs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1rem;
+  justify-content: center;
+}
+
+.pack {
+  width: 300px;
+  height: 200px;
+  border: 4px solid;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: var(--background-elevated);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.pack-header {
+  background-color: var(--header-color);
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.pack-header h2 {
+  color: white;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.pack-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.pack p {
+  text-align: center;
+  padding: 0.5rem 1rem 0 1rem;
+  font-weight: bold;
+  margin: 0.25rem 0;
+}
+
+.pack-levels {
+  padding: 0 2.5rem;
+  list-style: disc;
+  margin: 0;
+}
+
+.pack-list {
+  text-align: center;
+  list-style-position: inside; /* or outside, whichever you prefer */
+  padding-left: 1.2em; /* space for the bullet */
+}
+
+.pack-list li {
+  list-style-type: disc; /* solid bullet points */
+  margin-bottom: 0.5em; /* optional spacing */
+}
