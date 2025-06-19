@@ -92,7 +92,7 @@ export async function fetchPacks() {
                 const totalPoints = validLevels.reduce((sum, level, i) => {
                     return sum + score(i + 1, 100, level.percentToQualify);
                 }, 0);
-                const halfPoints = totalPoints / 2;
+                const halfPoints = totalPoints / 3;
 
                 return {
                     id: packId,
