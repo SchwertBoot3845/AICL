@@ -54,6 +54,13 @@ export async function fetchPacks() {
         }
         const packList = await res.json();
 
+        // Fetch the global level list to determine rank
+        const listRes = await fetch('/data/_list.json');
+        if (!listRes.ok) {
+            throw new Error(`Failed to fetch: /data/_list.json (status ${listRes.status})`);
+        }
+        const levelOrder = await listRes.json();
+
         const packs = await Promise.all(
             packList.map(async (packId) => {
                 const packPath = `/data/packs/${packId}.json`;
@@ -89,9 +96,15 @@ export async function fetchPacks() {
 
                 const validLevels = levels.filter(Boolean);
 
-                const totalPoints = validLevels.reduce((sum, level, i) => {
-                    return sum + score(i + 1, 100, level.percentToQualify);
+                const totalPoints = validLevels.reduce((sum, level) => {
+                    const rank = levelOrder.indexOf(level.fileName);
+                    if (rank === -1) {
+                        console.warn(`Level '${level.fileName}' not found in _list.json.`);
+                        return sum;
+                    }
+                    return sum + score(rank + 1, 100, level.percentToQualify);
                 }, 0);
+
                 const packPoints = totalPoints / 3;
 
                 return {
