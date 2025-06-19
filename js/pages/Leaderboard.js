@@ -57,7 +57,7 @@ export default {
                                     <p></p>
                                 </td>
                                 <td class="level">
-                                    <a class="type-label-lg" href="https://aicl.pages.dev/packs">
+                                    <a class="type-label-lg" href="https://aicl.pages.dev/#/packs">
                                         {{ pack.name }}
                                     </a>
                                 </td>
