@@ -50,7 +50,7 @@ export default {
 
             return {
                 ...pack,
-                halfPoints: totalPoints / 2,
+                halfPoints: totalPoints / 3,
             };
         });
 
