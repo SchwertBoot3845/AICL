@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "Scatter",
+            "link": "https://youtu.be/kiHBX2mZILc?si=GP_4Dc6EhtFnb9Qu",
+            "mobile": false,
+            "percent": 100,
+            "hz": 240
+        }
     ]
 }
