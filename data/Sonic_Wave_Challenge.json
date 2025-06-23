@@ -61,6 +61,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
+        },
+        {
+            "user": "Pogodoggo",
+            "link": "https://youtube.com/shorts/fj0kUKjU9cM?si=SiHTwzCZT0b0C5zn",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
         }
     ]
 }
