@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "Pogodoggo",
+            "link": "https://youtu.be/hEwVPWTG3z4?si=4ta_rLop51mhZnsf",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        }
     ]
 }
