@@ -14,6 +14,27 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
-      }
+      },
+      {
+            "user": "Firewyrm",
+            "link": "https://youtu.be/1SH6vRu-lmY",
+            "percent": 100,
+            "mobile": false,
+            "hz": 360
+        },
+        {
+            "user": "IkukGD",
+            "link": "https://youtu.be/2e2qr3uoaDk?si=8HZzJikqKwMNUUnj",
+            "percent": 100,
+            "mobile": true,
+            "hz": 240
+        },
+        {
+            "user": "SchwertBootGD",
+            "link": "https://youtu.be/GGQCozs6bI8",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        }
     ]
 }
