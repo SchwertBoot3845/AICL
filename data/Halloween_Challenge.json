@@ -98,6 +98,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
-      }
+      },
+      {
+            "user": "GW2.1betatest",
+            "link": "https://streamable.com/zolug8",
+            "percent": 100,
+            "mobile": true,
+            "hz": 90
+        }
     ]
 }
