@@ -21,6 +21,20 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "yolobearZ",
+            "link": "https://youtu.be/8wnVWj0XHQs?si=2BhofgB-c1_dRxfK",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+        },
+        {
+            "user": "coffee cup",
+            "link": "https://youtu.be/Bp0a3Gd_5pI?si=fN3wey7Cko3avUQ7&t=15",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
