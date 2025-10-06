@@ -3,11 +3,25 @@
     "name": "Wave Challenge V",
     "author": "SomeWildSeal",
     "creators": [],
-    "verifier": "bizzle",
+    "verifier": "Bizzle",
     "verification": "https://www.youtube.com/watch?v=UEKDZ_XzDJ0",
     "percentToQualify": 50,
     "password": "Free to Copy",
     "original_verifier": false,
     "records": [
+        {
+            "user": "SchwertBootGD",
+            "link": "https://m.youtube.com/watch?v=dCyB_xZqLpk",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        },
+        {
+            "user": "IkukGD",
+            "link": "https://youtu.be/03tyMv_9SBw?si=OYugLULDm0rujIfw",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
