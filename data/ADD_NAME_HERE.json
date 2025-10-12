@@ -49,6 +49,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
+        },
+        {
+            "user": "Tervom",
+            "link": "https://youtu.be/MuNngfLxloU?si=K8BtGvM8UKLXfK8w",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
