@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "Tervom",
+            "link": "https://youtu.be/9xO_7CgsekA?si=ZGPlnjRiU_9sYDU2",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        }
     ]
 }
