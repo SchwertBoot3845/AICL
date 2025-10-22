@@ -7,6 +7,12 @@
     "verification": "https://youtu.be/JkHL-mWFud0",
     "percentToQualify": 50,
     "password": "Free to Copy",
-    "records": [
+    "records": [   {
+    "user": "coffee cup",
+            "link": "https://youtu.be/cwZm35pZlG0?si=k-A9m0tPXXWORtXz&t=760",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+      }
     ]
 }
