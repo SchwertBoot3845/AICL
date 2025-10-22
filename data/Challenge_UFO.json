@@ -7,16 +7,24 @@
     "verification": "https://youtu.be/84wQQZfHKOo?si=nrDe279e5prCmvyQ",
     "percentToQualify": 50,
     "password": "Free to Copy",
-    "records": [      {
+    "records": [      
+         {
             "user": "IkukGD",
             "link": "https://youtu.be/tcmW7_PItSI?si=CErjHtLRqPAY7xeL",
             "percent": 100,
             "mobile": true,
             "hz": 240
-      },
+        },
         {
             "user": "Mynameisralsei",
-            "link": "https://www.youtube.com/watch?v=Zb9Q56O7opU",
+            "link": "https://youtu.be/cwZm35pZlG0?si=yCMG6wc2BMARxAFa",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        },
+        {
+            "user": "coffee cup",
+            "link": "https://www.youtube.com/watch?v=-QKseYt5e_w",
             "percent": 100,
             "mobile": false,
             "hz": 240
