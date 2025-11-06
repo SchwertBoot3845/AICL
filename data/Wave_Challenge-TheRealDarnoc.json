@@ -1,6 +1,6 @@
 {
     "id": 3380100,
-    "name": "Wave Challenge",
+    "name": "Wave Challenge (TheRealDarnoc)",
     "author": "TheRealDarnoc",
     "creators": [],
     "verifier": "cheesearmy1",
@@ -32,6 +32,13 @@
         {
             "user": "Mynameisralsei",
             "link": "https://www.youtube.com/watch?v=Zb9Q56O7opU",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        },
+        {
+            "user": "coffee cup",
+            "link": "https://youtu.be/cwZm35pZlG0?si=clVlBu7gf-hS1Ysl",
             "percent": 100,
             "mobile": false,
             "hz": 240
