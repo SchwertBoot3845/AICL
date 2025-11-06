@@ -1,5 +1,6 @@
 {
   "name": "Top -1 Pack",
   "color": "#00c71b",
+  "points": 20
   "levels": ["Dash_Challenge", "Challenge_31", "Challenge_12"]
 }
