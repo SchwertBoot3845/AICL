@@ -1,11 +1,13 @@
 import { fetchPacks as fetchRawPacks } from "../content.js";
-import { score } from "../score.js";
 import Spinner from "../components/Spinner.js";
 
 export default {
     template: `
         <main class="page-packs">
+            <Spinner v-if="loading" />
+
             <div
+              v-else
               class="pack"
               v-for="pack in packs"
               :key="pack.id"
@@ -22,6 +24,9 @@ export default {
             </div>
         </main>
     `,
+    components: {
+        Spinner,
+    },
     data() {
         return {
             packs: [],
@@ -29,15 +34,24 @@ export default {
         };
     },
     async mounted() {
-    const rawPacks = await fetchRawPacks();
+        try {
+            const rawPacks = await fetchRawPacks();
 
-    const packsWithPoints = rawPacks.map((pack) => {
-        return {
-            ...pack,
-            halfPoints: typeof pack.points === 'number' ? pack.points : 0,
-        };
-    });
+            const packsWithPoints = rawPacks.map((pack) => {
+                // Ensure points is a number, default to 0 if invalid
+                const pts = parseFloat(pack.points);
+                return {
+                    ...pack,
+                    halfPoints: !isNaN(pts) ? pts : 0,
+                };
+            });
 
-    this.packs = packsWithPoints;
-    this.loading = false;
+            this.packs = packsWithPoints;
+        } catch (err) {
+            console.error("Failed to load packs:", err);
+            this.packs = [];
+        } finally {
+            this.loading = false;
+        }
+    },
 }
