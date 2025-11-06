@@ -29,32 +29,15 @@ export default {
         };
     },
     async mounted() {
-        const rawPacks = await fetchRawPacks();
+    const rawPacks = await fetchRawPacks();
 
-        // Load level ranking from _list.json (top to bottom order)
-        const listRes = await fetch('/data/_list.json');
-        const levelOrder = await listRes.json();
+    const packsWithPoints = rawPacks.map((pack) => {
+        return {
+            ...pack,
+            halfPoints: typeof pack.points === 'number' ? pack.points : 0,
+        };
+    });
 
-        const packsWithPoints = rawPacks.map((pack) => {
-            let totalPoints = 0;
-
-            pack.levels.forEach((level) => {
-                const rank = levelOrder.indexOf(level.fileName);
-                if (rank === -1) {
-                    console.warn(`Level '${level.fileName}' not found in _list.json.`);
-                    return;
-                }
-
-                totalPoints += score(rank + 1, 100, level.percentToQualify);
-            });
-
-            return {
-                ...pack,
-                halfPoints: totalPoints / 3,
-            };
-        });
-
-        this.packs = packsWithPoints;
-        this.loading = false;
-    }
-};
+    this.packs = packsWithPoints;
+    this.loading = false;
+}
