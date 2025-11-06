@@ -56,7 +56,7 @@ export async function fetchLeaderboard() {
             errs.push(err);
             return;
         }
-        if (!level || typeof level.verifier !== 'string') return;
+        if (!level || typeof level.verifier !== "string") return;
 
         const verifier = level.verifier.trim() || "";
         scoreMap[verifier] ??= {
@@ -65,11 +65,10 @@ export async function fetchLeaderboard() {
             progressed: [],
         };
 
-        const { verified } = scoreMap[verifier];
-
+        // Per-level verified score
         const verifierScore = verifier === "" ? 0 : score(rank + 1, 100, level.percentToQualify);
 
-        verified.push({
+        scoreMap[verifier].verified.push({
             rank: rank + 1,
             level: level.name,
             score: verifierScore,
@@ -77,7 +76,8 @@ export async function fetchLeaderboard() {
             fileName: level.path,
         });
 
-        level.records.forEach((record) => {
+        // Handle records for other users
+        (level.records || []).forEach((record) => {
             if (!record || !record.user) return;
 
             const user = record.user.trim();
@@ -86,6 +86,7 @@ export async function fetchLeaderboard() {
                 completed: [],
                 progressed: [],
             };
+
             const { completed, progressed } = scoreMap[user];
 
             if (record.percent === 100) {
@@ -96,22 +97,23 @@ export async function fetchLeaderboard() {
                     link: record.link,
                     fileName: level.path,
                 });
-                return;
+            } else {
+                progressed.push({
+                    rank: rank + 1,
+                    level: level.name,
+                    percent: record.percent,
+                    score: score(rank + 1, record.percent, level.percentToQualify),
+                    link: record.link,
+                    fileName: level.path,
+                });
             }
-
-            progressed.push({
-                rank: rank + 1,
-                level: level.name,
-                percent: record.percent,
-                score: score(rank + 1, record.percent, level.percentToQualify),
-                link: record.link,
-                fileName: level.path,
-            });
         });
     });
 
+    // Fetch packs with their direct points
     const packs = await fetchPacks();
 
+    // Compute beaten packs per user
     Object.entries(scoreMap).forEach(([user, scores]) => {
         const { verified, completed } = scores;
 
@@ -120,17 +122,18 @@ export async function fetchLeaderboard() {
             ...completed.map(c => c.fileName),
         ]);
 
-        const beatenPacks = packs.filter(pack =>
-            pack.levels.every(level => beatenLevels.has(level.fileName))
-        ).map(pack => ({
-            id: pack.id,
-            name: pack.name,
-            points: pack.points,
-        }));
+        const beatenPacks = packs
+            .filter(pack => pack.levels.every(level => beatenLevels.has(level.fileName)))
+            .map(pack => ({
+                id: pack.id,
+                name: pack.name,
+                points: pack.points ?? 0, // safe default
+            }));
 
         scores.beatenPacks = beatenPacks;
     });
 
+    // Compute total score per user
     const res = Object.entries(scoreMap).map(([user, scores]) => {
         const { verified, completed, progressed, beatenPacks } = scores;
 
@@ -138,8 +141,8 @@ export async function fetchLeaderboard() {
             ...verified,
             ...completed,
             ...progressed,
-            ...(beatenPacks ? beatenPacks.map(p => ({ score: p.points })) : []),
-        ].reduce((prev, cur) => prev + cur.score, 0);
+            ...(beatenPacks ? beatenPacks.map(p => ({ score: p.points ?? 0 })) : []),
+        ].reduce((sum, cur) => sum + (cur.score || 0), 0);
 
         return {
             user,
@@ -148,6 +151,7 @@ export async function fetchLeaderboard() {
         };
     });
 
+    // Sort descending by total
     return [res.sort((a, b) => b.total - a.total), errs];
 }
 
