@@ -3,58 +3,87 @@ import { score } from "../score.js";
 import Spinner from "../components/Spinner.js";
 
 export default {
-    template: `
-        <main class="page-packs">
-            <div
-              class="pack"
-              v-for="pack in packs"
-              :key="pack.id"
-              :style="{ borderColor: pack.color, '--header-color': pack.color }"
-            >
-                <div class="pack-header">
-                    <h2 class="pack-name">{{ pack.name }}</h2>
-                    <h3 class="pack-points">({{ pack.halfPoints.toFixed(2) }} points)</h3>
-                </div>
-                <p>Levels:</p>
-                <ul class="pack-levels">
-                    <li v-for="level in pack.levels" :key="level.fileName">{{ level.name }}</li>
-                </ul>
-            </div>
-        </main>
-    `,
-    data() {
-        return {
-            packs: [],
-            loading: true,
-        };
-    },
-    async mounted() {
-        const rawPacks = await fetchRawPacks();
+  components: { Spinner },
+  template: `
+    <main class="page-packs">
+      <Spinner v-if="loading" text="Loading packs..." />
+      <div v-else>
+        <div
+          v-for="pack in packs"
+          :key="pack.id"
+          class="pack"
+          :style="{ borderColor: pack.color || '#888', '--header-color': pack.color || '#888' }"
+        >
+          <div class="pack-header">
+            <h2 class="pack-name">{{ pack.name }}</h2>
+            <h3 class="pack-points">
+              ({{ pack.halfPoints?.toFixed(2) ?? '0.00' }} points)
+            </h3>
+          </div>
 
-        // Load level ranking from _list.json (top to bottom order)
-        const listRes = await fetch('/data/_list.json');
-        const levelOrder = await listRes.json();
+          <p v-if="pack.levels?.length">Levels:</p>
+          <ul v-if="pack.levels?.length" class="pack-levels">
+            <li v-for="level in pack.levels" :key="level.fileName">
+              {{ level.name }}
+            </li>
+          </ul>
 
-        const packsWithPoints = rawPacks.map((pack) => {
-            let totalPoints = 0;
+          <p v-else class="empty-pack">No levels found in this pack.</p>
+        </div>
+      </div>
+    </main>
+  `,
 
-            pack.levels.forEach((level) => {
-                const rank = levelOrder.indexOf(level.fileName);
-                if (rank === -1) {
-                    console.warn(`Level '${level.fileName}' not found in _list.json.`);
-                    return;
-                }
+  data() {
+    return {
+      packs: [],
+      loading: true,
+    };
+  },
 
-                totalPoints += score(rank + 1, 100, level.percentToQualify);
-            });
+  async mounted() {
+    try {
+      // Fetch packs
+      const rawPacks = await fetchRawPacks();
 
-            return {
-                ...pack,
-                halfPoints: totalPoints / 3,
-            };
+      // Fetch list for rank lookup
+      const listRes = await fetch("/data/_list.json");
+      const levelOrder = await listRes.json();
+
+      // Build pack data
+      const packsWithPoints = rawPacks.map((pack) => {
+        // Use pack.points if defined, otherwise compute
+        if (typeof pack.points === "number") {
+          return {
+            ...pack,
+            halfPoints: pack.points / 2, // if "points" already in file
+          };
+        }
+
+        let totalPoints = 0;
+
+        (pack.levels || []).forEach((level) => {
+          const rank = levelOrder.indexOf(level.fileName);
+          if (rank === -1) {
+            console.warn(`⚠️ Level '${level.fileName}' not found in _list.json`);
+            return;
+          }
+
+          totalPoints += score(rank + 1, 100, level.percentToQualify || 100);
         });
 
-        this.packs = packsWithPoints;
-        this.loading = false;
+        return {
+          ...pack,
+          halfPoints: totalPoints / 3,
+        };
+      });
+
+      this.packs = packsWithPoints;
+    } catch (err) {
+      console.error("Error while loading packs:", err);
+      this.packs = [];
+    } finally {
+      this.loading = false;
     }
-};
+  },
+}
