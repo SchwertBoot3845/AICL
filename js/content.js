@@ -56,7 +56,7 @@ export async function fetchLeaderboard() {
             errs.push(err);
             return;
         }
-        if (!level || typeof level.verifier !== "string") return;
+        if (!level || typeof level.verifier !== 'string') return;
 
         const verifier = level.verifier.trim() || "";
         scoreMap[verifier] ??= {
@@ -65,10 +65,11 @@ export async function fetchLeaderboard() {
             progressed: [],
         };
 
-        // Per-level verified score
+        const { verified } = scoreMap[verifier];
+
         const verifierScore = verifier === "" ? 0 : score(rank + 1, 100, level.percentToQualify);
 
-        scoreMap[verifier].verified.push({
+        verified.push({
             rank: rank + 1,
             level: level.name,
             score: verifierScore,
@@ -76,8 +77,7 @@ export async function fetchLeaderboard() {
             fileName: level.path,
         });
 
-        // Handle records for other users
-        (level.records || []).forEach((record) => {
+        level.records.forEach((record) => {
             if (!record || !record.user) return;
 
             const user = record.user.trim();
@@ -86,7 +86,6 @@ export async function fetchLeaderboard() {
                 completed: [],
                 progressed: [],
             };
-
             const { completed, progressed } = scoreMap[user];
 
             if (record.percent === 100) {
@@ -97,23 +96,22 @@ export async function fetchLeaderboard() {
                     link: record.link,
                     fileName: level.path,
                 });
-            } else {
-                progressed.push({
-                    rank: rank + 1,
-                    level: level.name,
-                    percent: record.percent,
-                    score: score(rank + 1, record.percent, level.percentToQualify),
-                    link: record.link,
-                    fileName: level.path,
-                });
+                return;
             }
+
+            progressed.push({
+                rank: rank + 1,
+                level: level.name,
+                percent: record.percent,
+                score: score(rank + 1, record.percent, level.percentToQualify),
+                link: record.link,
+                fileName: level.path,
+            });
         });
     });
 
-    // Fetch packs with their direct points
     const packs = await fetchPacks();
 
-    // Compute beaten packs per user
     Object.entries(scoreMap).forEach(([user, scores]) => {
         const { verified, completed } = scores;
 
@@ -122,18 +120,17 @@ export async function fetchLeaderboard() {
             ...completed.map(c => c.fileName),
         ]);
 
-        const beatenPacks = packs
-            .filter(pack => pack.levels.every(level => beatenLevels.has(level.fileName)))
-            .map(pack => ({
-                id: pack.id,
-                name: pack.name,
-                points: pack.points ?? 0, // safe default
-            }));
+        const beatenPacks = packs.filter(pack =>
+            pack.levels.every(level => beatenLevels.has(level.fileName))
+        ).map(pack => ({
+            id: pack.id,
+            name: pack.name,
+            points: pack.points,
+        }));
 
         scores.beatenPacks = beatenPacks;
     });
 
-    // Compute total score per user
     const res = Object.entries(scoreMap).map(([user, scores]) => {
         const { verified, completed, progressed, beatenPacks } = scores;
 
@@ -141,8 +138,8 @@ export async function fetchLeaderboard() {
             ...verified,
             ...completed,
             ...progressed,
-            ...(beatenPacks ? beatenPacks.map(p => ({ score: p.points ?? 0 })) : []),
-        ].reduce((sum, cur) => sum + (cur.score || 0), 0);
+            ...(beatenPacks ? beatenPacks.map(p => ({ score: p.points })) : []),
+        ].reduce((prev, cur) => prev + cur.score, 0);
 
         return {
             user,
@@ -151,7 +148,6 @@ export async function fetchLeaderboard() {
         };
     });
 
-    // Sort descending by total
     return [res.sort((a, b) => b.total - a.total), errs];
 }
 
@@ -172,25 +168,15 @@ export async function fetchPacks() {
                 }
                 const packData = await packRes.json();
 
-                // Fetch the levels inside this pack if needed
-                const levelFilenames = Array.isArray(packData.levels)
-                    ? packData.levels
-                    : [];
-
                 const levels = await Promise.all(
-                    levelFilenames.map(async (filename) => {
-                        if (typeof filename !== 'string') {
-                            console.warn(`Invalid level filename (not a string):`, filename);
-                            return null;
-                        }
-
+                    (packData.levels || []).map(async (filename) => {
                         const levelPath = `/data/${filename}.json`;
                         const levelRes = await fetch(levelPath);
                         if (!levelRes.ok) {
-                            throw new Error(`Failed to fetch: ${levelPath} (status ${levelRes.status})`);
+                            console.warn(`Failed to fetch level: ${levelPath}`);
+                            return null;
                         }
                         const levelData = await levelRes.json();
-
                         return {
                             ...levelData,
                             fileName: filename,
@@ -198,15 +184,11 @@ export async function fetchPacks() {
                     })
                 );
 
-                const validLevels = levels.filter(Boolean);
-
-                const packPoints = typeof packData.points === 'number' ? packData.points : 0;
-
                 return {
                     id: packId,
                     ...packData,
-                    levels: validLevels,
-                    points: packPoints,
+                    levels: levels.filter(Boolean),
+                    points: packData.points,
                 };
             })
         );
