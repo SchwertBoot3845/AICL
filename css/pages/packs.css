@@ -1,19 +1,22 @@
 .page-packs {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   padding: 1rem;
-  justify-items: center;
 }
 
 .pack {
-  width: 100%; 
+  flex: 0 1 calc((100% - 3rem) / 3);
   border: 4px solid;
   border-radius: 1rem;
   background: var(--background-elevated);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-height: 200px;
+  max-height: none;
+  box-sizing: border-box;
 }
 
 .pack-header {
@@ -25,14 +28,14 @@
 .pack-header h2 {
   color: white;
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
 .pack-header h3 {
   color: white;
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: bold;
 }
 
@@ -44,9 +47,18 @@
 }
 
 .pack-levels {
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 1rem 1.5rem;
   list-style: disc;
   margin: 0;
-  max-height: 250px;
-  overflow-y: auto;
+  overflow-wrap: break-word;
+}
+
+.pack-levels li {
+  margin-bottom: 0.25rem;
+}
+
+.empty-pack {
+  text-align: center;
+  font-style: italic;
+  padding-bottom: 0.5rem;
 }
