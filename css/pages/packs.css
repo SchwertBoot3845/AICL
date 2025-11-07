@@ -7,15 +7,15 @@
 }
 
 .pack {
-  flex: 0 1 32%;
+  width: calc((100% - 3rem) / 3);
   border: 4px solid;
   border-radius: 1rem;
   background: var(--background-elevated);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  min-height: 200px;
   box-sizing: border-box;
+  min-height: 200px;
 }
 
 .pack-header {
@@ -64,12 +64,12 @@
 
 @media (max-width: 960px) {
   .pack {
-    flex: 0 1 48%;
+    width: calc((100% - 1.5rem) / 2);
   }
 }
 
 @media (max-width: 640px) {
   .pack {
-    flex: 0 1 95%;
+    width: 100%;
   }
 }
