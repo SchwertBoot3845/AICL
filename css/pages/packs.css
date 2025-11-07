@@ -1,13 +1,13 @@
 .page-packs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
+  justify-content: center;
   padding: 1rem;
-  justify-items: center;
 }
 
 .pack {
-  width: 100%;
+  flex: 0 0 calc(33.333% - 1rem);
   border: 4px solid;
   border-radius: 1rem;
   background: var(--background-elevated);
@@ -15,7 +15,8 @@
   flex-direction: column;
   justify-content: flex-start;
   box-sizing: border-box;
-  min-height: 200px;
+  min-height: 150px;
+  max-height: none;
 }
 
 .pack-header {
@@ -46,7 +47,7 @@
 }
 
 .pack-levels {
-  padding: 0 1.5rem 1rem 1.5rem;
+  padding: 0 1rem 1rem 1rem;
   list-style: disc;
   margin: 0;
   overflow-wrap: break-word;
@@ -63,13 +64,13 @@
 }
 
 @media (max-width: 960px) {
-  .page-packs {
-    grid-template-columns: repeat(2, 1fr);
+  .pack {
+    flex: 0 0 calc(50% - 1rem);
   }
 }
 
 @media (max-width: 640px) {
-  .page-packs {
-    grid-template-columns: 1fr;
+  .pack {
+    flex: 0 0 100%;
   }
 }
