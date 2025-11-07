@@ -43,20 +43,18 @@ export default {
 
   async mounted() {
     try {
-      // Fetch packs
-      const rawPacks = await fetchRawPacks();
+      const packsRes = await fetch("/data/packs/_packs.json");
+      const rawPacks = await packsRes.json();
 
-      // Fetch list for rank lookup
       const listRes = await fetch("/data/_list.json");
       const levelOrder = await listRes.json();
 
-      // Build pack data
       const packsWithPoints = rawPacks.map((pack) => {
-        // Use pack.points if defined, otherwise compute
+        // If "points" already exists in pack file, use that
         if (typeof pack.points === "number") {
           return {
             ...pack,
-            halfPoints: pack.points / 2, // if "points" already in file
+            halfPoints: pack.points / 2,
           };
         }
 
@@ -65,7 +63,7 @@ export default {
         (pack.levels || []).forEach((level) => {
           const rank = levelOrder.indexOf(level.fileName);
           if (rank === -1) {
-            console.warn(`⚠️ Level '${level.fileName}' not found in _list.json`);
+            console.warn(`⚠️ Level '${level.fileName}' not found in /data/_list.json`);
             return;
           }
 
@@ -80,7 +78,7 @@ export default {
 
       this.packs = packsWithPoints;
     } catch (err) {
-      console.error("Error while loading packs:", err);
+      console.error("💀 Error while loading packs:", err);
       this.packs = [];
     } finally {
       this.loading = false;
