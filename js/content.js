@@ -154,33 +154,24 @@ export async function fetchLeaderboard() {
 export async function fetchPacks() {
     try {
         const res = await fetch('/data/packs/_packs.json');
-        if (!res.ok) {
-            throw new Error(`Failed to fetch: /data/packs/_packs.json (status ${res.status})`);
-        }
+        if (!res.ok) throw new Error(`Failed to fetch: /data/packs/_packs.json (status ${res.status})`);
         const packList = await res.json();
 
         const packs = await Promise.all(
             packList.map(async (packId) => {
-                const packPath = `/data/packs/${packId}.json`;
-                const packRes = await fetch(packPath);
-                if (!packRes.ok) {
-                    throw new Error(`Failed to fetch: ${packPath} (status ${packRes.status})`);
-                }
+                const packRes = await fetch(`/data/packs/${packId}.json`);
+                if (!packRes.ok) throw new Error(`Failed to fetch: /data/packs/${packId}.json (status ${packRes.status})`);
                 const packData = await packRes.json();
 
                 const levels = await Promise.all(
                     (packData.levels || []).map(async (filename) => {
-                        const levelPath = `/data/${filename}.json`;
-                        const levelRes = await fetch(levelPath);
+                        const levelRes = await fetch(`/data/${filename}.json`);
                         if (!levelRes.ok) {
-                            console.warn(`Failed to fetch level: ${levelPath}`);
+                            console.warn(`Failed to fetch level: /data/${filename}.json`);
                             return null;
                         }
                         const levelData = await levelRes.json();
-                        return {
-                            ...levelData,
-                            fileName: filename,
-                        };
+                        return { ...levelData, fileName: filename };
                     })
                 );
 
@@ -188,7 +179,7 @@ export async function fetchPacks() {
                     id: packId,
                     ...packData,
                     levels: levels.filter(Boolean),
-                    points: packData.points,
+                    points: packData.points, // use the value from the JSON directly
                 };
             })
         );
