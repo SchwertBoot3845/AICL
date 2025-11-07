@@ -7,14 +7,13 @@
 }
 
 .pack {
-  width: 100%; /* will fill the grid column */
+  width: 100%; 
   border: 4px solid;
   border-radius: 1rem;
   background: var(--background-elevated);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  /* remove fixed height */
 }
 
 .pack-header {
