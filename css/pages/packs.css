@@ -2,20 +2,21 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  padding: 1rem;
   justify-content: center;
+  padding: 1rem;
 }
 
 .pack {
-  width: 300px;
-  height: 200px;
+  flex: 0 0 calc(33.333% - 1rem);
   border: 4px solid;
   border-radius: 1rem;
-  overflow: hidden;
   background: var(--background-elevated);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  box-sizing: border-box;
+  min-height: 150px;
+  max-height: none;
 }
 
 .pack-header {
@@ -46,18 +47,30 @@
 }
 
 .pack-levels {
-  padding: 0 2.5rem;
+  padding: 0 1rem 1rem 1rem;
   list-style: disc;
   margin: 0;
+  overflow-wrap: break-word;
 }
 
-.pack-list {
+.pack-levels li {
+  margin-bottom: 0.25rem;
+}
+
+.empty-pack {
   text-align: center;
-  list-style-position: inside; /* or outside, whichever you prefer */
-  padding-left: 1.2em; /* space for the bullet */
+  font-style: italic;
+  padding-bottom: 0.5rem;
 }
 
-.pack-list li {
-  list-style-type: disc; /* solid bullet points */
-  margin-bottom: 0.5em; /* optional spacing */
+@media (max-width: 960px) {
+  .pack {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .pack {
+    flex: 0 0 100%;
+  }
 }
