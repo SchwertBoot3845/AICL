@@ -6,7 +6,7 @@ export default {
   template: `
     <main class="page-packs">
       <Spinner v-if="loading" text="Loading packs..." />
-      <div v-else>
+      <div v-else class="packs-grid">
         <div
           v-for="pack in packs"
           :key="pack.id"
@@ -50,4 +50,4 @@ export default {
       this.loading = false;
     }
   },
-}
+};
