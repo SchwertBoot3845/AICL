@@ -159,12 +159,6 @@ export async function fetchPacks() {
         }
         const packList = await res.json();
 
-        const listRes = await fetch('/data/_list.json');
-        if (!listRes.ok) {
-            throw new Error(`Failed to fetch: /data/_list.json (status ${listRes.status})`);
-        }
-        const levelOrder = await listRes.json();
-
         const packs = await Promise.all(
             packList.map(async (packId) => {
                 const packPath = `/data/packs/${packId}.json`;
@@ -174,21 +168,13 @@ export async function fetchPacks() {
                 }
                 const packData = await packRes.json();
 
-                const levelFilenames = Array.isArray(packData.levels)
-                    ? packData.levels
-                    : [];
-
                 const levels = await Promise.all(
-                    levelFilenames.map(async (filename) => {
-                        if (typeof filename !== 'string') {
-                            console.warn(`Invalid level filename (not a string):`, filename);
-                            return null;
-                        }
-
+                    (packData.levels || []).map(async (filename) => {
                         const levelPath = `/data/${filename}.json`;
                         const levelRes = await fetch(levelPath);
                         if (!levelRes.ok) {
-                            throw new Error(`Failed to fetch: ${levelPath} (status ${levelRes.status})`);
+                            console.warn(`Failed to fetch level: ${levelPath}`);
+                            return null;
                         }
                         const levelData = await levelRes.json();
                         return {
@@ -198,24 +184,11 @@ export async function fetchPacks() {
                     })
                 );
 
-                const validLevels = levels.filter(Boolean);
-
-                const totalPoints = validLevels.reduce((sum, level) => {
-                    const rank = levelOrder.indexOf(level.fileName);
-                    if (rank === -1) {
-                        console.warn(`Level '${level.fileName}' not found in _list.json.`);
-                        return sum;
-                    }
-                    return sum + score(rank + 1, 100, level.percentToQualify);
-                }, 0);
-
-                const packPoints = totalPoints / 3;
-
                 return {
                     id: packId,
                     ...packData,
-                    levels: validLevels,
-                    points: packPoints,
+                    levels: levels.filter(Boolean),
+                    points: packData.points,
                 };
             })
         );
