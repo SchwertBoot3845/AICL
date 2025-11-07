@@ -1,5 +1,4 @@
-import { fetchPacks as fetchRawPacks } from "../content.js";
-import { score } from "../score.js";
+import { fetchPacks } from "../content.js";
 import Spinner from "../components/Spinner.js";
 
 export default {
@@ -17,7 +16,7 @@ export default {
           <div class="pack-header">
             <h2 class="pack-name">{{ pack.name }}</h2>
             <h3 class="pack-points">
-              ({{ pack.halfPoints?.toFixed(2) ?? '0.00' }} points)
+              ({{ pack.points?.toFixed(2) ?? '0.00' }} points)
             </h3>
           </div>
 
@@ -43,45 +42,12 @@ export default {
 
   async mounted() {
     try {
-      const packsRes = await fetch("/data/packs/_packs.json");
-      const rawPacks = await packsRes.json();
-
-      const listRes = await fetch("/data/_list.json");
-      const levelOrder = await listRes.json();
-
-      const packsWithPoints = rawPacks.map((pack) => {
-        // If "points" already exists in pack file, use that
-        if (typeof pack.points === "number") {
-          return {
-            ...pack,
-            halfPoints: pack.points / 2,
-          };
-        }
-
-        let totalPoints = 0;
-
-        (pack.levels || []).forEach((level) => {
-          const rank = levelOrder.indexOf(level.fileName);
-          if (rank === -1) {
-            console.warn(`⚠️ Level '${level.fileName}' not found in /data/_list.json`);
-            return;
-          }
-
-          totalPoints += score(rank + 1, 100, level.percentToQualify || 100);
-        });
-
-        return {
-          ...pack,
-          halfPoints: totalPoints / 3,
-        };
-      });
-
-      this.packs = packsWithPoints;
+      this.packs = await fetchPacks();
     } catch (err) {
-      console.error("💀 Error while loading packs:", err);
+      console.error("💀 Error loading packs:", err);
       this.packs = [];
     } finally {
       this.loading = false;
     }
   },
-}
+};
