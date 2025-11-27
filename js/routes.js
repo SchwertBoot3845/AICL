@@ -9,5 +9,5 @@ export default [
     { path: '/packs', component: Packs },
     { path: '/leaderboard', component: Leaderboard },
     { path: '/roulette', component: Roulette },
-    { path: '/changelog', component: Changelog }
+    { path: '/changelog', component: Changelog },
 ];
