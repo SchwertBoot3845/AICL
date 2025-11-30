@@ -1,84 +1,73 @@
-.page-changelog {
-    padding: 30px;
-    max-width: 900px;
-    margin: 0 auto;
-    animation: fadeIn 0.4s ease;
-}
+import { store } from '../main.js';
+import { fetchChangelog } from '../content.js';
+import '../css/pages/changelog.css'; // Import the CSS
 
-.page-changelog h1 {
-    text-align: center;
-    font-size: 2.4rem;
-    margin-bottom: 25px;
-    color: var(--color-primary);
-    text-shadow: 0 0 6px rgba(0,0,0,0.3);
-}
+export default {
+    template: `
+        <main class="page-changelog">
+            <h1 class="changelog-title">Changelog</h1>
 
-.changelog-list {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
+            <div v-if="loading" class="loading">Loading...</div>
 
-.changelog-entry {
-    background: rgba(255,255,255,0.05);
-    border-left: 6px solid var(--color-primary);
-    padding: 14px 18px;
-    border-radius: 8px;
-    color: white;
-    transition: transform 0.15s ease, background 0.2s ease;
-}
+            <ul v-else class="changelog-list">
+                <li 
+                    v-for="entry in paginated" 
+                    :key="entry.id" 
+                    class="changelog-entry"
+                    :class="'type-' + entry.type"
+                >
+                    <span class="entry-date">{{ entry.date }}</span>
+                    <span class="entry-text">{{ formatEntry(entry) }}</span>
+                </li>
+            </ul>
 
-.changelog-entry:hover {
-    transform: translateX(6px);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.changelog-entry strong {
-    color: var(--color-primary);
-    font-weight: 700;
-    margin-right: 6px;
-}
-
-.loading {
-    color: white;
-    font-size: 1.3rem;
-    text-align: center;
-    padding: 40px 0;
-    opacity: 0.8;
-}
-
-.pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 25px;
-}
-
-.pagination button {
-    background: var(--color-primary);
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    color: white;
-    font-weight: bold;
-    transition: background 0.2s ease, transform 0.1s ease;
-}
-
-.pagination button:disabled {
-    background: #333;
-    cursor: not-allowed;
-}
-
-.pagination button:not(:disabled):hover {
-    background: #6a9c25;
-    transform: translateY(-2px);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
+            <div v-if="!loading" class="pagination">
+                <button class="page-btn" @click="prevPage" :disabled="page === 1">Prev</button>
+                <span class="page-info">Page {{ page }} / {{ totalPages }}</span>
+                <button class="page-btn" @click="nextPage" :disabled="page >= totalPages">Next</button>
+            </div>
+        </main>
+    `,
+    data() {
+        return {
+            changes: [],
+            loading: true,
+            page: 1,
+            perPage: 25,
+            store,
+        };
+    },
+    computed: {
+        startIndex() { return (this.page - 1) * this.perPage; },
+        endIndex() { return this.page * this.perPage; },
+        paginated() { return this.changes.slice(this.startIndex, this.endIndex); },
+        totalPages() { return Math.ceil(this.changes.length / this.perPage); },
+    },
+    methods: {
+        async loadChanges() {
+            try {
+                const data = await fetchChangelog();
+                // Sort newest first
+                this.changes = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } catch (err) {
+                console.error('Failed to load changelog:', err);
+            } finally {
+                this.loading = false;
+            }
+        },
+        formatEntry(entry) {
+            const typeMap = { 1: 'Placed', 2: 'Raised', 3: 'Lowered', 4: 'Swapped', 5: 'Removed' };
+            let text = typeMap[entry.type] || 'Unknown';
+            text += ` ${entry.level}`;
+            if (entry.secondary) text += ` / ${entry.secondary}`;
+            if (entry.type === 2 || entry.type === 3) text += ` (from #${entry.p2} → #${entry.p1})`;
+            if (entry.type === 4) text += ` (swapped #${entry.p1} ↔ #${entry.p2})`;
+            return text;
+        },
+        nextPage() { if(this.page < this.totalPages) this.page++; },
+        prevPage() { if(this.page > 1) this.page--; },
+    },
+    mounted() {
+        this.loadChanges();
+    },
+};
