@@ -1,6 +1,5 @@
 import { store } from '../main.js';
 import { fetchChangelog } from '../content.js';
-import '../css/pages/changelog.css'; 
 
 export default {
     template: `
