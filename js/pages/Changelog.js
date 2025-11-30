@@ -22,35 +22,33 @@ export default {
 
             <div v-if="!loading" class="pagination">
                 <button class="page-btn" @click="prevPage" :disabled="page === 1">Prev</button>
-                
-                <span class="page-info">Page {{ page }} / {{ totalPages }}</span>
+
+                <span class="page-info">
+                    Page 
+                    <input 
+                        class="page-input-inline"
+                        v-model.number="pageInput"
+                        @keyup.enter="applyPage"
+                        type="number" 
+                        :min="1" 
+                        :max="totalPages"
+                    >
+                    / {{ totalPages }}
+                </span>
 
                 <button class="page-btn" @click="nextPage" :disabled="page >= totalPages">Next</button>
-            </div>
-
-            <div v-if="!loading" class="pagination" style="margin-top: 1rem;">
-                <label class="page-info">Jump to:</label>
-                <input 
-                    v-model.number="jumpTarget" 
-                    @keyup.enter="jumpPage" 
-                    type="number" 
-                    min="1" 
-                    :max="totalPages"
-                    class="page-input"
-                >
-                <button class="page-btn" @click="jumpPage">Go</button>
             </div>
         </main>
     `,
 
     data() {
         return {
-            rawChanges: [],     // raw data from json
-            changes: [],        // parsed and normalized
+            rawChanges: [],
+            changes: [],
             loading: true,
             page: 1,
+            pageInput: 1,
             perPage: 25,
-            jumpTarget: null,
             store,
         };
     },
@@ -68,12 +66,9 @@ export default {
                 const data = await fetchChangelog();
                 this.rawChanges = data;
 
-                // Sort newest first
                 const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-                // Parse entries into useful objects
                 this.changes = sorted.map(e => this.parseEntry(e));
-
             } catch (err) {
                 console.error('Failed to load changelog:', err);
             } finally {
@@ -83,6 +78,67 @@ export default {
 
         parseEntry(entry) {
             const typeMap = {
+                1: 'Placed',
+                2: 'Raised',
+                3: 'Lowered',
+                4: 'Swapped',
+                5: 'Removed',
+            };
+
+            let text = typeMap[entry.type] || 'Unknown';
+
+            switch (entry.type) {
+                case 1:
+                    text += ` ${entry.level} (#${entry.p1})`;
+                    break;
+                case 2:
+                case 3:
+                    text += ` ${entry.level} (from #${entry.p2} → #${entry.p1})`;
+                    break;
+                case 4:
+                    text += ` ${entry.level} ↔ ${entry.secondary} (positions #${entry.p1} and #${entry.p2})`;
+                    break;
+                case 5:
+                    text += ` ${entry.level}`;
+                    break;
+            }
+
+            return {
+                ...entry,
+                level: entry.level || null,
+                level2: entry.secondary || null,
+                actionText: text,
+            };
+        },
+
+        nextPage() {
+            if (this.page < this.totalPages) {
+                this.page++;
+                this.pageInput = this.page;
+            }
+        },
+        prevPage() {
+            if (this.page > 1) {
+                this.page--;
+                this.pageInput = this.page;
+            }
+        },
+
+        applyPage() {
+            let n = this.pageInput;
+
+            if (!n || n < 1) n = 1;
+            if (n > this.totalPages) n = this.totalPages;
+
+            this.page = n;
+            this.pageInput = n;
+        },
+    },
+
+    mounted() {
+        this.loadChanges();
+    },
+};
                 1: 'Placed',
                 2: 'Raised',
                 3: 'Lowered',
