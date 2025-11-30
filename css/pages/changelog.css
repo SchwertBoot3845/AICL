@@ -110,6 +110,7 @@
 
 .page-info {
     font-weight: 600;
+    font-family: var(--font-sans);
     font-size: 1.125rem;
     color: var(--color-on-background);
 }
