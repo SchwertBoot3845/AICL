@@ -1,20 +1,30 @@
 import { store } from '../main.js';
 import { fetchChangelog } from '../content.js';
+import '../css/pages/changelog.css'; 
 
 export default {
     template: `
         <main class="page-changelog">
-            <h1>Changelog</h1>
+            <h1 class="changelog-title">Changelog</h1>
+
             <div v-if="loading" class="loading">Loading...</div>
+
             <ul v-else class="changelog-list">
-                <li v-for="entry in paginated" :key="entry.id" class="changelog-entry">
-                    <strong>{{ entry.date }}</strong>: {{ formatEntry(entry) }}
+                <li 
+                    v-for="entry in paginated" 
+                    :key="entry.id" 
+                    class="changelog-entry"
+                    :class="'type-' + entry.type"
+                >
+                    <span class="entry-date">{{ entry.date }}</span>
+                    <span class="entry-text">{{ formatEntry(entry) }}</span>
                 </li>
             </ul>
+
             <div v-if="!loading" class="pagination">
-                <button @click="prevPage" :disabled="page === 1">Prev</button>
-                <span>Page {{ page }} / {{ totalPages }}</span>
-                <button @click="nextPage" :disabled="page >= totalPages">Next</button>
+                <button class="page-btn" @click="prevPage" :disabled="page === 1">Prev</button>
+                <span class="page-info">Page {{ page }} / {{ totalPages }}</span>
+                <button class="page-btn" @click="nextPage" :disabled="page >= totalPages">Next</button>
             </div>
         </main>
     `,
