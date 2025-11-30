@@ -1,0 +1,84 @@
+.page-changelog {
+    padding: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeIn 0.4s ease;
+}
+
+.page-changelog h1 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 25px;
+    color: var(--color-primary);
+    text-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+.changelog-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.changelog-entry {
+    background: rgba(255,255,255,0.05);
+    border-left: 6px solid var(--color-primary);
+    padding: 14px 18px;
+    border-radius: 8px;
+    color: white;
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.changelog-entry:hover {
+    transform: translateX(6px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.changelog-entry strong {
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-right: 6px;
+}
+
+.loading {
+    color: white;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 40px 0;
+    opacity: 0.8;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.pagination button {
+    background: var(--color-primary);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.pagination button:disabled {
+    background: #333;
+    cursor: not-allowed;
+}
+
+.pagination button:not(:disabled):hover {
+    background: #6a9c25;
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
