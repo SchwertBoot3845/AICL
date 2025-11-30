@@ -11,9 +11,9 @@ export default {
             <ul v-else class="changelog-list">
                 <li 
                     v-for="entry in paginated" 
-                    :key="entry.id" 
+                    :key="entry.id ?? entry.date + '-' + index" 
                     class="changelog-entry"
-                    :class="'type-' + entry.type"
+                    :class="'type-' + (entry.type ?? 0)"
                 >
                     <span class="entry-date">{{ entry.date }}</span>
                     <span class="entry-text">{{ entry.actionText }}</span>
@@ -31,7 +31,7 @@ export default {
                         @keyup.enter="applyPage"
                         type="number" 
                         :min="1" 
-                        :max="totalPages"
+                        :max="maxInput"
                     >
                     / {{ totalPages }}
                 </span>
@@ -58,19 +58,36 @@ export default {
         endIndex() { return this.page * this.perPage; },
         paginated() { return this.changes.slice(this.startIndex, this.endIndex); },
         totalPages() { return Math.ceil(this.changes.length / this.perPage); },
+        // used so input's max never becomes 0 (which can be annoying for browsers)
+        maxInput() { return Math.max(this.totalPages, 1); },
     },
 
     methods: {
         async loadChanges() {
             try {
-                const data = await fetchChangelog();
-                this.rawChanges = data;
+                const data = await fetchChangelog() || [];
+                console.log('changelog fetched:', data); // dev: remove later
+                this.rawChanges = Array.isArray(data) ? data : [];
 
-                const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+                const sorted = this.rawChanges.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 this.changes = sorted.map(e => this.parseEntry(e));
+
+                // Ensure page is within bounds and sync the input
+                if (this.totalPages === 0) {
+                    this.page = 1;
+                    this.pageInput = 1;
+                } else {
+                    // clamp page to [1, totalPages]
+                    this.page = Math.min(Math.max(1, this.page), this.totalPages);
+                    this.pageInput = this.page;
+                }
             } catch (err) {
                 console.error('Failed to load changelog:', err);
+                this.rawChanges = [];
+                this.changes = [];
+                this.page = 1;
+                this.pageInput = 1;
             } finally {
                 this.loading = false;
             }
@@ -85,28 +102,40 @@ export default {
                 5: 'Removed',
             };
 
-            let text = typeMap[entry.type] || 'Unknown';
+            const safe = {
+                id: entry?.id ?? null,
+                date: entry?.date ?? '(no date)',
+                type: entry?.type ?? 0,
+                level: entry?.level ?? null,
+                secondary: entry?.secondary ?? null,
+                p1: entry?.p1 ?? null,
+                p2: entry?.p2 ?? null,
+            };
 
-            switch (entry.type) {
+            let text = typeMap[safe.type] || 'Unknown';
+
+            switch (safe.type) {
                 case 1:
-                    text += ` ${entry.level} (#${entry.p1})`;
+                    text += safe.level ? ` ${safe.level} (#${safe.p1 ?? '?'})` : ' (malformed entry)';
                     break;
                 case 2:
                 case 3:
-                    text += ` ${entry.level} (from #${entry.p2} → #${entry.p1})`;
+                    text += safe.level ? ` ${safe.level} (from #${safe.p2 ?? '?'} → #${safe.p1 ?? '?'})` : ' (malformed entry)';
                     break;
                 case 4:
-                    text += ` ${entry.level} ↔ ${entry.secondary} (positions #${entry.p1} and #${entry.p2})`;
+                    text += (safe.level && safe.secondary)
+                        ? ` ${safe.level} ↔ ${safe.secondary} (positions #${safe.p1 ?? '?'} and #${safe.p2 ?? '?'})`
+                        : ' (malformed swap)';
                     break;
                 case 5:
-                    text += ` ${entry.level}`;
+                    text += safe.level ? ` ${safe.level}` : ' (malformed entry)';
                     break;
+                default:
+                    text += ' (unknown type)';
             }
 
             return {
-                ...entry,
-                level: entry.level || null,
-                level2: entry.secondary || null,
+                ...safe,
                 actionText: text,
             };
         },
@@ -125,72 +154,11 @@ export default {
         },
 
         applyPage() {
-            let n = this.pageInput;
-
-            if (!n || n < 1) n = 1;
-            if (n > this.totalPages) n = this.totalPages;
-
+            let n = Number(this.pageInput) || 1;
+            if (n < 1) n = 1;
+            if (this.totalPages > 0 && n > this.totalPages) n = this.totalPages;
             this.page = n;
             this.pageInput = n;
-        },
-    },
-
-    mounted() {
-        this.loadChanges();
-    },
-};
-                1: 'Placed',
-                2: 'Raised',
-                3: 'Lowered',
-                4: 'Swapped',
-                5: 'Removed'
-            };
-
-            const base = {
-                id: entry.id,
-                date: entry.date,
-                type: entry.type,
-                level: entry.level || null,
-                level2: entry.secondary || null,
-                p1: entry.p1 || null,
-                p2: entry.p2 || null,
-            };
-
-            let text = typeMap[entry.type] || 'Unknown';
-
-            switch (entry.type) {
-                case 1: // placed
-                    text += ` ${entry.level} (#${entry.p1})`;
-                    break;
-
-                case 2: // raised
-                case 3: // lowered
-                    text += ` ${entry.level} (from #${entry.p2} → #${entry.p1})`;
-                    break;
-
-                case 4: // swapped
-                    text += ` ${entry.level} ↔ ${entry.secondary} (positions #${entry.p1} and #${entry.p2})`;
-                    break;
-
-                case 5: // removed
-                    text += ` ${entry.level}`;
-                    break;
-            }
-
-            return { ...base, actionText: text };
-        },
-
-        nextPage() {
-            if (this.page < this.totalPages) this.page++;
-        },
-        prevPage() {
-            if (this.page > 1) this.page--;
-        },
-
-        jumpPage() {
-            if (!this.jumpTarget) return;
-            const target = Math.max(1, Math.min(this.jumpTarget, this.totalPages));
-            this.page = target;
         },
     },
 
