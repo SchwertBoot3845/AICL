@@ -116,7 +116,7 @@ export default {
 
             switch (safe.type) {
                 case 1:
-                    text += safe.level ? ` ${safe.level} at ${safe.p1 ?? '?'}.` : ' (malformed entry)';
+                    text += safe.level ? ` ${safe.level} at #${safe.p1 ?? '?'}.` : ' (malformed entry)';
                     break;
                 case 2:
                 case 3:
