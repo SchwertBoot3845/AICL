@@ -1,31 +1,31 @@
 [
     {
-      "id": 4,
-      "level": "67 machine",
-      "type": 2,
-      "p1": 4,
-      "p2": 8,
-      "date": "2024-09-14"
+        "id": 4,
+        "level": "67 machine",
+        "secondary": "gargamehl",
+        "type": 4,
+        "p1": 4,
+        "date": "2024-09-14"
     },
     {
-      "id": 3,
-      "level": "Detroit Challenge X V3",
-      "type": 1,
-      "p1": 3,
-      "date": "2024-09-14"
+        "id": 3,
+        "level": "Detroit Challenge X V3",
+        "type": 1,
+        "p1": 3,
+        "date": "2024-09-14"
     },
     {
-      "id": 2,
-      "level": "Wave Challenge J",
-      "type": 1,
-      "p1": 2,
-      "date": "2024-09-14"
+        "id": 2,
+        "level": "Wave Challenge J",
+        "type": 1,
+        "p1": 2,
+        "date": "2024-09-14"
     },
     {
-      "id": 1,
-      "level": "Scarlet",
-      "type": 1,
-      "p1": 1,
-      "date": "2024-09-14"
+        "id": 1,
+        "level": "Scarlet",
+        "type": 1,
+        "p1": 1,
+        "date": "2024-09-14"
     }
 ]
