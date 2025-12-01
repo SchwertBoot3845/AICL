@@ -116,11 +116,11 @@ export default {
 
             switch (safe.type) {
                 case 1:
-                    text += safe.level ? ` ${safe.level} (#${safe.p1 ?? '?'})` : ' (malformed entry)';
+                    text += safe.level ? ` ${safe.level} at ${safe.p1 ?? '?'}.` : ' (malformed entry)';
                     break;
                 case 2:
                 case 3:
-                    text += safe.level ? ` ${safe.level} (from #${safe.p2 ?? '?'} → #${safe.p1 ?? '?'})` : ' (malformed entry)';
+                    text += safe.level ? ` ${safe.level} from #${safe.p2 ?? '?'} to #${safe.p1 ?? '?'}.` : ' (malformed entry)';
                     break;
                 case 4:
                     text += (safe.level && safe.secondary)
