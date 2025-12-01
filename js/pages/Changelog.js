@@ -124,11 +124,11 @@ export default {
                     break;
                 case 4:
                     text += (safe.level && safe.secondary)
-                        ? ` ${safe.level} ↔ ${safe.secondary} (positions #${safe.p1 ?? '?'} and #${safe.p2 ?? '?'})`
+                        ? ` ${safe.level} with ${safe.secondary}, with ${safe.level} now above at #${safe.p1 ?? '?'}.`
                         : ' (malformed swap)';
                     break;
                 case 5:
-                    text += safe.level ? ` ${safe.level}` : ' (malformed entry)';
+                    text += safe.level ? ` ${safe.level} from the list.` : ' (malformed entry)';
                     break;
                 default:
                     text += ' (unknown type)';
