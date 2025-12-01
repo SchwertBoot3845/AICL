@@ -1,5 +1,13 @@
 [
     {
+      "id": 4,
+      "level": "67 machine",
+      "type": 2,
+      "p1": 4,
+      "p2": 8,
+      "date": "2024-09-14"
+    },
+    {
       "id": 3,
       "level": "Detroit Challenge X V3",
       "type": 1,
