@@ -1,5 +1,36 @@
 [
     {
+        "id": 18,
+        "level": "I said",
+        "secondary": "Wave Challenge J",
+        "type": 4,
+        "p1": 4,
+        "date": "2024-10-27"
+    },
+    {
+        "id": 17,
+        "level": "Impossible CP",
+        "secondary": "SPIDER CHALLENGE",
+        "type": 4,
+        "p1": 10,
+        "date": "2024-10-27"
+    },
+    {
+        "id": 16,
+        "level": "Nine Waves",
+        "secondary": "spongebob heart moni",
+        "type": 4,
+        "p1": 8,
+        "date": "2024-10-27"
+    },
+    {
+        "id": 15,
+        "level": "spongebob heart moni",
+        "type": 1,
+        "p1": 8,
+        "date": "2024-10-26"
+    },
+    {
         "id": 14,
         "level": "SPIDER CHALLENGE",
         "secondary": "Impossible CP",
