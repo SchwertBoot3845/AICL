@@ -23,28 +23,20 @@ header.dark {
     --color-on-error: white;
 }
 
-html,
-body {
-    min-height: 100%;
-    height: auto;
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
 body {
     display: flex;
     flex-direction: column;
-    margin: 0;
 }
 
 header,
 main {
     background-color: var(--color-background);
     color: var(--color-on-background);
-    display: grid;
-    grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(
-            16em,
-            1fr
-        );
-    column-gap: 2rem;
 }
 
 header {
@@ -54,12 +46,14 @@ header {
     background-color: var(--color-primary);
     color: var(--color-on-primary);
 }
+
 @media screen and (min-width: 1366px) {
     header {
         display: grid;
         padding-inline: 0;
     }
 }
+
 header .logo {
     justify-self: end;
     align-self: center;
@@ -67,21 +61,20 @@ header .logo {
     align-items: flex-end;
     gap: 1rem;
 }
-header .nav {
-    flex: 1;
-}
+header .nav { flex: 1; }
 
 main {
-    min-height: 0;
-    flex: 1;
     display: grid;
+    flex: 1;
     grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(16rem, 1fr);
     column-gap: 2rem;
+    min-height: 0;
 }
 
 main > div {
-    overflow-y: auto;
     min-height: 0;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .spinner {
@@ -91,6 +84,7 @@ main > div {
     grid-column: span 3;
 }
 
+/* Inputs, checkboxes */
 input[type="checkbox"] {
     height: 1.25rem;
     width: 1.25rem;
