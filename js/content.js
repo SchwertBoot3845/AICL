@@ -190,3 +190,17 @@ export async function fetchPacks() {
         return [];
     }
 }
+
+export async function fetchChangelog() {
+    try {
+        const res = await fetch('/data/_changelog.json');
+        if (!res.ok) throw new Error(`Failed to fetch _changelog.json: ${res.status}`);
+        const data = await res.json();
+        return data;
+    }
+        
+    catch (err) {
+        console.error('Failed to fetch changelog:', err);
+        return [];
+    }
+}
