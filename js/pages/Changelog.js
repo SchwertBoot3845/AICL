@@ -10,7 +10,7 @@ export default {
 
             <ul v-else class="changelog-list">
                 <li 
-                    v-for="entry in paginated" 
+                    v-for="(entry, index) in paginated" 
                     :key="entry.id ?? entry.date + '-' + index" 
                     class="changelog-entry"
                     :class="'type-' + (entry.type ?? 0)"
@@ -58,8 +58,15 @@ export default {
         endIndex() { return this.page * this.perPage; },
         paginated() { return this.changes.slice(this.startIndex, this.endIndex); },
         totalPages() { return Math.ceil(this.changes.length / this.perPage); },
-        // used so input's max never becomes 0 (which can be annoying for browsers)
+        // input max must never be 0 or browsers get pissy
         maxInput() { return Math.max(this.totalPages, 1); },
+    },
+
+    // 🔥 THIS IS THE IMPORTANT PART 🔥
+    watch: {
+        page(newPage) {
+            this.pageInput = newPage;
+        }
     },
 
     methods: {
@@ -69,25 +76,23 @@ export default {
                 console.log('changelog fetched:', data); // dev: remove later
                 this.rawChanges = Array.isArray(data) ? data : [];
 
-                const sorted = this.rawChanges.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+                const sorted = this.rawChanges
+                    .slice()
+                    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 this.changes = sorted.map(e => this.parseEntry(e));
 
-                // Ensure page is within bounds and sync the input
+                // clamp page safely
                 if (this.totalPages === 0) {
                     this.page = 1;
-                    this.pageInput = 1;
                 } else {
-                    // clamp page to [1, totalPages]
                     this.page = Math.min(Math.max(1, this.page), this.totalPages);
-                    this.pageInput = this.page;
                 }
             } catch (err) {
                 console.error('Failed to load changelog:', err);
                 this.rawChanges = [];
                 this.changes = [];
                 this.page = 1;
-                this.pageInput = 1;
             } finally {
                 this.loading = false;
             }
@@ -116,11 +121,15 @@ export default {
 
             switch (safe.type) {
                 case 1:
-                    text += safe.level ? ` ${safe.level} at #${safe.p1 ?? '?'}.` : ' (malformed entry)';
+                    text += safe.level
+                        ? ` ${safe.level} at #${safe.p1 ?? '?'}.`
+                        : ' (malformed entry)';
                     break;
                 case 2:
                 case 3:
-                    text += safe.level ? ` ${safe.level} from #${safe.p2 ?? '?'} to #${safe.p1 ?? '?'}.` : ' (malformed entry)';
+                    text += safe.level
+                        ? ` ${safe.level} from #${safe.p2 ?? '?'} to #${safe.p1 ?? '?'}.`
+                        : ' (malformed entry)';
                     break;
                 case 4:
                     text += (safe.level && safe.secondary)
@@ -128,7 +137,9 @@ export default {
                         : ' (malformed swap)';
                     break;
                 case 5:
-                    text += safe.level ? ` ${safe.level} from the list.` : ' (malformed entry)';
+                    text += safe.level
+                        ? ` ${safe.level} from the list.`
+                        : ' (malformed entry)';
                     break;
                 default:
                     text += ' (unknown type)';
@@ -143,13 +154,12 @@ export default {
         nextPage() {
             if (this.page < this.totalPages) {
                 this.page++;
-                this.pageInput = this.page;
             }
         },
+
         prevPage() {
             if (this.page > 1) {
                 this.page--;
-                this.pageInput = this.page;
             }
         },
 
@@ -158,7 +168,6 @@ export default {
             if (n < 1) n = 1;
             if (this.totalPages > 0 && n > this.totalPages) n = this.totalPages;
             this.page = n;
-            this.pageInput = n;
         },
     },
 
