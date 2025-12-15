@@ -1,5 +1,75 @@
 [
     {
+        "id": 47,
+        "level": "NEMO never BEAT",
+        "type": 1,
+        "p1": 6,
+        "date": "2024-11-23"
+    },
+    {
+        "id": 46,
+        "level": "SWI Dual",
+        "type": 1,
+        "p1": 18,
+        "date": "2024-11-23"
+    },
+    {
+        "id": 45,
+        "level": "BP mini wave 2",
+        "type": 1,
+        "p1": 22,
+        "date": "2024-11-23"
+    },
+    {
+        "id": 44,
+        "level": "Pulse",
+        "type": 1,
+        "p1": 17,
+        "date": "2024-11-23"
+    },
+    {
+        "id": 43,
+        "level": "Clubby Wubby",
+        "type": 1,
+        "p1": 21,
+        "date": "2024-11-23"
+    },
+    {
+        "id": 42,
+        "level": "Without Judgement",
+        "type": 1,
+        "p1": 10,
+        "date": "2024-11-23"
+    },
+    {
+        "id": 41,
+        "level": "Kendrick Lamar Chall",
+        "type": 1,
+        "p1": 17,
+        "date": "2024-11-23"
+    },
+    {
+        "id": 40,
+        "level": "Ship Challenge idk",
+        "type": 1,
+        "p1": 14,
+        "date": "2024-11-23"
+    },
+    {
+        "id": 39,
+        "level": "Oktober Chamber",
+        "type": 1,
+        "p1": 4,
+        "date": "2024-11-23"
+    },
+    {
+        "id": 38,
+        "level": "acropolis challenge",
+        "type": 1,
+        "p1": 1,
+        "date": "2024-11-23"
+    },
+    {
         "id": 37,
         "level": "Round 1",
         "type": 1,
