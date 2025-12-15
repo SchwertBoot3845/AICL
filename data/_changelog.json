@@ -1,4 +1,95 @@
-[
+{
+        "id": 85,
+        "level": "Unnamed 8",
+        "type": 1,
+        "p1": 38,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 84,
+        "level": "Acheron Challenge",
+        "type": 1,
+        "p1": 9,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 83,
+        "level": "Sakupen circles Dual",
+        "type": 1,
+        "p1": 12,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 82,
+        "level": "SPAM CHALLENGE",
+        "type": 1,
+        "p1": 17,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 81,
+        "level": "Tartarus Ending",
+        "type": 1,
+        "p1": 23,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 80,
+        "level": "Wave challenge VIII",
+        "type": 1,
+        "p1": 22,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 79,
+        "level": "8JOH but i ate the",
+        "type": 1,
+        "p1": 14,
+        "date": "2024-12-07"
+    },
+    {
+        "id": 78,
+        "level": "VSC Ez",
+        "type": 1,
+        "p1": 18,
+        "date": "2024-12-07"
+    },
+    {
+        "id": 77,
+        "level": "Challenge 2",
+        "type": 1,
+        "p1": 25,
+        "date": "2024-12-07"
+    },
+    {
+        "id": 76,
+        "level": "deCode wave x3",
+        "type": 1,
+        "p1": 17,
+        "date": "2024-12-07"
+    },
+    {
+        "id": 75,
+        "level": "Mefewe Challenge",
+        "type": 2,
+        "p1": 3,
+        "p2": 2,
+        "date": "2024-12-06"
+    },
+    {
+        "id": 74,
+        "level": "Challenger",
+        "type": 1,
+        "p1": 29,
+        "date": "2024-12-06"
+    },
+    {
+        "id": 73,
+        "level": "PaperGuy Challenge",
+        "type": 1,
+        "p1": 25,
+        "date": "2024-12-06"
+    },
     {
         "id": 72,
         "level": "SHIP CHALLENGE",
