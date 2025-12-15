@@ -8,5 +8,19 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "SCB",
+            "link": "https://m.youtube.com/watch?v=J27DJaIejMs",
+            "percent": 100,
+            "mobile": false,
+            "hz": 165
+        },
+        { 
+            "user": "coffee cup",
+            "link": "https://youtu.be/cwZm35pZlG0?si=aweEyuWXQhE5pMfF",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }

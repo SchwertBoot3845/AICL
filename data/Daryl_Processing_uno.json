@@ -7,6 +7,7 @@
     "verification": "https://www.youtube.com/watch?v=7F7OM2iJOTQ",
     "percentToQualify": "50",
     "password": "Free To Copy",
+    "original_verifier": true,
     "records": [
                 {
             "user": "Specie",
@@ -62,6 +63,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 144
+        },
+        {
+            "user": "cheesearmy1",
+            "link": "https://youtu.be/_YC0xvu0znU",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }

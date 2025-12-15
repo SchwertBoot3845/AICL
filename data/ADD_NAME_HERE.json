@@ -7,6 +7,7 @@
     "verification": "https://youtu.be/m8IRCLlJBLk",
     "percentToQualify": 50,
     "password": "Free to Copy",
+    "original_verifier": true,
     "records": [
         {
             "user": "IkukGD",
@@ -48,6 +49,13 @@
             "link": "https://medal.tv/pl/games/geometry-dash/clips/jFvJR1I9tqfBHLEMS?invite=cr-MSxDak0sMjk5NzA2NzMxLHByb2ZpbGUtY29udGV4dC1tZW51",
             "percent": 100,
             "mobile": false,
+            "hz": 60
+        },
+        {
+            "user": "Tervom",
+            "link": "https://youtu.be/MuNngfLxloU?si=K8BtGvM8UKLXfK8w",
+            "percent": 100,
+            "mobile": true,
             "hz": 60
         }
     ]

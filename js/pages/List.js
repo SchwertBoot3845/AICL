@@ -128,11 +128,16 @@ export default {
                     <p> 
                     </p>
                     <p>
-                        Road to 5K Levels: <b>6.32%</b><br/>
-                        Road to 10K Records/Verifications: <b>8.55%</b>
+                        Road to 5K Levels: <b>6.36%</b><br/>
+                        Road to 10K Records/Verifications: <b>8.78%</b>
                     </p>
                     <!-- 1 Level = plus 0.02% -->
                     <!-- 1 Record = plus 0.01% -->
+                    <!-- <p style="margin-top: 1rem;">
+                        <a href="#/changelog" class="type-label-lg" style="display: inline-block; padding: 0.5rem 1rem; background-color: var(--color-primary); color: white; border-radius: 0.25rem; text-decoration: none">
+                            Changelog
+                        </a>
+                    </p> -->
                 </div>
             </div>
         </main>

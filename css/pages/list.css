@@ -2,14 +2,20 @@
 .page-list .level-container,
 .page-list .meta-container {
     padding-block: 2rem;
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;
 }
+
 .page-list .list-container {
     padding-inline: 1rem;
 }
+
 .page-list .meta-container {
     padding-right: 2rem;
 }
 
+/* --- Table list --- */
 .page-list .list {
     table-layout: auto;
 }
@@ -44,6 +50,7 @@
     background-color: var(--color-primary);
     color: var(--color-on-primary);
 }
+
 .page-list .level-container .level {
     display: flex;
     flex-direction: column;
@@ -94,6 +101,8 @@
 .page-list .level-container .level .records a:hover {
     text-decoration: underline;
 }
+
+/* --- Meta column --- */
 .page-list .meta {
     display: flex;
     flex-direction: column;

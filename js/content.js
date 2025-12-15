@@ -154,68 +154,32 @@ export async function fetchLeaderboard() {
 export async function fetchPacks() {
     try {
         const res = await fetch('/data/packs/_packs.json');
-        if (!res.ok) {
-            throw new Error(`Failed to fetch: /data/packs/_packs.json (status ${res.status})`);
-        }
+        if (!res.ok) throw new Error(`Failed to fetch: /data/packs/_packs.json (status ${res.status})`);
         const packList = await res.json();
-
-        const listRes = await fetch('/data/_list.json');
-        if (!listRes.ok) {
-            throw new Error(`Failed to fetch: /data/_list.json (status ${listRes.status})`);
-        }
-        const levelOrder = await listRes.json();
 
         const packs = await Promise.all(
             packList.map(async (packId) => {
-                const packPath = `/data/packs/${packId}.json`;
-                const packRes = await fetch(packPath);
-                if (!packRes.ok) {
-                    throw new Error(`Failed to fetch: ${packPath} (status ${packRes.status})`);
-                }
+                const packRes = await fetch(`/data/packs/${packId}.json`);
+                if (!packRes.ok) throw new Error(`Failed to fetch: /data/packs/${packId}.json (status ${packRes.status})`);
                 const packData = await packRes.json();
 
-                const levelFilenames = Array.isArray(packData.levels)
-                    ? packData.levels
-                    : [];
-
                 const levels = await Promise.all(
-                    levelFilenames.map(async (filename) => {
-                        if (typeof filename !== 'string') {
-                            console.warn(`Invalid level filename (not a string):`, filename);
+                    (packData.levels || []).map(async (filename) => {
+                        const levelRes = await fetch(`/data/${filename}.json`);
+                        if (!levelRes.ok) {
+                            console.warn(`Failed to fetch level: /data/${filename}.json`);
                             return null;
                         }
-
-                        const levelPath = `/data/${filename}.json`;
-                        const levelRes = await fetch(levelPath);
-                        if (!levelRes.ok) {
-                            throw new Error(`Failed to fetch: ${levelPath} (status ${levelRes.status})`);
-                        }
                         const levelData = await levelRes.json();
-                        return {
-                            ...levelData,
-                            fileName: filename,
-                        };
+                        return { ...levelData, fileName: filename };
                     })
                 );
-
-                const validLevels = levels.filter(Boolean);
-
-                const totalPoints = validLevels.reduce((sum, level) => {
-                    const rank = levelOrder.indexOf(level.fileName);
-                    if (rank === -1) {
-                        console.warn(`Level '${level.fileName}' not found in _list.json.`);
-                        return sum;
-                    }
-                    return sum + score(rank + 1, 100, level.percentToQualify);
-                }, 0);
-
-                const packPoints = totalPoints / 3;
 
                 return {
                     id: packId,
                     ...packData,
-                    levels: validLevels,
-                    points: packPoints,
+                    levels: levels.filter(Boolean),
+                    points: packData.points, // use the value from the JSON directly
                 };
             })
         );
@@ -223,6 +187,20 @@ export async function fetchPacks() {
         return packs;
     } catch (err) {
         console.error('Failed to fetch packs:', err);
+        return [];
+    }
+}
+
+export async function fetchChangelog() {
+    try {
+        const res = await fetch('/data/_changelog.json');
+        if (!res.ok) throw new Error(`Failed to fetch _changelog.json: ${res.status}`);
+        const data = await res.json();
+        return data;
+    }
+        
+    catch (err) {
+        console.error('Failed to fetch changelog:', err);
         return [];
     }
 }
