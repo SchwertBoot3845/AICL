@@ -1,5 +1,77 @@
 [
     {
+        "id": 65,
+        "level": "Oktober Chamber",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 64,
+        "level": "Not Cat Universe",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 63,
+        "level": "Marion Schneider",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 62,
+        "level": "LIMORAMI CHallenge",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 61,
+        "level": "KAIZO",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 60,
+        "level": "JOSHUA NEVER EAR",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 59,
+        "level": "I said",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 58,
+        "level": "Detroit Challenge X V3",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 57,
+        "level": "Challenge ship wave",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 56,
+        "level": "BP mini wave 2",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 55,
+        "level": "BOT unnerfed ship",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
+        "id": 54,
+        "level": "BALLS CHALLENGE",
+        "type": 5,
+        "date": "2024-11-27"
+    },
+    {
         "id": 53,
         "level": "Wave Challenge",
         "type": 1,
