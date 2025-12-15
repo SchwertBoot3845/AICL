@@ -1,5 +1,47 @@
 [
     {
+        "id": 53,
+        "level": "Wave Challenge",
+        "type": 1,
+        "p1": 37,
+        "date": "2024-11-24"
+    },
+    {
+        "id": 52,
+        "level": "SHIP CHALLENGE",
+        "type": 1,
+        "p1": 43,
+        "date": "2024-11-24"
+    },
+    {
+        "id": 51,
+        "level": "Challenge ship wave",
+        "type": 1,
+        "p1": 41,
+        "date": "2024-11-24"
+    },
+    {
+        "id": 50,
+        "level": "BOT unnerfed ship",
+        "type": 1,
+        "p1": 32,
+        "date": "2024-11-24"
+    },
+    {
+        "id": 49,
+        "level": "JOSHUA NEVER EAR",
+        "type": 1,
+        "p1": 41,
+        "date": "2024-11-24"
+    },
+    {
+        "id": 48,
+        "level": "BALLS CHALLENGE",
+        "type": 1,
+        "p1": 28,
+        "date": "2024-11-24"
+    },
+    {
         "id": 47,
         "level": "NEMO never BEAT",
         "type": 1,
