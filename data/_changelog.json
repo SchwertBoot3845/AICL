@@ -1,5 +1,47 @@
 [
     {
+        "id": 72,
+        "level": "SHIP CHALLENGE",
+        "type": 5,
+        "date": "2024-11-30"
+    },
+    {
+        "id": 71,
+        "level": "Wave Challenge",
+        "type": 5,
+        "date": "2024-11-30"
+    },
+    {
+        "id": 70,
+        "level": "Ship Challenge idk",
+        "type": 5,
+        "date": "2024-11-30"
+    },
+    {
+        "id": 69,
+        "level": "Without Judgement",
+        "type": 5,
+        "date": "2024-11-30"
+    },
+    {
+        "id": 68,
+        "level": "The Gib Gourder",
+        "type": 5,
+        "date": "2024-11-30"
+    },
+    {
+        "id": 67,
+        "level": "acropolis challenge",
+        "type": 5,
+        "date": "2024-11-30"
+    },
+    {
+        "id": 66,
+        "level": "Scarlet",
+        "type": 5,
+        "date": "2024-11-30"
+    },
+    {
         "id": 65,
         "level": "Oktober Chamber",
         "type": 5,
