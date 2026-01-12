@@ -56,6 +56,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
+        },
+        {
+            "user": "coffee cup",
+            "link": "https://youtu.be/cwZm35pZlG0",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
