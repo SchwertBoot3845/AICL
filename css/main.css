@@ -33,41 +33,47 @@ body {
     flex-direction: column;
 }
 
-header,
-main {
-    background-color: var(--color-background);
-    color: var(--color-on-background);
-}
-
 header {
-    display: flex;
-    padding-inline: calc(25vw - 10rem);
-    height: 4rem;
+    width: 100%;
     background-color: var(--color-primary);
     color: var(--color-on-primary);
 }
 
-@media screen and (min-width: 1366px) {
-    header {
-        display: grid;
-        padding-inline: 0;
-    }
+header .nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 header .logo {
-    justify-self: end;
-    align-self: center;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 1rem;
 }
-header .nav { flex: 1; }
+
+/* Remove the cursed grid override */
+@media screen and (min-width: 1366px) {
+    header {
+        display: block;
+    }
+}
 
 main {
-    display: grid;
     flex: 1;
+    display: grid;
     grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(16rem, 1fr);
     column-gap: 2rem;
+
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 24px;
+
     min-height: 0;
 }
 
@@ -84,7 +90,7 @@ main > div {
     grid-column: span 3;
 }
 
-/* Inputs, checkboxes */
+/* Inputs */
 input[type="checkbox"] {
     height: 1.25rem;
     width: 1.25rem;
