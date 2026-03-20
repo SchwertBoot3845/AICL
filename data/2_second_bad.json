@@ -7,7 +7,8 @@
     "verification": "https://youtu.be/tHdNCvLI68s?si=GVVlyTJCZszsVp0o",
     "percentToQualify": 50,
     "password": "Free to Copy",
-    "records": [ {
+    "records": [ 
+        {
             "user": "coffee cup",
             "link": "https://youtu.be/cwZm35pZlG0?si=0cKXMID3W7DaAyQZ&t=3146",
             "percent": 100,
