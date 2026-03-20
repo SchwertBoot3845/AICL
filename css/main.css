@@ -33,41 +33,43 @@ body {
     flex-direction: column;
 }
 
-header,
-main {
-    background-color: var(--color-background);
-    color: var(--color-on-background);
-}
-
 header {
     display: flex;
-    padding-inline: calc(25vw - 10rem);
+    align-items: center;
     height: 4rem;
+
     background-color: var(--color-primary);
     color: var(--color-on-primary);
-}
 
-@media screen and (min-width: 1366px) {
-    header {
-        display: grid;
-        padding-inline: 0;
-    }
+    padding: 0 2rem; 
 }
 
 header .logo {
-    justify-self: end;
-    align-self: center;
     display: flex;
-    align-items: flex-end;
-    gap: 1rem;
+    align-items: center;
+    margin-right: 2rem;
 }
-header .nav { flex: 1; }
+
+header .nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
 
 main {
-    display: grid;
     flex: 1;
+
+    display: grid;
     grid-template-columns: minmax(16rem, 1fr) minmax(16rem, 2fr) minmax(16rem, 1fr);
     column-gap: 2rem;
+
+    padding: 2rem;   /* spacing without shrinking width */
+    width: 100%;
+    box-sizing: border-box;
+
+    background-color: var(--color-background);
+    color: var(--color-on-background);
+
     min-height: 0;
 }
 
@@ -84,7 +86,6 @@ main > div {
     grid-column: span 3;
 }
 
-/* Inputs, checkboxes */
 input[type="checkbox"] {
     height: 1.25rem;
     width: 1.25rem;

@@ -1,5 +1,149 @@
 [
     {
+        "id": 92,
+        "level": "Wave Challenge J",
+        "secondary": "Daryl Processing uno",
+        "type": 4,
+        "p1": 1,
+        "date": "2024-12-20"
+    },
+    {
+        "id": 91,
+        "level": "ADSKAYA ZMEYA",
+        "secondary": "Round 1",
+        "type": 4,
+        "p1": 26,
+        "date": "2024-12-20"
+    },
+    {
+        "id": 90,
+        "level": "Sonic Wave Challenge",
+        "type": 2,
+        "p1": 16,
+        "p2": 21,
+        "date": "2024-12-20"
+    },
+    {
+        "id": 89,
+        "level": "FUNNY LVL IG",
+        "type": 1,
+        "p1": 12,
+        "date": "2024-12-17"
+    },
+    {
+        "id": 88,
+        "level": "Wave Challenge JOKE",
+        "type": 1,
+        "p1": 31,
+        "date": "2024-12-17"
+    },
+    {
+        "id": 87,
+        "level": "infinite sunix wave",
+        "type": 1,
+        "p1": 2,
+        "date": "2024-12-17"
+    },
+    {
+        "id": 86,
+        "level": "Unnamed 8",
+        "type": 1,
+        "p1": 38,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 85,
+        "level": "Acheron Challenge",
+        "type": 1,
+        "p1": 9,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 84,
+        "level": "Sakupen circles Dual",
+        "type": 1,
+        "p1": 12,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 83,
+        "level": "SPAM CHALLENGE",
+        "type": 1,
+        "p1": 17,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 82,
+        "level": "Tartarus Ending",
+        "type": 1,
+        "p1": 23,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 81,
+        "level": "Wave challenge VIII",
+        "type": 1,
+        "p1": 22,
+        "date": "2024-12-08"
+    },
+    {
+        "id": 80,
+        "level": "8JOH but i ate the",
+        "type": 1,
+        "p1": 14,
+        "date": "2024-12-07"
+    },
+    {
+        "id": 79,
+        "level": "VSC Ez",
+        "type": 1,
+        "p1": 18,
+        "date": "2024-12-07"
+    },
+    {
+        "id": 78,
+        "level": "Challenge 2",
+        "type": 1,
+        "p1": 25,
+        "date": "2024-12-07"
+    },
+    {
+        "id": 77,
+        "level": "deCode wave x3",
+        "type": 1,
+        "p1": 17,
+        "date": "2024-12-07"
+    },
+    {
+        "id": 76,
+        "level": "Mefewe Challenge",
+        "secondary": "NEMO never BEAT",
+        "type": 4,
+        "p1": 2,
+        "date": "2024-12-06"
+    },
+    {
+        "id": 75,
+        "level": "Sonic Wave Challenge",
+        "type": 1,
+        "p1": 15,
+        "date": "2024-12-06"
+    },
+    {
+        "id": 74,
+        "level": "Challenger",
+        "type": 1,
+        "p1": 29,
+        "date": "2024-12-06"
+    },
+    {
+        "id": 73,
+        "level": "PaperGuy Challenge",
+        "type": 1,
+        "p1": 25,
+        "date": "2024-12-06"
+    },
+    {
         "id": 72,
         "level": "SHIP CHALLENGE",
         "type": 5,

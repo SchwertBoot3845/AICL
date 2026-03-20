@@ -7,12 +7,20 @@
     "verification": "https://youtu.be/JkHL-mWFud0",
     "percentToQualify": 50,
     "password": "Free to Copy",
-    "records": [      {
+    "records": [      
+        {
             "user": "IkukGD",
-            "link": "https://youtu.be/LY6jBUgjM1w?si=pakh3-TrH0C5mlR_",
+            "link": "https://youtu.be/LY6jBUgjM1w",
             "percent": 100,
             "mobile": true,
             "hz": 240
-      }
+        },
+        {
+            "user": "coffee cup",
+            "link": "https://youtu.be/cwZm35pZlG0",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
