@@ -151,4 +151,3 @@ function injectMeta(html, { title, description, ogUrl }) {
             `$1${description}$2`
         );
 }
-```
