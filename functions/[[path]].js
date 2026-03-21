@@ -16,7 +16,7 @@ export async function onRequest(context) {
     // --- Default meta values ---
     let title = "All Inclusive Challenge List";
     let description =
-        "The All Inclusive Challenge List (AICL) for Geometry Dash — " +
+        "The All Inclusive Challenge List (AICL) for Geometry Dash; " +
         "a comprehensive ranking of all submitted challenges with no level cap.";
     let ogUrl = `https://aicl.pages.dev${path}`;
 
@@ -28,39 +28,42 @@ export async function onRequest(context) {
         const levelId = levelMatch[1];
         const levelInfo = await getLevelById(levelId, url.origin);
         if (levelInfo) {
-            title = `#${levelInfo.rank} ${levelInfo.name} — AICL`;
+            title = `#${levelInfo.rank} ${levelInfo.name} - AICL`;
             description =
                 `Rank #${levelInfo.rank} on the AICL. ` +
                 `Verified by ${levelInfo.verifier}. ` +
                 `Requires ${levelInfo.percentToQualify}% to qualify.`;
         } else {
-            title = "Level not found — AICL";
-            description = "This level could not be found on the All Inclusive Challenge List.";
+            title = "Level not found - AICL";
+            description = "This level could not be found on the AICL.";
         }
 
     } else if (path === "/list" || path === "/") {
-        title = "List — All Inclusive Challenge List";
+        title = "List - AICL";
         description =
-            "Browse every ranked challenge level on the AICL. " +
-            "No 100-level cap — every submitted challenge has a place here.";
+            "Browse every ranked challenge level on the AICL. ";
 
     } else if (path === "/leaderboard") {
-        title = "Leaderboard — All Inclusive Challenge List";
+        title = "Leaderboard - AICL";
         description =
             "See the top players on the AICL ranked by total points " +
             "earned from completing challenge levels.";
 
     } else if (path === "/packs") {
-        title = "Packs — All Inclusive Challenge List";
+        title = "Packs - AICL";
         description =
-            "Complete themed level packs on the AICL to earn bonus points. " +
-            "How many can you finish?";
+            "Complete themed level packs on the AICL to earn 6 or 7 bonus points. ";
 
     } else if (path === "/roulette") {
-        title = "Roulette — All Inclusive Challenge List";
+        title = "Roulette - AICL";
         description =
             "Spin the AICL roulette and get assigned a random challenge level. " +
-            "Can you beat whatever you land on?";
+            "Yes we copied Demon Roulette, so what?";
+    } else if (path === "/changelog") {
+        title = "Changelog - AICL";
+        description =
+            "Level Changelogs from the discord server added to the site. " +
+            "ATTENTION: OUTDATED";
     }
 
     // --- Inject meta tags ---
