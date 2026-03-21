@@ -171,12 +171,10 @@ export default {
 
         this.loading = false;
 
-        // Feature 2: open level from URL hash e.g. #/list/12345678
         this.$nextTick(() => {
-            const match = window.location.hash.match(/^#\/list\/(\d+)/);
-            if (match) {
-                const levelId = parseInt(match[1]);
-                const idx = this.list.findIndex(([lvl]) => lvl?.id === levelId);
+            const levelId = this.$route.params.id;
+            if (levelId) {
+                const idx = this.list.findIndex(([lvl]) => lvl?.id === parseInt(levelId));
                 if (idx !== -1) this.selectLevel(idx);
             }
         });
@@ -193,9 +191,7 @@ export default {
             this.selected = i;
             const levelId = this.list[i]?.[0]?.id;
             if (levelId !== undefined) {
-                // Update URL without triggering a navigation/reload
-                const newHash = `#/list/${levelId}`;
-                window.history.replaceState(null, "", newHash);
+                this.$router.replace(`/list/${levelId}`);
             }
         },
     },
