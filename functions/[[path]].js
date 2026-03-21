@@ -86,7 +86,7 @@ async function getLevelById(levelId, origin) {
 
         // Parse the exported array of filenames from _list.js
         // Handles: export default [...] or module.exports = [...] or just [...]
-        const arrMatch = listText.match(/\[[\s\S]*?\]/);
+        const arrMatch = listText.match(/\[[\s\S]*\]/);
         if (!arrMatch) return null;
 
         const files = arrMatch[0]
@@ -123,7 +123,7 @@ async function getLevelById(levelId, origin) {
 function injectMeta(html, { title, description, ogUrl }) {
     return html
         .replace(
-            /<title>[\s\S]*?<\/title>/,
+            /<title>[\s\S]*<\/title>/,
             `<title>${title}</title>`
         )
         .replace(
