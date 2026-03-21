@@ -1,145 +1,198 @@
-export async function onRequest(context) {
-    const url = new URL(context.request.url);
-    const path = url.pathname;
+import { store } from "../main.js";
+import { embed } from "../util.js";
+import { score } from "../score.js";
+import { fetchEditors, fetchList, fetchPacks } from "../content.js";
 
-    if (path.match(/\.(js|css|png|jpg|svg|ico|json|woff2?|ttf)$/)) {
-        return context.env.ASSETS.fetch(context.request);
-    }
+import Spinner from "../components/Spinner.js";
+import LevelAuthors from "../components/List/LevelAuthors.js";
 
-    const response = await context.env.ASSETS.fetch(
-        new Request(`${url.origin}/index.html`)
-    );
-    let html = await response.text();
+const roleIconMap = {
+    owner: "crown-dark",
+    admin: "user-gear-dark",
+    helper: "user-shield-dark",
+    dev: "code-dark",
+    trial: "user-lock-dark",
+};
 
-    let title = "All Inclusive Challenge List";
-    let description =
-        "The All Inclusive Challenge List (AICL) for Geometry Dash; " +
-        "a comprehensive ranking of all submitted challenges with no level cap.";
-    let ogUrl = `https://aicl.pages.dev${path}`;
+export default {
+    components: { Spinner, LevelAuthors },
+    template: `
+        <main v-if="loading">
+            <Spinner></Spinner>
+        </main>
+        <main v-else class="page-list">
+            <div class="list-container">
+                <input
+                    class="search"
+                    type="text"
+                    placeholder="Search levels..."
+                    v-model="searchQuery"
+                />
+                <table class="list" v-if="list">
+                    <tr v-for="([level, err], i) in list" v-show="matchesSearch(level, i)">
+                        <td class="rank">
+                            <p v-if="i + 1 <= 5000" class="type-label-lg">#{{ i + 1 }}</p>
+                            <p v-else class="type-label-lg">-</p>
+                        </td>
+                        <td class="level" :class="{ 'active': selected == i, 'error': !level }">
+                            <button @click="selectLevel(i)">
+                                <span class="type-label-lg">{{ level?.name || \`Error (\${err}.json)\` }}</span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="level-container">
+                <div class="level" v-if="level">
+                    <h1>{{ level.name }}</h1>
+                    <LevelAuthors 
+                        :author="level.author" 
+                        :creators="level.creators" 
+                        :verifier="level.verifier"
+                        :original_verifier="level.original_verifier ?? false"
+                    />
+                    <iframe class="video" id="videoframe" :src="video" frameborder="0"></iframe>
+                    <ul class="stats">
+                        <li>
+                            <div class="type-title-sm">Points when completed</div>
+                            <p>{{ score(selected + 1, 100, level.percentToQualify) }}</p>
+                        </li>
+                        <li>
+                            <div class="type-title-sm">ID</div>
+                            <p>{{ level.id }}</p>
+                        </li>
+                        <li>
+                            <div class="type-title-sm">Password</div>
+                            <p>{{ level.password || 'Free to Copy' }}</p>
+                        </li>
+                    </ul>
+                    <h2>Records</h2>
+                    <p v-if="selected + 1 <= 5000"><strong>{{ level.percentToQualify }}%</strong> or better to qualify</p>
+                    <p v-else>This level does not accept new records.</p>
+                    <table class="records">
+                        <tr v-for="record in level.records" class="record">
+                            <td class="percent">
+                                <p>{{ record.percent }}%</p>
+                            </td>
+                            <td class="user">
+                                <a :href="record.link" target="_blank" class="type-label-lg">{{ record.user }}</a>
+                            </td>
+                            <td class="mobile">
+                                <img v-if="record.mobile" :src="\`/assets/phone-landscape\${store.dark ? '-dark' : ''}.svg\`" alt="Mobile">
+                            </td>
+                            <td class="hz">
+                                <p>{{ record.hz }}Hz</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div v-else class="level" style="height: 100%; justify-content: center; align-items: center;">
+                    <p>(ノಠ益ಠ)ノ彡┻━┻</p>
+                </div>
+            </div>
+            <div class="meta-container">
+                <div class="meta">
+                    <div class="errors" v-show="errors.length > 0">
+                        <p class="error" v-for="error of errors">{{ error }}</p>
+                    </div>
+                    <div class="og">
+                        <p class="type-label-md">Website layout made by <a href="https://tsl.pages.dev/" target="_blank">TheShittyList</a></p>
+                    </div>
+                    <template v-if="editors">
+                        <h3>List Editors</h3>
+                        <ol class="editors">
+                            <li v-for="editor in editors">
+                                <img :src="\`/assets/\${roleIconMap[editor.role]}\${store.dark ? '-dark' : ''}.svg\`" :alt="editor.role">
+                                <a v-if="editor.link" class="type-label-lg link" target="_blank" :href="editor.link">{{ editor.name }}</a>
+                                <p v-else>{{ editor.name }}</p>
+                            </li>
+                        </ol>
+                    </template>
+                    <h3>Submission Requirements</h3>
+                    <p>Achieved the record without using hacks (however, FPS bypass is allowed, up to CBF lol)</p>
+                    <p>Achieved the record on the level that is listed on the site - please check the level ID before you submit a record</p>
+                    <p>Have source audio with Clicks/taps in the video. Using the Click sounds Mod on Geode does not count.</p>
+                    <p>The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt.</p>
+                    <p>The recording must also show the player hit the endwall, or the completion will be invalidated.</p>
+                    <p>Do not use secret routes or bug routes, coin routes are not a problem.</p>
+                    <p>Raw footage is only necessary for verifications, but it still has to be given if a list staff member asks for it outside of verifications.</p>
+                    <p></p>
+                    <p>
+                        Road to 5K Levels: <b>6.38%</b><br/>
+                        Road to 10K Records/Verifications: <b>10.91%</b>
+                    </p>
+                </div>
+            </div>
+        </main>
+    `,
+    data: () => ({
+        list: [],
+        editors: [],
+        loading: true,
+        selected: 0,
+        errors: [],
+        roleIconMap,
+        store,
+        searchQuery: "",
+    }),
+    computed: {
+        level() {
+            return this.list[this.selected]?.[0];
+        },
+        video() {
+            if (!this.level.showcase) {
+                return embed(this.level.verification);
+            }
+            return embed(
+                this.toggledShowcase
+                    ? this.level.showcase
+                    : this.level.verification
+            );
+        },
+    },
+    async mounted() {
+        this.list = await fetchList();
+        this.editors = await fetchEditors();
 
-    const levelMatch = path.match(/^\/list\/(\d+)$/);
-
-    if (levelMatch) {
-        const levelId = levelMatch[1];
-        const levelInfo = await getLevelById(levelId);
-        if (levelInfo) {
-            title = `#${levelInfo.rank} ${levelInfo.name} - AICL`;
-            description =
-                `Rank #${levelInfo.rank} on the AICL. ` +
-                `Verified by ${levelInfo.verifier}. ` +
-                `Requires ${levelInfo.percentToQualify}% to qualify.`;
+        if (!this.list) {
+            this.errors = [
+                "Failed to load list. Retry in a few minutes or notify list staff.",
+            ];
         } else {
-            title = "Level not found - AICL";
-            description = "This level could not be found on the AICL.";
-        }
-    } else if (path === "/list" || path === "/") {
-        title = "List - AICL";
-        description = "Browse every ranked challenge level on the AICL.";
-    } else if (path === "/leaderboard") {
-        title = "Leaderboard - AICL";
-        description =
-            "See the top players on the AICL ranked by total points " +
-            "earned from completing challenge levels.";
-    } else if (path === "/packs") {
-        title = "Packs - AICL";
-        description =
-            "Complete themed level packs on the AICL to earn 6 or 7 bonus points.";
-    } else if (path === "/roulette") {
-        title = "Roulette - AICL";
-        description =
-            "Spin the AICL roulette and get assigned a random challenge level. " +
-            "Yes we copied Demon Roulette, so what?";
-    } else if (path === "/changelog") {
-        title = "Changelog - AICL";
-        description =
-            "Level changelogs from the discord server added to the site. " +
-            "ATTENTION: OUTDATED";
-    }
-
-    html = injectMeta(html, { title, description, ogUrl });
-
-    return new Response(html, {
-        status: 200,
-        headers: { "Content-Type": "text/html;charset=UTF-8" },
-    });
-}
-
-async function getLevelById(levelId) {
-    try {
-        const listRes = await fetch("https://aicl.pages.dev/main/data/_list.js");
-        console.log("_list.js status:", listRes.status);
-        if (!listRes.ok) return null;
-
-        const listText = await listRes.text();
-        console.log("_list.js first 100 chars:", listText.slice(0, 100));
-
-        const arrMatch = listText.match(/\[[\s\S]*\]/);
-        console.log("arrMatch found:", !!arrMatch);
-        if (!arrMatch) return null;
-
-        const files = arrMatch[0]
-            .replace(/[\[\]]/g, "")
-            .split(",")
-            .map(s => s.trim().replace(/['"]/g, "").replace(/\s/g, ""))
-            .filter(Boolean);
-
-        console.log("files count:", files.length, "first file:", files[0]);
-
-        for (let i = 0; i < files.length; i++) {
-            try {
-                const lvlRes = await fetch(`https://aicl.pages.dev/main/data/${files[i]}.json`);
-                if (!lvlRes.ok) continue;
-                const lvl = await lvlRes.json();
-                console.log(`Checking ${files[i]}: id=${lvl.id} vs ${levelId}`);
-                if (String(lvl.id) === String(levelId)) {
-                    return {
-                        rank: i + 1,
-                        name: lvl.name,
-                        verifier: lvl.verifier,
-                        percentToQualify: lvl.percentToQualify ?? 100,
-                    };
-                }
-            } catch (e) {
-                console.log(`Error on file ${files[i]}:`, e.message);
-                continue;
+            this.errors.push(
+                ...this.list
+                    .filter(([_, err]) => err)
+                    .map(([_, err]) => `Failed to load level. (${err}.json)`)
+            );
+            if (!this.editors) {
+                this.errors.push("Failed to load list editors.");
             }
         }
-        console.log("Level not found after scanning all files");
-        return null;
-    } catch (e) {
-        console.log("getLevelById crashed:", e.message);
-        return null;
-    }
-}
 
-function injectMeta(html, { title, description, ogUrl }) {
-    return html
-        .replace(
-            /<title>[\s\S]*<\/title>/,
-            `<title>${title}</title>`
-        )
-        .replace(
-            /(<meta\s[^>]*property="og:title"[^>]*content=")[^"]*(")/,
-            `$1${title}$2`
-        )
-        .replace(
-            /(<meta\s[^>]*content=")[^"]*("\s[^>]*property="og:title"[^>]*)/,
-            `$1${title}$2`
-        )
-        .replace(
-            /(<meta\s[^>]*property="og:description"[^>]*content=")[^"]*(")/,
-            `$1${description}$2`
-        )
-        .replace(
-            /(<meta\s[^>]*content=")[^"]*("\s[^>]*property="og:description"[^>]*)/,
-            `$1${description}$2`
-        )
-        .replace(
-            /(<meta\s[^>]*property="og:url"[^>]*content=")[^"]*(")/,
-            `$1${ogUrl}$2`
-        )
-        .replace(
-            /(<meta\s[^>]*name="description"[^>]*content=")[^"]*(")/,
-            `$1${description}$2`
-        );
-}
+        this.loading = false;
+
+        this.$nextTick(() => {
+            const levelId = this.$route.params.id;
+            if (levelId) {
+                const idx = this.list.findIndex(([lvl]) => lvl?.id === parseInt(levelId));
+                if (idx !== -1) this.selectLevel(idx);
+            }
+        });
+    },
+    methods: {
+        embed,
+        score,
+        matchesSearch(level, i) {
+            if (!this.searchQuery.trim()) return true;
+            const q = this.searchQuery.trim().toLowerCase();
+            return level?.name?.toLowerCase().includes(q);
+        },
+        selectLevel(i) {
+            this.selected = i;
+            const levelId = this.list[i]?.[0]?.id;
+            if (levelId !== undefined) {
+                this.$router.replace(`/list/${levelId}`);
+            }
+        },
+    },
+};
