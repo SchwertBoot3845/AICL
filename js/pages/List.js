@@ -22,14 +22,20 @@ export default {
         </main>
         <main v-else class="page-list">
             <div class="list-container">
+                <input
+                    class="search"
+                    type="text"
+                    placeholder="Search levels..."
+                    v-model="searchQuery"
+                />
                 <table class="list" v-if="list">
-                    <tr v-for="([level, err], i) in list">
+                    <tr v-for="([level, err], i) in list" v-show="matchesSearch(level, i)">
                         <td class="rank">
                             <p v-if="i + 1 <= 5000" class="type-label-lg">#{{ i + 1 }}</p>
                             <p v-else class="type-label-lg">-</p>
                         </td>
                         <td class="level" :class="{ 'active': selected == i, 'error': !level }">
-                            <button @click="selected = i">
+                            <button @click="selectLevel(i)">
                                 <span class="type-label-lg">{{ level?.name || \`Error (\${err}.json)\` }}</span>
                             </button>
                         </td>
@@ -62,7 +68,6 @@ export default {
                     </ul>
                     <h2>Records</h2>
                     <p v-if="selected + 1 <= 5000"><strong>{{ level.percentToQualify }}%</strong> or better to qualify</p>
-                    <!-- <p v-else-if="selected +1 <= 150"><strong>100%</strong> or better to qualify</p> -->
                     <p v-else>This level does not accept new records.</p>
                     <table class="records">
                         <tr v-for="record in level.records" class="record">
@@ -104,40 +109,18 @@ export default {
                         </ol>
                     </template>
                     <h3>Submission Requirements</h3>
-                    <p>
-                        Achieved the record without using hacks (however, FPS bypass is allowed, up to CBF lol)
-                    </p>
-                    <p>
-                        Achieved the record on the level that is listed on the site - please check the level ID before you submit a record
-                    </p>
-                    <p>
-                        Have source audio with Clicks/taps in the video. Using the Click sounds Mod on Geode does not count.
-                    </p>
-                    <p>
-                        The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt.
-                    </p>
-                    <p>
-                        The recording must also show the player hit the endwall, or the completion will be invalidated.
-                    </p>
-                    <p>
-                        Do not use secret routes or bug routes, coin routes are not a problem.
-                    </p>
-                    <p>
-                        Raw footage is only necessary for verifications, but it still has to be given if a list staff member asks for it outside of verifications.
-                    </p>
-                    <p> 
-                    </p>
+                    <p>Achieved the record without using hacks (however, FPS bypass is allowed, up to CBF lol)</p>
+                    <p>Achieved the record on the level that is listed on the site - please check the level ID before you submit a record</p>
+                    <p>Have source audio with Clicks/taps in the video. Using the Click sounds Mod on Geode does not count.</p>
+                    <p>The recording must have a previous attempt and entire death animation shown before the completion, unless the completion is on the first attempt.</p>
+                    <p>The recording must also show the player hit the endwall, or the completion will be invalidated.</p>
+                    <p>Do not use secret routes or bug routes, coin routes are not a problem.</p>
+                    <p>Raw footage is only necessary for verifications, but it still has to be given if a list staff member asks for it outside of verifications.</p>
+                    <p></p>
                     <p>
                         Road to 5K Levels: <b>6.38%</b><br/>
                         Road to 10K Records/Verifications: <b>10.91%</b>
                     </p>
-                    <!-- 1 Level = plus 0.02% -->
-                    <!-- 1 Record = plus 0.01% -->
-                    <!-- <p style="margin-top: 1rem;">
-                        <a href="#/changelog" class="type-label-lg" style="display: inline-block; padding: 0.5rem 1rem; background-color: var(--color-primary); color: white; border-radius: 0.25rem; text-decoration: none">
-                            Changelog
-                        </a>
-                    </p> -->
                 </div>
             </div>
         </main>
@@ -149,17 +132,17 @@ export default {
         selected: 0,
         errors: [],
         roleIconMap,
-        store
+        store,
+        searchQuery: "",
     }),
     computed: {
         level() {
-            return this.list[this.selected][0];
+            return this.list[this.selected]?.[0];
         },
         video() {
             if (!this.level.showcase) {
                 return embed(this.level.verification);
             }
-
             return embed(
                 this.toggledShowcase
                     ? this.level.showcase
@@ -168,11 +151,9 @@ export default {
         },
     },
     async mounted() {
-        // Hide loading spinner
         this.list = await fetchList();
         this.editors = await fetchEditors();
 
-        // Error handling
         if (!this.list) {
             this.errors = [
                 "Failed to load list. Retry in a few minutes or notify list staff.",
@@ -181,9 +162,7 @@ export default {
             this.errors.push(
                 ...this.list
                     .filter(([_, err]) => err)
-                    .map(([_, err]) => {
-                        return `Failed to load level. (${err}.json)`;
-                    })
+                    .map(([_, err]) => `Failed to load level. (${err}.json)`)
             );
             if (!this.editors) {
                 this.errors.push("Failed to load list editors.");
@@ -191,9 +170,33 @@ export default {
         }
 
         this.loading = false;
+
+        // Feature 2: open level from URL hash e.g. #/list/12345678
+        this.$nextTick(() => {
+            const match = window.location.hash.match(/^#\/list\/(\d+)/);
+            if (match) {
+                const levelId = parseInt(match[1]);
+                const idx = this.list.findIndex(([lvl]) => lvl?.id === levelId);
+                if (idx !== -1) this.selectLevel(idx);
+            }
+        });
     },
     methods: {
         embed,
         score,
+        matchesSearch(level, i) {
+            if (!this.searchQuery.trim()) return true;
+            const q = this.searchQuery.trim().toLowerCase();
+            return level?.name?.toLowerCase().includes(q);
+        },
+        selectLevel(i) {
+            this.selected = i;
+            const levelId = this.list[i]?.[0]?.id;
+            if (levelId !== undefined) {
+                // Update URL without triggering a navigation/reload
+                const newHash = `#/list/${levelId}`;
+                window.history.replaceState(null, "", newHash);
+            }
+        },
     },
 };

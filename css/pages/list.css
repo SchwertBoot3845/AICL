@@ -136,3 +136,24 @@
 .page-list .meta .editors li a:hover {
     text-decoration: underline;
 }
+
+.list-container .search {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 0.875rem;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+}
+
+.list-container .search::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.list-container .search:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.4);
+}

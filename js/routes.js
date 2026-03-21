@@ -6,6 +6,7 @@ import Changelog from './pages/Changelog.js';
 
 export default [
     { path: '/', component: List },
+    { path: '/list/:id', component: List },
     { path: '/packs', component: Packs },
     { path: '/leaderboard', component: Leaderboard },
     { path: '/roulette', component: Roulette },
