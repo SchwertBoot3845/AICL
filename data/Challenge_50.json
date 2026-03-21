@@ -8,5 +8,19 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "coffee cup",
+            "link": "https://youtu.be/cwZm35pZlG0",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        },
+        {
+            "user": "IkukGD",
+            "link": "https://youtu.be/Fuvz6oFF4t4",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
