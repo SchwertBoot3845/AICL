@@ -66,8 +66,8 @@ export async function onRequest(context) {
 
 async function getLevelById(levelId) {
     try {
-        const listRes = await fetch("https://aicl.pages.dev/main/data/_list.js");
-        console.log("_list.js status:", listRes.status);
+        const listRes = await fetch("https://aicl.pages.dev/main/data/_list.json");
+        console.log("_list.json status:", listRes.status);
         if (!listRes.ok) return null;
 
         const listText = await listRes.text();
