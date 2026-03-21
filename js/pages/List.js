@@ -67,11 +67,14 @@ export async function onRequest(context) {
 async function getLevelById(levelId) {
     try {
         const listRes = await fetch("https://aicl.pages.dev/main/data/_list.js");
+        console.log("_list.js status:", listRes.status);
         if (!listRes.ok) return null;
 
         const listText = await listRes.text();
+        console.log("_list.js first 100 chars:", listText.slice(0, 100));
 
         const arrMatch = listText.match(/\[[\s\S]*\]/);
+        console.log("arrMatch found:", !!arrMatch);
         if (!arrMatch) return null;
 
         const files = arrMatch[0]
@@ -80,11 +83,14 @@ async function getLevelById(levelId) {
             .map(s => s.trim().replace(/['"]/g, "").replace(/\s/g, ""))
             .filter(Boolean);
 
+        console.log("files count:", files.length, "first file:", files[0]);
+
         for (let i = 0; i < files.length; i++) {
             try {
                 const lvlRes = await fetch(`https://aicl.pages.dev/main/data/${files[i]}.json`);
                 if (!lvlRes.ok) continue;
                 const lvl = await lvlRes.json();
+                console.log(`Checking ${files[i]}: id=${lvl.id} vs ${levelId}`);
                 if (String(lvl.id) === String(levelId)) {
                     return {
                         rank: i + 1,
@@ -98,10 +104,10 @@ async function getLevelById(levelId) {
             }
         }
         return null;
-    } catch {
+    } catch (e) {
+        console.log("getLevelById crashed:", e.message);
         return null;
     }
-}
 
 function injectMeta(html, { title, description, ogUrl }) {
     return html
