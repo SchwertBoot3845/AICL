@@ -2,31 +2,26 @@ export async function onRequest(context) {
     const url = new URL(context.request.url);
     const path = url.pathname;
 
-    // Serve non-HTML assets normally (images, js, css, etc.)
     if (path.match(/\.(js|css|png|jpg|svg|ico|json|woff2?|ttf)$/)) {
         return context.env.ASSETS.fetch(context.request);
     }
 
-    // Fetch base index.html
     const response = await context.env.ASSETS.fetch(
         new Request(`${url.origin}/index.html`)
     );
     let html = await response.text();
 
-    // --- Default meta values ---
     let title = "All Inclusive Challenge List";
     let description =
         "The All Inclusive Challenge List (AICL) for Geometry Dash; " +
         "a comprehensive ranking of all submitted challenges with no level cap.";
     let ogUrl = `https://aicl.pages.dev${path}`;
 
-    // --- Route matching ---
     const levelMatch = path.match(/^\/list\/(\d+)$/);
 
     if (levelMatch) {
-        // /list/{id} — fetch level data and build specific embed
         const levelId = levelMatch[1];
-        const levelInfo = await getLevelById(levelId, url.origin);
+        const levelInfo = await getLevelById(levelId);
         if (levelInfo) {
             title = `#${levelInfo.rank} ${levelInfo.name} - AICL`;
             description =
@@ -37,23 +32,18 @@ export async function onRequest(context) {
             title = "Level not found - AICL";
             description = "This level could not be found on the AICL.";
         }
-
     } else if (path === "/list" || path === "/") {
         title = "List - AICL";
-        description =
-            "Browse every ranked challenge level on the AICL. ";
-
+        description = "Browse every ranked challenge level on the AICL.";
     } else if (path === "/leaderboard") {
         title = "Leaderboard - AICL";
         description =
             "See the top players on the AICL ranked by total points " +
             "earned from completing challenge levels.";
-
     } else if (path === "/packs") {
         title = "Packs - AICL";
         description =
-            "Complete themed level packs on the AICL to earn 6 or 7 bonus points. ";
-
+            "Complete themed level packs on the AICL to earn 6 or 7 bonus points.";
     } else if (path === "/roulette") {
         title = "Roulette - AICL";
         description =
@@ -62,11 +52,10 @@ export async function onRequest(context) {
     } else if (path === "/changelog") {
         title = "Changelog - AICL";
         description =
-            "Level Changelogs from the discord server added to the site. " +
+            "Level changelogs from the discord server added to the site. " +
             "ATTENTION: OUTDATED";
     }
 
-    // --- Inject meta tags ---
     html = injectMeta(html, { title, description, ogUrl });
 
     return new Response(html, {
@@ -75,18 +64,17 @@ export async function onRequest(context) {
     });
 }
 
-
-// Fetches _list.js, then scans level JSONs until it finds the matching ID
-async function getLevelById(levelId, origin) {
+async function getLevelById(levelId) {
     try {
-        const listRes = await fetch(`${origin}/main/data/_list.js`);
+        const listRes = await fetch("https://aicl.pages.dev/main/data/_list.js");
+        console.log("_list.js status:", listRes.status);
         if (!listRes.ok) return null;
 
         const listText = await listRes.text();
+        console.log("_list.js first 100 chars:", listText.slice(0, 100));
 
-        // Parse the exported array of filenames from _list.js
-        // Handles: export default [...] or module.exports = [...] or just [...]
         const arrMatch = listText.match(/\[[\s\S]*\]/);
+        console.log("arrMatch found:", !!arrMatch);
         if (!arrMatch) return null;
 
         const files = arrMatch[0]
@@ -95,11 +83,14 @@ async function getLevelById(levelId, origin) {
             .map(s => s.trim().replace(/['"]/g, "").replace(/\s/g, ""))
             .filter(Boolean);
 
+        console.log("files count:", files.length, "first file:", files[0]);
+
         for (let i = 0; i < files.length; i++) {
             try {
-                const lvlRes = await fetch(`${origin}/main/data/${files[i]}.json`);
+                const lvlRes = await fetch(`https://aicl.pages.dev/main/data/${files[i]}.json`);
                 if (!lvlRes.ok) continue;
                 const lvl = await lvlRes.json();
+                console.log(`Checking ${files[i]}: id=${lvl.id} vs ${levelId}`);
                 if (String(lvl.id) === String(levelId)) {
                     return {
                         rank: i + 1,
@@ -108,18 +99,19 @@ async function getLevelById(levelId, origin) {
                         percentToQualify: lvl.percentToQualify ?? 100,
                     };
                 }
-            } catch {
+            } catch (e) {
+                console.log(`Error on file ${files[i]}:`, e.message);
                 continue;
             }
         }
+        console.log("Level not found after scanning all files");
         return null;
-    } catch {
+    } catch (e) {
+        console.log("getLevelById crashed:", e.message);
         return null;
     }
 }
 
-
-// Replaces all relevant meta tags in the HTML string
 function injectMeta(html, { title, description, ogUrl }) {
     return html
         .replace(
