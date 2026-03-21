@@ -99,15 +99,18 @@ async function getLevelById(levelId) {
                         percentToQualify: lvl.percentToQualify ?? 100,
                     };
                 }
-            } catch {
+            } catch (e) {
+                console.log(`Error on file ${files[i]}:`, e.message);
                 continue;
             }
         }
+        console.log("Level not found after scanning all files");
         return null;
     } catch (e) {
         console.log("getLevelById crashed:", e.message);
         return null;
     }
+}
 
 function injectMeta(html, { title, description, ogUrl }) {
     return html
