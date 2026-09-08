@@ -14,6 +14,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "szymek",
+            "link": "https://www.youtube.com/watch?v=kM9CTP_U1sc",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
