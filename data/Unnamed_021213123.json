@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "heitorfbd (autism)",
+            "link": "https://youtu.be/YDcmWLEURwQ",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
+        }
     ]
 }
