@@ -42,6 +42,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 120
+        },
+        {
+            "user": "lipsonteror",
+            "link": "https://m.youtube.com/watch?v=6diLkeel6xw",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
