@@ -28,6 +28,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 60
+        },
+        {
+            "user": "Hyakkiyako",
+            "link": "https://youtu.be/5K_5mVXNn1g",
+            "percent": 100,
+            "mobile": false
+            "hz": 120
         }
     ]
 }
