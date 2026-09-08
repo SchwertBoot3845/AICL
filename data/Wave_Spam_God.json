@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "SchwertBootGD",
+            "link": "https://m.youtube.com/watch?v=mHIJzowWV9Q",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
