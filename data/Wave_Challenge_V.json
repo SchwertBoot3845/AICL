@@ -22,6 +22,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "Hyakkiyako",
+            "link": "https://www.youtube.com/watch?v=KKHwEC2oaT8",
+            "percent": 100,
+            "mobile": false,
+            "hz": 120
         }
     ]
 }
