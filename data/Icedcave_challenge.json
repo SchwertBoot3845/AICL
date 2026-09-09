@@ -84,6 +84,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 60
+        },
+        {
+            "user": "Scatter",
+            "link": "https://youtu.be/l9boPnpa79w",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
