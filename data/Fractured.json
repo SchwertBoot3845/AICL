@@ -35,6 +35,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 60
-      }
+      },
+      {
+            "user": "Nemo",
+            "link": "https://youtu.be/1WlLWNfY78g",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
