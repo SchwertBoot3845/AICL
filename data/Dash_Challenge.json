@@ -128,6 +128,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
-      }
+      },
+      {
+            "user": "Tervom",
+            "link": "https://youtu.be/mke6HLNZc1k?si=M5J-VCtiV-44RWxD",
+            "percent": 100,
+            "mobile": true,
+            "hz": 60
+        }
     ]
 }
