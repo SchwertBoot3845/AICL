@@ -35,6 +35,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "Rkx",
+            "link": "https://youtu.be/M0yHxDvblgo",
+            "percent": 100,
+            "mobile": false,
+            "hz": 60
         }
     ]
 }
