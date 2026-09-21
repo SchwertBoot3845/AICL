@@ -21,6 +21,13 @@
             "percent": 100,
             "mobile": true,
             "hz": 120
+        },
+        {
+            "user": "Subzero",
+            "link": "https://medal.tv/games/geometry-dash/clips/mhjovfYmrMhHYKfH6?invite=cr-MSxvWGosNDY4MjgwMTAz&v=18",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
         }
     ]
 }
