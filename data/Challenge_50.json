@@ -21,6 +21,13 @@
             "percent": 100,
             "mobile": false,
             "hz": 240
+        },
+        {
+            "user": "SCB",
+            "link": "https://m.youtube.com/watch?v=marE3YIE6aY&pp=0gcJCfwAo7VqN5tD",
+            "percent": 100,
+            "mobile": false,
+            "hz": 165
         }
     ]
 }
