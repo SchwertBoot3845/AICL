@@ -8,5 +8,12 @@
     "percentToQualify": 50,
     "password": "Free to Copy",
     "records": [
+        {
+            "user": "tFluffy",
+            "link": "https://youtu.be/6PlJi0kBYvc",
+            "percent": 100,
+            "mobile": false,
+            "hz": 240
+        }
     ]
 }
